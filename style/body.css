@@ -1,0 +1,98 @@
+body {
+	background-image: url(https://mariawejman.fr/wp-content/uploads/2018/08/instagram-background-.png);
+	background-size: 120%;
+}
+
+div {
+	display: block;
+}
+
+.banner{
+    height: 80px;
+	padding: 5px;
+	margin: 10px;
+    font-weight: bold;
+	text-align: center;
+    padding-left: 100px;
+    padding-top: 30px;
+	background: #2d2d2d;
+	opacity: 0.5;
+	color: #fff;
+	border-radius: 10px;
+}
+
+#headline{
+    text-align: left;
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	font-size: 50px;
+}
+
+#signupheadline{
+    text-align: left;
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	font-size: 50px;
+}
+
+#login{
+	margin-top: -30px;
+	margin-right: 20px;
+	text-align: right;	
+}
+
+#signup{
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;	
+	font-size: 12px;
+}
+
+#logout{
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;	
+	font-size: 15px;
+}
+
+#welcomepage{
+	margin-top: 15%;
+	text-align: center;
+	color: white;
+	font-size: 100px;
+}
+
+#copyright {
+	margin-top: 20%;
+	text-align: right;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	color: lightgrey;
+	position: relative;
+}
+
+.signupform {
+	margin-top: 1%;
+    min-height: 60vh;
+    width: 70%;
+    font-family: "Goudy Old Style";
+	margin: auto;
+	font-size: 1.5em;
+	font-weight: normal;
+	color: white;
+}
+
+#form {
+	height: 500px;
+    width: 450px;
+    background-color: rgba(250, 200, 200, 0.45);
+	margin: 6% 20%;
+	font-family: "Open Sans",Helvetica,Arial,sans-serif;
+    font-size: 1,2em;
+    line-height: 150%;
+    padding: 25px;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
+	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
+	color: rbg(54, 56, 66);
+	font-size: 24px;
+	font-weight: 400;
+	height: 217.094px;
+}
