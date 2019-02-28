@@ -1,8 +1,6 @@
 body {
-	background-image: url("/bg.png");
-	background-size: 120%;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
+	background-image: url(https://mariawejman.fr/wp-content/uploads/2018/08/instagram-background-.png);
+	background-size: 150%;
 }
 
 div {
@@ -11,7 +9,7 @@ div {
 
 /* banner */
 .banner{
-	height: 80px;
+    height: 80px;
 	padding: 5px;
 	margin: 10px;
     font-weight: bold;
@@ -19,50 +17,30 @@ div {
     padding-left: 100px;
     padding-top: 30px;
 	background: #2d2d2d;
-	opacity: 0.9;
+	opacity: 0.5;
 	color: #fff;
 	border-radius: 10px;
-	background :linear-gradient(-70deg, skyblue, 20%, rgba(0, 0, 0, 0) 30%), url('/images/instagram-background.png');
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 }
 
-#logo {
-	height: 50px;
-	padding: 5px;
-	width: 50px;
-	opacity: 1.5;
-	border-radius: 10px;
-	background-attachment: fixed;
-	position: absolute;
-	margin: 4% 3%;
-}
-
 #login{
-	position: relative;
 	margin-right: 20px;
 	text-align: right;	
 }
 
-
-/* sign out */
 #logout{
 	color: white;
 	font-family: Arial, Helvetica, sans-serif;	
 	font-size: 15px;
-	position: absolute;
-	text-align: right;
-	margin-left: 38%;
 }
 
 /* headlines */
-#indexheadline{
+#headline{
     text-align: left;
     font-family: "Open Sans",Helvetica,Arial,sans-serif;
 	font-weight: bold;
 	font-size: 50px;
 	position: absolute;
-	text-shadow: 3px 3px black;
-	opacity: 0.7;
 }
 
 #signupheadline{
@@ -70,20 +48,6 @@ div {
     font-family: "Open Sans",Helvetica,Arial,sans-serif;
 	font-weight: bold;
 	font-size: 50px;
-	position: absolute;
-	text-shadow: 3px 3px black;
-	opacity: 0.7;
-}
-
-#feedheadline{
-    text-align: left;
-    font-family: "Open Sans",Helvetica,Arial,sans-serif;
-	font-weight: bold;
-	font-size: 50px;
-	position: absolute;
-	margin-top: -4px;
-	text-shadow: 3px 3px black;
-	opacity: 0.7;
 }
 
 #homeheadline{
@@ -91,10 +55,7 @@ div {
     font-family: "Open Sans",Helvetica,Arial,sans-serif;
 	font-weight: bold;
 	font-size: 50px;
-	position: absolute;
-	margin-top: -4px;
-	text-shadow: 3px 3px black;
-	opacity: 0.7;
+	margin-top: -15px;
 }
 
 /* center part - welcome */
@@ -103,7 +64,6 @@ div {
 	text-align: center;
 	color: white;
 	font-size: 100px;
-	text-shadow: 3px 3px rgb(24, 24, 24);
 }
 
 /* signup */ 
@@ -123,7 +83,7 @@ div {
 	color: white;
 }
 #form {
-	height: 250px;
+	height: 500px;
     width: 450px;
     background-color: rgba(250, 200, 200, 0.45);
 	margin: 6% 20%;
@@ -132,48 +92,16 @@ div {
     padding: 25px;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 	font-size: 20px;
-	text-align: left;
-
+	font-weight: 400;
+	height: 217.094px;
 }
 
-
-/* feed */
-#scrollingfeed {
-	width: 500px;
-	margin-top: 6%;
-	scroll-behavior: smooth;
-	
-}
-
-
-/* home page after logged in */
-#canvas {
-	height: 500px;
-    width: 500px;
-    background-color: white;
-	margin: 2% 20%;
-    padding: 1px;
-	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
-	opacity:0.5;
-}
-.filters {
-	height: 100px;
-	width: 100px;
-	background-color: white;
-	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.6);
-	opacity: 0.5;
-}
-
-#startbutton {
-	text-align: center;
-}
+/* sign out */
 
 
  /* footer */
 h2 {
 	text-align: center;	
-	color: white;
-	text-shadow: 1px 1px black;
 }
 
 #copyright {
