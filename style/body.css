@@ -1,6 +1,7 @@
+/* over all */
 body {
 	background-image: url("/images/bg.png");
-	background-size: 110%;
+	background-size: 180%;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 }
@@ -9,32 +10,50 @@ div {
 	display: block;
 }
 
+#notice {
+	font-size: 13px;
+	color: rgb(88, 87, 87);
+	margin: auto;
+}
+
+h2 {
+	text-align: center;	
+	color: white;
+	text-shadow: 1px 1px black;
+}
+
 /* banner */
 .banner{
-	height: 80px;
+	height: 100px;
 	padding: 5px;
-	margin: 10px;
     font-weight: bold;
-	text-align: center;
-    padding-left: 100px;
-    padding-top: 30px;
-	background: #2d2d2d;
 	opacity: 0.9;
 	color: #fff;
-	border-radius: 10px;
-	background :linear-gradient(-70deg, skyblue, 20%, rgba(0, 0, 0, 0) 30%), url('/images/instagram-background.png');
+	background-attachment: fixed;
+	background :linear-gradient(-60deg, #84aacf, 25%, rgba(0, 0, 0, 0) 40%), url('/images/instagram-background.png');
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 }
 
 #logo {
-	height: 50px;
+	height: 45px;
 	padding: 5px;
-	width: 50px;
-	opacity: 1.5;
+	width: 45px;
 	border-radius: 10px;
 	background-attachment: fixed;
 	position: absolute;
-	margin: 4% 3%;
+	margin: 25px 20px;
+}
+
+/* headlines */
+.headline{
+	text-align: left;
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	font-size: 40px;
+	position: absolute;
+	text-shadow: 3px 3px black;
+	opacity: 0.7;
+	margin: 10px 85px;
 }
 
 #login{
@@ -43,66 +62,40 @@ div {
 	text-align: right;	
 }
 
+#username{
+	color: purple;
+	font-size:15px;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 
-/* sign out */
+#forgetpw {
+	text-decoration: none;
+	color: white;
+	font-size: 15px;
+	font-weight: initial;
+}
+
 #logout{
 	color: white;
 	font-family: Arial, Helvetica, sans-serif;	
 	font-size: 15px;
-	position: absolute;
-	text-align: right;
-	margin-left: 38%;
+	margin-right: 30px;
+	text-decoration: none;
 }
 
-/* headlines */
-#indexheadline{
-    text-align: left;
-    font-family: "Open Sans",Helvetica,Arial,sans-serif;
-	font-weight: bold;
-	font-size: 50px;
-	position: absolute;
-	text-shadow: 3px 3px black;
-	opacity: 0.7;
+#account{
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;	
+	font-size: 15px;
+	text-decoration: none;
 }
 
-#signupheadline{
-    text-align: left;
-    font-family: "Open Sans",Helvetica,Arial,sans-serif;
-	font-weight: bold;
-	font-size: 50px;
-	position: absolute;
-	text-shadow: 3px 3px black;
-	opacity: 0.7;
-}
-
-#feedheadline{
-    text-align: left;
-    font-family: "Open Sans",Helvetica,Arial,sans-serif;
-	font-weight: bold;
-	font-size: 50px;
-	position: absolute;
-	margin-top: -4px;
-	text-shadow: 3px 3px black;
-	opacity: 0.7;
-}
-
-#homeheadline{
-    text-align: left;
-    font-family: "Open Sans",Helvetica,Arial,sans-serif;
-	font-weight: bold;
-	font-size: 50px;
-	position: absolute;
-	margin-top: -4px;
-	text-shadow: 3px 3px black;
-	opacity: 0.7;
-}
-
-/* center part - welcome */
+/* center part - welcome index.php */
 #welcomepage{
 	margin-top: 15%;
 	text-align: center;
-	color: #778899;
-	font-size: 100px;
+	color: #84aacf;
+	font-size: 120px;
 	text-shadow: 2px 2px rgb(24, 24, 24);
 	font-weight: bold;
 }
@@ -111,10 +104,11 @@ div {
 #signup{
 	color: white;
 	font-family: Arial, Helvetica, sans-serif;	
-	font-size: 12px;
+	font-size: 15px;
+	text-decoration: none;
 }
+
 .signupform {
-	margin-top: 1%;
     min-height: 60vh;
     width: 70%;
     font-family: "Goudy Old Style";
@@ -122,11 +116,13 @@ div {
 	font-size: 1.5em;
 	font-weight: normal;
 	color: white;
+	opacity: 0.85;
 }
+
 #form {
 	height: 250px;
     width: 450px;
-    background-color: rgba(250, 200, 200, 0.8);
+    background-color: #84aacf;
 	margin: 6% 20%;
 	font-family: "Open Sans",Helvetica,Arial,sans-serif;
     line-height: 150%;
@@ -134,8 +130,8 @@ div {
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 	font-size: 20px;
 	text-align: left;
+	opacity: 0.85;
 }
-
 
 /* feed */
 #scrollingfeed {
@@ -149,17 +145,24 @@ div {
 	background-color: lightgrey;
 }
 
-
 /* home page after logged in */
-#canvas {
-	height: 450px;
-    width: 450px;
+#camerastream {
+	height: 500px;
+    width: 500px;
     background-color: white;
 	margin: 2% 20%;
-    padding: 1px;
+	padding: 5px;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
-	opacity:0.5;
-}
+} 
+.canvas {
+	height: 500px;
+    width: 500px;
+    background-color: white;
+	margin: 2% 20%;
+	padding: 5px;
+	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
+} 
+
 .filters {
 	height: 100px;
 	width: 100px;
@@ -168,22 +171,56 @@ div {
 	opacity: 0.5;
 }
 
-#startbutton {
+
+.button {
+	margin-top: 15px;
+	padding: 5px 25px;
 	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	color: white;
+	background-color:  #84aacf;
+	cursor: pointer;
+	text-align: center;
+	opacity: 0.9;
 }
 
+/* account info - change password/email/username */
+.accinfo {
+    min-height: 60vh;
+    width: 70%;
+    font-family: "Goudy Old Style";
+	margin: auto; /* it will adjust after */
+	font-size: 1.5em;
+	font-weight: normal;
+	color: white;
+	margin-bottom: 50px;
+}
+
+.changeform {
+	height: 220px;
+    width: 450px;
+    background-color:#84aacf;
+	margin: 6% 20%;
+	font-family: "Open Sans",Helvetica,Arial,sans-serif;
+    line-height: 150%;
+    padding: 25px;
+	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
+	font-size: 20px;
+	text-align: left;
+	opacity: 0.85;
+}
+#firstchangeform {
+	height: 190px;
+}
 
  /* footer */
-h2 {
-	text-align: center;	
-	color: white;
-	text-shadow: 1px 1px black;
-}
-
 #copyright {
-	margin-top: 20%;
 	text-align: right;
+	bottom: 8px;
+	right: 16px;
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 	color: dimgrey;
-	position: relative;
+	position: absolute;
 }

@@ -4,10 +4,8 @@ if (isset($_SESSION['login']))
 // if logged in-- > go to feed.php
 //&_SESSION['login']=array();
 ?>
-<body>
-<img id="logo" src="/images/logo.png"><img>
-<div class="banner">
-    <div id="indexheadline">Camagru</div>
+
+<p class="headline">Camagru</p>
     <div id="login">
         <br>
     	<form action="" method= "post">
@@ -16,12 +14,17 @@ if (isset($_SESSION['login']))
             <input type="submit" value="Sign in"/>
             <!-- here to insert signin codes server side  --> 
         </form>
-	    <a id="signup" href="signup.php" >Sign up</a>
+        <div style="height:3px;"><br></div>
+        <a id="forgetpw" href="reinitiatepw.php">I forget my password</a>
     </div>
 </div>
 
 <div id="welcomepage">
     Welcome to Camagru!
+</div>
+<br><br>
+<div align="center">
+    <a href="signup.php"><button class="button">Sign Up</button></a>
 </div>
 
 <?php include('control/footer.php');?>

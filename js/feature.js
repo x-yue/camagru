@@ -14,12 +14,13 @@ randomHeadline = function () {
 
 randomHeadline();
 
+
+
 //passwordSecureOne = fucntion () {   
 //};
 
-//taking picture 
-(function() {
-
+/*
+takeAPicture = function() {
     var streaming = false,
         video        = document.querySelector('#video'),
         cover        = document.querySelector('#cover'),
@@ -33,7 +34,6 @@ randomHeadline();
                            navigator.webkitGetUserMedia ||
                            navigator.mozGetUserMedia ||
                            navigator.msGetUserMedia);
-  
     navigator.getMedia(
       {
         video: true,
@@ -76,6 +76,12 @@ randomHeadline();
         takepicture();
       ev.preventDefault();
     }, false);
-  
-  })();
-  
+};
+*/
+
+
+function takeAPicture(){
+
+}
+
+takeAPicture();
