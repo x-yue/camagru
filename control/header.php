@@ -11,7 +11,6 @@ if (isset($_POST["login"]) AND isset($_POST["passwd"]) AND isset($_SESSION["logi
 
 <!DOCTYPE HTML>
 <html>
-
 <head>
 	<title>Camagru</title>
 	<link rel="stylesheet" type="text/css" href="style/body.css">

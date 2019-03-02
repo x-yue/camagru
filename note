@@ -2,38 +2,4 @@ mdn webcam
 pdo php
  #fc9d9a; color
 
-change background to bricks 
-
 upload picture and take pictures 
-
-
- <ul action-type="header_slider" node-type="header_slider" style="transition: transform 0ms ease 0s; transform: translate3d(-2640px, 0px, 0px); backface-visibility: hidden;"><li>
-            <a href="https://ipop.sina.com.tw/posts/380658?cf=bj_overseas_index_slider" target="_blank" "="">
-            <img src=" https://ipopimgs.sina.tw/images/user_upload/e0/a1/50/e0a150025b15994cbbd4f752addf5503.jpeg" class="pic"><div class="pic_intro">金泰熙被吐槽名气高演技差 网友认“最不会演戏花瓶”</div>
-            </a>
-        </li>
-            <li>
-            <a href="https://ipop.sina.com.tw/posts/380560?cf=bj_overseas_index_slider" target="_blank" "="">
-            <img src=" https://ipopimgs.sina.tw/images/user_upload/69/e4/3f/69e43f3756972e6901634b2d874d6ecf.jpeg" class="pic"><div class="pic_intro">男神眼睛开外掛正流行！EXO张艺兴《黄金瞳》启动冒险</div>
-            </a>
-        </li>
-            <li>
-            <a href="https://ipop.sina.com.tw/posts/380570?cf=bj_overseas_index_slider" target="_blank" "="">
-            <img src=" https://ipopimgs.sina.tw/images/user_upload/d6/8a/72/d68a723a742c7a5e00dc8e6fe384519c.jpeg" class="pic"><div class="pic_intro">13岁大女儿想出道，小S“假装支持”却忧心外界谩骂！</div>
-            </a>
-        </li>
-            <li>
-            <a href="https://ipop.sina.com.tw/posts/380602?cf=bj_overseas_index_slider" target="_blank" "="">
-            <img src=" https://ipopimgs.sina.tw/images/user_upload/92/9c/49/929c4967bf5ca4b665a2afd053506c77.jpeg" class="pic"><div class="pic_intro">婆媳问题挤不进豪门，韦汝旧爱喊话“照顾她一辈子”！</div>
-            </a>
-        </li>
-            <li>
-            <a href="https://ipop.sina.com.tw/posts/380658?cf=bj_overseas_index_slider" target="_blank" "="">
-            <img src=" https://ipopimgs.sina.tw/images/user_upload/e0/a1/50/e0a150025b15994cbbd4f752addf5503.jpeg" class="pic"><div class="pic_intro">金泰熙被吐槽名气高演技差 网友认“最不会演戏花瓶”</div>
-            </a>
-        </li>
-        <li>
-            <a href="https://ipop.sina.com.tw/posts/380560?cf=bj_overseas_index_slider" target="_blank" "="">
-            <img src=" https://ipopimgs.sina.tw/images/user_upload/69/e4/3f/69e43f3756972e6901634b2d874d6ecf.jpeg" class="pic"><div class="pic_intro">男神眼睛开外掛正流行！EXO张艺兴《黄金瞳》启动冒险</div>
-            </a>
-        </li></ul>

@@ -11,29 +11,7 @@ if (!isset($_SESSION['login']))
 
     <div class="banner">
         <p id="homeheadline"></p> 
-<!--    <br><a id="logout" href="index.php">Log out</a> -->
-        <br><a id="logout" href="index.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
-    <script>    //    var logout = confirm("Are you sure?");
-      //  function confirmLogOut(){   
-        //    if(logout){
-          //      href = "index.php";
-            //} else {
-              //  href = "home.php"
-          //  }
-       // }
-            // need to revisit this script now it doesn't take confirmation 
-        // same for feed.php
-       /* 
-        function confirmLogOut(){
-            var returnValue = confirm("Are you sure?");
-            if (returnValue === true){
-                return true;
-            }
-            else {
-                return false;
-            }
-        }*/
-    </script>
+        <br><a id="logout" href="index.php" onclick="return confirm('Are you sure to logout?');">Log out</a>
     </div>
 
 
@@ -41,23 +19,32 @@ if (!isset($_SESSION['login']))
 <div align="center">
     <table>
         <tr>
-            <canvas id="canvas">
-               <img id="photo" alt="The screen capture will appear in this box.">
+         <canvas id="canvas">
+            <option class="filter"><img src="images/filter1"><option>
+            <option class="filter"><img src="images/filter2"><option>
+            <option class="filter"><img src="images/filter3"><option>
+            <option class="filter"><img src="images/filter4"><option>
+            <option class="filter"><img src="images/filter5"><option>
+            <option class="filter"><img src="images/filter6"><option>
+            <option class="filter"><img src="images/filter7"><option>
+            <option class="filter"><img src="images/filter8"><option>
+            <video id="video"></video>
+           
+        <!-- confirm picture? --> 
+
+            <img src="http://placekitten.com/g/320/261" id="photo" alt="photo">
+
             </canvas>
+       
         </tr>
      <!--   <tr>
             <canvas class="filters">
             </canvas>
         </tr> -->
-
+</table>
 </div>
 
 <div align="center"><button id="startbutton">Take a photo</button></div>    
-
-
-
-
-
 
 <script src="js/feature.js"></script>
 <?php include('control/footer.php');?>
