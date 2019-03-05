@@ -9,11 +9,6 @@ if (isset($_POST["username"]) AND isset($_POST["password"]) AND isset($_SESSION[
 {
 }
 
-if ($_POST['submit'] == 'Sign In')
-{
-	$_SESSION['username'] = $_POST['username'];
-	$_SESSION['password'] = $_POST['password'];
-}
 
 /*
 value="<?PHP echo $_SESSION["password"]; ?>"
@@ -28,7 +23,7 @@ value="<?PHP echo $_SESSION["password"]; ?>"
     <div id="login">
         <br>
     	<form action="config/signin.php" method= "post">
-            <input type="text" name="username" placeholder="Login" required>
+            <input type="login" name="username" placeholder="Login" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" name="submit" value="Sign in" required>
             <!-- here to insert signin codes server side  --> 

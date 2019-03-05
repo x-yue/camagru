@@ -38,7 +38,7 @@ h2 {
 	background-attachment: fixed;
 	position: absolute;
 	margin: 29px 25px;
-	opacity: 0.8;
+	opacity: 0.6;
 }
 .headline{
 	text-align: left;
@@ -55,7 +55,7 @@ h2 {
 	margin-right: 20px;
 	text-align: right;	
 }
-#username{
+#username, #greetings{
 	color: whitesmoke;
 	font-size:15px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -142,26 +142,42 @@ video {
 	height: 500px;
     width: 500px;
     background-color: white;
-	margin: 2% 20%;
 	padding: 5px;
+	object-fit: fill;
+	margin:2%;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
+	position: relative;
+	z-index: 1;
 } 
 .canvas {
 	height: 500px;
     width: 500px;
-    background-color: white;
-	margin: 2% 20%;
+    background-color: transparent;
 	padding: 5px;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 } 
+#addon{
+	position: absolute;
+	height: 500px;
+	width: 500px;
+	padding: 5px;
+	object-fit: fill;
+	margin:2%;
+	z-index: 2;
+}
 .filters {
 	height: 100px;
 	width: 100px;
+	margin-top: 2%;
 	background-color: white;
 	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.6);
 	opacity: 0.5;
 }
-
+.gallery {
+	height: 250px;
+	width: 250px;
+	background: transparent;
+}
 .button {
 	margin-top: 15px;
 	padding: 5px 25px;

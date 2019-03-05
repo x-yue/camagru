@@ -14,20 +14,12 @@ randomHeadline = function () {
 
 randomHeadline();
 
-addFilter = function() {
-
-}
 
 function takeAPicture(){
-
+    
 }
 
 takeAPicture();
-
-
-
-//passwordSecureOne = fucntion () {   
-//};
 
 /*
 takeAPicture = function() {
@@ -87,6 +79,5 @@ takeAPicture = function() {
       ev.preventDefault();
     }, false);
 };
+
 */
-
-

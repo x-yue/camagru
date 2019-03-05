@@ -16,7 +16,7 @@ include ('control/header.php');
             <!-- here to insert signin codes server side  --> 
         </form>
         <div style="height:3px;"><br></div>
-        <a id="forgetpw" href="reinitiatepw.php">I forget my password</a>
+        <a id="forgetpw" href="forgetpw.php">I forget my password</a>
     </div>
 </div>
 
