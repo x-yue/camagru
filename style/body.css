@@ -5,17 +5,14 @@ body {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 }
-
 div {
 	display: block;
 }
-
 #notice {
 	font-size: 13px;
 	color: rgb(88, 87, 87);
 	margin: auto;
 }
-
 h2 {
 	text-align: center;	
 	color: white;
@@ -33,18 +30,16 @@ h2 {
 	background :linear-gradient(-60deg, #84aacf, 25%, rgba(0, 0, 0, 0) 40%), url('/images/instagram-background.png');
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 }
-
 #logo {
-	height: 45px;
+	height: 35px;
 	padding: 5px;
 	width: 45px;
 	border-radius: 10px;
 	background-attachment: fixed;
 	position: absolute;
-	margin: 25px 20px;
+	margin: 29px 25px;
+	opacity: 0.8;
 }
-
-/* headlines */
 .headline{
 	text-align: left;
     font-family: "Open Sans",Helvetica,Arial,sans-serif;
@@ -52,29 +47,25 @@ h2 {
 	font-size: 40px;
 	position: absolute;
 	text-shadow: 3px 3px black;
-	opacity: 0.7;
+	opacity: 0.8;
 	margin: 10px 85px;
 }
-
 #login{
 	position: relative;
 	margin-right: 20px;
 	text-align: right;	
 }
-
 #username{
-	color: purple;
+	color: whitesmoke;
 	font-size:15px;
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
-
 #forgetpw {
 	text-decoration: none;
 	color: white;
 	font-size: 15px;
 	font-weight: initial;
 }
-
 #logout{
 	color: white;
 	font-family: Arial, Helvetica, sans-serif;	
@@ -82,7 +73,6 @@ h2 {
 	margin-right: 30px;
 	text-decoration: none;
 }
-
 #account{
 	color: white;
 	font-family: Arial, Helvetica, sans-serif;	
@@ -107,7 +97,6 @@ h2 {
 	font-size: 15px;
 	text-decoration: none;
 }
-
 .signupform {
     min-height: 60vh;
     width: 70%;
@@ -118,12 +107,11 @@ h2 {
 	color: white;
 	opacity: 0.85;
 }
-
 #form {
 	height: 250px;
     width: 450px;
     background-color: #84aacf;
-	margin: 6% 20%;
+	margin-top: 6%;
 	font-family: "Open Sans",Helvetica,Arial,sans-serif;
     line-height: 150%;
     padding: 25px;
@@ -146,6 +134,10 @@ h2 {
 }
 
 /* home page after logged in */
+video {
+	height: 500px;
+	width: 500px;
+}
 #camerastream {
 	height: 500px;
     width: 500px;
@@ -162,7 +154,6 @@ h2 {
 	padding: 5px;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 } 
-
 .filters {
 	height: 100px;
 	width: 100px;
@@ -170,7 +161,6 @@ h2 {
 	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.6);
 	opacity: 0.5;
 }
-
 
 .button {
 	margin-top: 15px;
@@ -197,12 +187,11 @@ h2 {
 	color: white;
 	margin-bottom: 50px;
 }
-
 .changeform {
 	height: 220px;
     width: 450px;
     background-color:#84aacf;
-	margin: 6% 20%;
+	margin-top: 6%;
 	font-family: "Open Sans",Helvetica,Arial,sans-serif;
     line-height: 150%;
     padding: 25px;
@@ -218,7 +207,7 @@ h2 {
  /* footer */
 #copyright {
 	text-align: right;
-	bottom: 8px;
+	bottom: auto;
 	right: 16px;
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 	color: dimgrey;

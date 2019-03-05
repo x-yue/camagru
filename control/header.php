@@ -2,11 +2,6 @@
 if (!isset($_SESSION)){
 	session_start();
 }
-
-##include "auth.php";
-if (isset($_POST["login"]) AND isset($_POST["passwd"]) AND isset($_SESSION["login"]))
-{
-}
 ?>
 
 <!DOCTYPE HTML>
@@ -14,7 +9,8 @@ if (isset($_POST["login"]) AND isset($_POST["passwd"]) AND isset($_SESSION["logi
 <html>
 
 <head>
-	<title>Camagru</title>
+	<meta charset="UTF-8">
+	<title id="title"></title>
 	<link rel="stylesheet" type="text/css" href="style/body.css">
 </head>
 

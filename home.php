@@ -1,17 +1,25 @@
 <?php
 include ('control/header.php');
-if (!isset($_SESSION['login']))
- // if not logged in .. 
 
+if (!isset($_SESSION['username'])){
+    echo "<script>alert('You need to sign in first.')</script>";
+    echo "<script type='text/javascript'>location.href = '../index.php';</script>";
+}
 ?>
 
-    <p class="headline" id="homeheadline"></p> 
+<script>
+        document.getElementById("title").innerHTML = "Home";
+</script>
+
+<p class="headline" id="homeheadline"></p> 
 
     <div align="right"  >
         <br>
-        <a id="username"></a>    
+        <a id="username">Hello, </a>
+        <a id="username"></a>&hearts; 
         <script>
-             //document.getElementById("username").innerHTML = $(username)
+            //verify if this works
+            document.getElementById("username").innerHTML = $(username)
         </script>
         &nbsp;
         <a id="account" href="account.php">Account</a>
@@ -33,22 +41,23 @@ if (!isset($_SESSION['login']))
                 .catch(function(error) {
                     console.log("Something went wrong!");
                 });
-             }
+            }
         </script>
     <form>
         <input type="file" name="picture_upload" accept="image/*">
     </form>
 </div>
 <br>
-<div align="center">    
-    <canvas class="filters"><img src="images/filter1.png"></canvas>
-    <canvas class="filters"><img src="images/filter2.png"></canvas>
-    <canvas class="filters"><img src="images/filter3.png"></canvas>
-    <canvas class="filters"><img src="images/filter4.png"></canvas>
-    <canvas class="filters"><img src="images/filter5.png"></canvas>
-    <canvas class="filters"><img src="images/filter6.png"></canvas>
-    <canvas class="filters"><img src="images/filter7.png"></canvas>
-    <canvas class="filters"><img src="images/filter8.png"></canvas>
+
+<div align="center">
+    <td><a href="" onclick="addFilter()"><img class="filters" src="images/filter1.png"></a></td>
+    <td><a href="" onclick="addFilter()"><img class="filters" src="images/filter2.png"></a></td>
+    <td><a href="" onclick="addFilter()"><img class="filters" src="images/filter3.png"></a></td>
+    <td><a href="" onclick="addFilter()"><img class="filters" src="images/filter4.png"></a></td>
+    <td><a href="" onclick="addFilter()"><img class="filters" src="images/filter5.png"></a></td>
+    <td><a href="" onclick="addFilter()"><img class="filters" src="images/filter6.png"></a></td>
+    <td><a href="" onclick="addFilter()"><img class="filters" src="images/filter7.png"></a></td>
+    <td><a href="" onclick="addFilter()"><img class="filters" src="images/filter8.png"></a></td>
 </div>
 
 <div align="center">

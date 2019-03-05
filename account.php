@@ -1,17 +1,23 @@
 <?php
 include ('control/header.php');
-if (!isset($_SESSION['login']))
- // if not logged in .. 
 
+if (!isset($_SESSION['username'])){
+    echo "<script>alert('You need to sign in first.')</script>";
+    echo "<script type='text/javascript'>location.href = '../index.php';</script>";
+}
 ?>
 
-<p class="headline" id="homeheadline">Account Information</p> 
+<script>
+        document.getElementById("title").innerHTML = "Account Information";
+</script>
 
+<p class="headline" id="homeheadline">Account Information</p> 
     <div align="right"  >
         <br>
+        <a id="username">Hello, </a>
         <a id="username"></a>    
         <script>
-             //document.getElementById("username").innerHTML = $(username)
+            document.getElementById("username").innerHTML = $_SESSION["username"];
         </script>
         &nbsp;
         <a id="logout" href="index.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
@@ -26,11 +32,11 @@ if (!isset($_SESSION['login']))
         <form action method="post">
             <label for="password">Old Password</label>
             &nbsp;&nbsp;&hairsp;: 
-            <input type="password" name="login_oldpw" placeholder="your old password" class="input" required>
+            <input type="password" name="oldpw" placeholder="your old password" class="input" required>
             <br>
             <label for="password">New Password</label>
             &thinsp;: 
-            <input type="password" name="login_newpw" placeholder="minimum 6 characters" class="input" required>
+            <input type="password" name="newpw" placeholder="minimum 6 characters" class="input" required>
             <br>
             <br>
             <div align="center">
@@ -46,15 +52,15 @@ if (!isset($_SESSION['login']))
         
             <label for="login">Old Username</label>
             &nbsp;&nbsp;&hairsp;: 
-            <input type="text" name="login_oldun" placeholder="your old username" class="input" required>
+            <input type="text" name="oldun" placeholder="your old username" class="input" required>
             <br>
             <label for="login">New Username</label>
             &thinsp;: 
-            <input type="text" name="login_newun" placeholder="your new username" class="input" required>
+            <input type="text" name="newun" placeholder="your new username" class="input" required>
             <br>
             <label for="password">Password</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;: 
-            <input type="password" name="login_password" placeholder="**********" class="input" required>
+            <input type="password" name="password" placeholder="**********" class="input" required>
             <br>
             <br>
             <div align="center">
@@ -69,15 +75,15 @@ if (!isset($_SESSION['login']))
         <form action method="post">
             <label for="email">Old E-Mail</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-            <input type="email" name="login_oldemail" class="input" placeholder="xxxxx@xxxx.xxx" required>
+            <input type="email" name="oldemail" class="input" placeholder="xxxxx@xxxx.xxx" required>
             <br>
             <label for="email">New E-Mail</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;:
-            <input type="email" name="login_newemail" class="input" placeholder="xxxxx@xxxx.xxx" required>
+            <input type="email" name="newemail" class="input" placeholder="xxxxx@xxxx.xxx" required>
             <br>
             <label for="password">Password</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
-            <input type="password" name="login_password" placeholder="**********" class="input" required>
+            <input type="password" name="password" placeholder="**********" class="input" required>
             <br>
             <br>
             <div align="center">

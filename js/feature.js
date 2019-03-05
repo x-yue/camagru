@@ -14,6 +14,16 @@ randomHeadline = function () {
 
 randomHeadline();
 
+addFilter = function() {
+
+}
+
+function takeAPicture(){
+
+}
+
+takeAPicture();
+
 
 
 //passwordSecureOne = fucntion () {   
@@ -80,8 +90,3 @@ takeAPicture = function() {
 */
 
 
-function takeAPicture(){
-
-}
-
-takeAPicture();
