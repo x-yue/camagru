@@ -24,18 +24,13 @@ include ('control/header.php');
     <div id="form">
         <h2>Find my Password</h2>
         <form action method="post">
-        
-            <label for="login">Username</label>
-            &nbsp;: 
-            <input type="text" name="username" class="input" required>
-            <br>
             <label for="email">E-Mail</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;:
-            <input type="email" name="email" class="input" placeholder="xxxxx@xxxx.xxx" required>
-            <p id="notice">* Please put your username AND e-mail to find your password</p>
+            <input type="email" name="email" class="input" style="width:200px;" placeholder="xxxxxxxx@xxxx.xxx" required>
+            <p id="notice">* Please put your e-mail to find your password</p>
             <br>
             <div align="center">
-                <input type="submit" value="Send me an e-mail" class="input">
+                <input type="submit" name="forgetpw" value="Send me an e-mail" class="input">
             </div>
        </form>
     </div>

@@ -3,8 +3,8 @@ let headlines = [
     "Fromage =P",
     "Smile!",
     "Take a Picture!",
-    "It's gonna be your Intranet profile..... JK!",
-    "I promise this is FUN --> for me"];
+    "Don't be shy",
+    "Click and upload"];
 
 // this function will show a random headline
 randomHeadline = function () {
