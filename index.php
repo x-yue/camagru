@@ -1,6 +1,7 @@
 <?php
 include 'control/header.php';
-include_once 'config/database.php';
+//include_once 'config/database.php';
+
 ///if (isset($_SESSION['login']))
 // if logged in-- > go to feed.php
 //&_SESSION['login']=array();
