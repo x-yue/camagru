@@ -106,7 +106,12 @@ if (!isset($_SESSION['username'])){
 <div align="center">
     <button class="button" onclick="saveToGallery()">Add Picture to Gallery</button>
 </div>
-
+<?php
+// create images/gallery/username folder  if it doesn't exist
+// add picture to folder with static number image[$number].png;
+// private 
+// 
+?>
 <br>
 
 <div align="center" id="gallery">
