@@ -1,3 +1,5 @@
+<?php 
+
 /* $username = $_POST[]
 // $email = $_POST[]
 // $password = hash -- $_POST[]
@@ -17,3 +19,7 @@ $posts = $stmt->fetchAll();
 foreach($posts as $post){
     echo $post->title . "<br>";
 }
+
+*/
+
+?>

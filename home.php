@@ -35,9 +35,9 @@ if (!isset($_SESSION['username'])){
 </div>
 
 <div align="center">
-        <video autoplay="true" id="camerastream">
-        <img id="addon" type="images/*"></video>
-    
+        <img id="upload" src="images/empty.png">
+        <img id="addon" src="images/empty.png">
+        <video autoplay="true" id="camerastream"></video>
         <script>
             var video = document.querySelector("#camerastream");
           
@@ -53,24 +53,52 @@ if (!isset($_SESSION['username'])){
         </script>
 </div>
 
-<div align="center">
-    <td><a href="" onclick="document.getElementById('addon').src='images/filter1.png'"><img class="filters" src="images/filter1.png"></a></td>
-    <td><a href="" onclick="document.getElementById('addon').src='images/filter2.png'"><img class="filters" src="images/filter2.png"></a></td>
-    <td><a href="" onclick="document.getElementById('addon').src='images/filter3.png'"><img class="filters" src="images/filter3.png"></a></td>
-    <td><a href="" onclick="document.getElementById('addon').src='images/filter4.png'"><img class="filters" src="images/filter4.png"></a></td>
-    <td><a href="" onclick="document.getElementById('addon').src='images/filter5.png'"><img class="filters" src="images/filter5.png"></a></td>
-    <td><a href="" onclick="document.getElementById('addon').src='images/filter6.png'"><img class="filters" src="images/filter6.png"></a></td>
-    <td><a href="" onclick="document.getElementById('addon').src='images/filter7.png'"><img class="filters" src="images/filter7.png"></a></td>
-    <td><a href="" onclick="document.getElementById('addon').src='images/filter8.png'"><img class="filters" src="images/filter8.png"></a></td>
+<div align="center" >
+    <form action="config/upload.php" method='post' enctype="multipart/form-data">
+        <input type="file" name="userfile">
+        <input type="submit" name="submit" value="Upload Image">
+        <?php
+      //      if ($_POST["submit"] == "Upload Image" && isset($_POST["uploadfile"]))
+        //        echo "<script>document.getElementById('upload').src=;</script>";
+        ?>
+    </form>
 </div>
+
+<div align="center">
+    <td><img onclick="addFilter('images/filter1.png')" class="filters" src="images/filter1.png"></a></td>
+    <td><img onclick="addFilter('images/filter2.png')" class="filters" src="images/filter2.png"></a></td>
+    <td><img onclick="addFilter('images/filter3.png')" class="filters" src="images/filter3.png"></a></td>
+    <td><img onclick="addFilter('images/filter4.png')" class="filters" src="images/filter4.png"></a></td>
+    <td><img onclick="addFilter('images/filter5.png')" class="filters" src="images/filter5.png"></a></td>
+    <td><img onclick="addFilter('images/filter6.png')" class="filters" src="images/filter6.png"></a></td>
+    <td><img onclick="addFilter('images/filter7.png')" class="filters" src="images/filter7.png"></a></td>
+    <td><img onclick="addFilter('images/filter8.png')" class="filters" src="images/filter8.png"></a></td>
+</div>
+
 <!-- come back here after saving a picture --> 
 <div align="center">
     <button class="button" onclick="takeAPicture()">Take a Picture</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <!--   <form>
-    <input type="file" name="picture_upload" accept="image/*">
-    </form> -->
-    <button type="file" name='picture_upload' accept='image/*' class="button" onclick="takeAPicture()">Upload a Picture</button>
+  <!--      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      
+
+ <form action="config/upload.php" method='post' accept="image/*">
+        <input type="file" accept="image/*">
+        <input type="submit" value="Upload Image" name="submit">
+        <button name='picture_upload' accept='image/*' class="button" onclick="takeAPicture()">Upload a Picture</button>
+        </form>
+
+<form action="config/upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+</form>
+
+<input type='file' />
+<br><img id="myImg" src="#" alt="your image" height=200 width=100>
+        -->
+
+
 </div>
 <br>
 

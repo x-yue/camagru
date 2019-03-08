@@ -11,11 +11,6 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-
-
-
-
-
 /* $username = $_POST[]
 // $email = $_POST[]
 // $password = hash -- $_POST[]

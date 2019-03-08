@@ -1,9 +1,10 @@
 /* over all */
 body {
 	background-image: url("/images/bg.png");
+	background-color:white;
 	background-size: 180%;
 	background-attachment: fixed;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 }
 div {
 	display: block;
@@ -156,7 +157,7 @@ video {
 	padding: 5px;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 } 
-#addon{
+#addon, #upload {
 	position: absolute;
 	height: 500px;
 	width: 500px;
@@ -164,6 +165,7 @@ video {
 	object-fit: fill;
 	margin:2%;
 	z-index: 2;
+
 }
 .filters {
 	height: 100px;
