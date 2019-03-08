@@ -3,7 +3,7 @@
 function errorsignin()
 {
     echo "<script>alert('Something went wrong, please try again.')</script>";
-    echo "<script type='text/javascript'>location.href='../index.php';</script>";
+  //  echo "<script type='text/javascript'>location.href='../index.php';</script>";
 	exit;
 }
 
@@ -11,20 +11,20 @@ function errorsignin()
 function errorsignin2()
 {
     echo "<script>alert('try again.')</script>";
-    echo "<script type='text/javascript'>location.href='../index.php';</script>";
+   // echo "<script type='text/javascript'>location.href='../index.php';</script>";
 	exit;
 }
 
 
 function wrongpw(){
     echo "<script>alert('The username and password don't match, try again or click forget my password.')</script>";
-    echo "<script type='text/javascript'>location.href='../index.php';</script>";
+ //   echo "<script type='text/javascript'>location.href='../index.php';</script>";
 	exit;
 }
 
 function nonexist(){
     echo "<script>alert('No account associate with this username exists, please sign up.')</script>";
-    echo "<script type='text/javascript'>location.href='../signup.php';</script>";
+//    echo "<script type='text/javascript'>location.href='../signup.php';</script>";
 	exit;
 }
 

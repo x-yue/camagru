@@ -1,15 +1,14 @@
 <?php
-if (!isset($_SESSION)){
-	session_start();
-}
-
+include "config/setup.php";
+//if (!isset($_SESSION)){
+//	session_start();
+//}
+/*
 if ($_POST['submit'] == 'Sign In')
 {
 	$_SESSION['username'] = $_POST['username'];
 	$_SESSION['password'] = $_POST['password'];
 }
-
-/*
 
 if ( ! empty( $_POST ) ) {
     if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
@@ -27,7 +26,6 @@ if ( ! empty( $_POST ) ) {
     	}
     }
 }
-
 */ 
 
 ?>
@@ -44,10 +42,4 @@ if ( ! empty( $_POST ) ) {
 
 <body>
 	<div class="banner">
-		<a href="index.php">
-			<img id="logo" src="/images/logo.png" alt="logo"><img>
-			<script>
-//				if (window.location.hostname !== "index.php")
-//				location.href=
-			</script>
-		</a>
+		<a href="index.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>

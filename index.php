@@ -1,6 +1,5 @@
 <?php
 include 'control/header.php';
-//include_once 'config/database.php';
 
 ///if (isset($_SESSION['login']))
 // if logged in-- > go to feed.php
@@ -18,6 +17,28 @@ value="<?PHP echo $_SESSION["password"]; ?>"
 <script>
         document.getElementById("title").innerHTML = "Camagru";
 </script>
+
+    <?php
+  //      $object = new Dbh;
+       
+        $servername="127.0.0.1";
+        $username="root";
+        $password="sherlock";
+
+        try{
+            $conn = new PDO("mysql:host=$servername", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql="CREATE DATABASE CamagruDB";
+            $conn->exep($sql);
+            echo "CamagruDB is Created Sucessfully";
+        }
+        catch (PDOException $e){
+            echo $sql . "<br>Connection failed: " . $e->getMessage();
+        }
+        $conn= null;
+
+
+    ?>
 
 <p class="headline">Camagru</p>
     <div id="login">

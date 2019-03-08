@@ -1,5 +1,30 @@
 <?php 
 
+include "database.php";
+
+try {
+    $conn = new PDO($dsn, $username, $password);
+
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        echo "Connected successfully";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+
+
+
+
+
+/* $username = $_POST[]
+// $email = $_POST[]
+// $password = hash -- $_POST[]
+
+$sql = "INSERT INTO posts(username, email, password) values (:username, :email, :password)";
+$stmt = $conn->prepare($sql);
+$stmt->execute(["username" => $username, "email"=>$email, "password"=>$password]);
+echo "successful";
+
 function error()
 {
     echo "<script>alert('Something went wrong, please try again.')</script>";
@@ -69,5 +94,13 @@ if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && 
     signedup();
 }
 else
-    error();
+	error();
+*/
+
+//this file is supposed to send a confirmation email to registered user
+// create a confirmation link
+//$from = 'localhost';
+//$to = 'email';
+//$subject = 'Confirmation email'
+
 ?> 
