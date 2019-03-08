@@ -35,8 +35,8 @@ if (!isset($_SESSION['username'])){
 </div>
 
 <div align="center">
-        <img id="upload" src="images/empty.png">
-        <img id="addon" src="images/empty.png">
+        <img id="upload">
+        <img id="addon">
         <video autoplay="true" id="camerastream"></video>
         <script>
             var video = document.querySelector("#camerastream");
@@ -47,23 +47,25 @@ if (!isset($_SESSION['username'])){
                     video.srcObject = stream;
                  })
                 .catch(function(error) {
-                    console.log("Something went wrong!");
+                    alert("Something went wrong!");
                 });
             }
         </script>
 </div>
 
-<div align="center" >
+<div align="center">
     <form action="config/upload.php" method='post' enctype="multipart/form-data">
         <input type="file" name="userfile">
         <input type="submit" name="submit" value="Upload Image">
         <?php
-      //      if ($_POST["submit"] == "Upload Image" && isset($_POST["uploadfile"]))
-        //        echo "<script>document.getElementById('upload').src=;</script>";
+          //  if ($_POST["submit"] == "Upload Image" && isset($_POST["userfile"]))
+          //      echo "<script>document.getElementById('upload').src='upload/upload.png';</script>";
         ?>
     </form>
 </div>
-
+        <div align = "center">
+            <button class="button" onclick="addUpload('uploads/upload.png')">Add Uploaded Picture to Screen</button>
+        </div>
 <div align="center">
     <td><img onclick="addFilter('images/filter1.png')" class="filters" src="images/filter1.png"></a></td>
     <td><img onclick="addFilter('images/filter2.png')" class="filters" src="images/filter2.png"></a></td>
@@ -77,7 +79,7 @@ if (!isset($_SESSION['username'])){
 
 <!-- come back here after saving a picture --> 
 <div align="center">
-    <button class="button" onclick="takeAPicture()">Take a Picture</button>
+    <button class="button" onclick="takeAPicture()">Capture the Moment</button>
   <!--      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
       
@@ -100,11 +102,19 @@ if (!isset($_SESSION['username'])){
 
 
 </div>
+
+<div align="center">
+    <button class="button" onclick="saveToGallery()">Add Picture to Gallery</button>
+</div>
+
 <br>
 
 <div align="center" id="gallery">
-   <!-- <td><img class="posts" ></td> -->
-
+   <tr>
+    <td><img class="posts" src=""></td>
+    <td><img class="posts" ></td>
+    <td><img class="posts" ></td>
+    <td><img class="posts" ></td>
     <script>
 //        return "<td><img class="posts" src=''><td>";
     </script>

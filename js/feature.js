@@ -19,8 +19,19 @@ function addFilter(imgSource){
   image.src = imgSource;
 };
 
+function addUpload(imgSource){
+  image = document.getElementById("upload");
+  image.src = imgSource;
+ // File.Delete("uploads/upload.png");
+};
+
+
 //function chooseFile(){
   //$("#fileInput").click();
+//}
+
+//function popUp(id, text){
+//  document.getElementById(id).innerHTML = text;
 //}
 
 function takeAPicture(){
@@ -29,9 +40,12 @@ function takeAPicture(){
     {
 
     }
+};
+
+function saveToGallery(){
+
 }
 
-takeAPicture();
 /*
 window.addEventListener('load', function() {
   document.querySelector('input[type="file"]').addEventListener('change', function() {
