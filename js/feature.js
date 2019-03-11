@@ -14,37 +14,73 @@ randomHeadline = function () {
 
 randomHeadline();
 
+let filterAdded = 0;
+
 function addFilter(imgSource){
   image = document.getElementById("addon");
   image.src = imgSource;
+  filterAdded = 1;
 };
 
 function addUpload(imgSource){
   image = document.getElementById("upload");
   image.src = imgSource;
- // File.Delete("uploads/upload.png");
 };
 
+//video steam with webcam 
+var video = document.querySelector("#camerastream");
+if (navigator.mediaDevices.getUserMedia) {       
+    navigator.mediaDevices.getUserMedia({video: true})
+    . then(function(stream) {
+        video.srcObject = stream;
+    })
+    . catch(function(error) {
+        alert("Something went wrong with the Webcam!");
+    });
+}
 
-//function chooseFile(){
-  //$("#fileInput").click();
-//}
+function takeAPicture(){
+  if (filterAdded === 1)
+  {  
+      var canvas = document.getElementById("gallery");
+      //var image = new Image();
+      var ctx = canvas.getContext("2d");
+      var image = document.getElementById("canvas_container");
+      ctx.drawImage(image, 5, 5);
+      //ctxl.stroke();
+      //image.src = canvas.toDataURL("image/png");
+      //window.location.href = image;
+   //   saveToGallery();
+    
+   /* var canvas = document.getElementById("screen")
+      var table = canvas.msGetInputContext("2d");
+      var mirror = document.getElementById("addon")
+
+      mirror.addEventListener("contextmenu", function(e){
+          var dataURL = canvas.toDataURL('image/png');
+          mirror.src = dataURL;*/
+    //  });
+    //  window.localhost.href = image;
+      
+//        window.open('', document.getElementById('screen').toDataURL("image/png"));
+  }
+  else {
+      alert("You have to add one of filters above to your picture.");
+  }
+}
+
+function saveToGallery(){
+
+}
+
+
+
+
 
 //function popUp(id, text){
 //  document.getElementById(id).innerHTML = text;
 //}
 
-function takeAPicture(){
-    image = document.getElementById("addon").src;
-    if (image != "images/empty.png")
-    {
-
-    }
-};
-
-function saveToGallery(){
-
-}
 
 /*
 window.addEventListener('load', function() {

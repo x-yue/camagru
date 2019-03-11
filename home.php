@@ -34,28 +34,16 @@ if (!isset($_SESSION['username'])){
     </div>
 </div>
 
-<div align="center">
+<div id="canvas_container" align="center">
         <img id="upload">
-        <img id="addon">
+        <img id="addon" value="empty">
         <video autoplay="true" id="camerastream"></video>
-        <script>
-            var video = document.querySelector("#camerastream");
-          
-            if (navigator.mediaDevices.getUserMedia) {       
-	            navigator.mediaDevices.getUserMedia({video: true})
-                .then(function(stream) {
-                    video.srcObject = stream;
-                 })
-                .catch(function(error) {
-                    alert("Something went wrong!");
-                });
-            }
-        </script>
+        
 </div>
 
 <div align="center">
     <form action="config/upload.php" method='post' enctype="multipart/form-data">
-        <input type="file" name="userfile">
+        <input type="file" name="userfile" required>
         <input type="submit" name="submit" value="Upload Image">
         <?php
           //  if ($_POST["submit"] == "Upload Image" && isset($_POST["userfile"]))
@@ -80,32 +68,8 @@ if (!isset($_SESSION['username'])){
 <!-- come back here after saving a picture --> 
 <div align="center">
     <button class="button" onclick="takeAPicture()">Capture the Moment</button>
-  <!--      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-      
-
- <form action="config/upload.php" method='post' accept="image/*">
-        <input type="file" accept="image/*">
-        <input type="submit" value="Upload Image" name="submit">
-        <button name='picture_upload' accept='image/*' class="button" onclick="takeAPicture()">Upload a Picture</button>
-        </form>
-
-<form action="config/upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
-
-<input type='file' />
-<br><img id="myImg" src="#" alt="your image" height=200 width=100>
-        -->
-
-
 </div>
 
-<div align="center">
-    <button class="button" onclick="saveToGallery()">Add Picture to Gallery</button>
-</div>
 <?php
 // create images/gallery/username folder  if it doesn't exist
 // add picture to folder with static number image[$number].png;

@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $username = "root";
-$password = "sherlock";
+$password = "REHzyfRC";
 $dbname = "camagrudb";
 $dsn = "mysql:host='.$host.';dbname='.$dbname'";
 

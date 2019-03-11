@@ -42,4 +42,4 @@ if ( ! empty( $_POST ) ) {
 
 <body>
 	<div class="banner">
-		<a href="index.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
+		<a href="../index.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
