@@ -1,7 +1,7 @@
 <?php
 include 'control/header.php';
 
-///if (isset($_SESSION['login']))
+// if (isset($_SESSION['login']))
 // if logged in-- > go to feed.php
 //&_SESSION['login']=array();
 
