@@ -1,5 +1,5 @@
 <?php
-include "config/setup.php";
+require "config/setup.php";
 //if (!isset($_SESSION)){
 //	session_start();
 //}
@@ -27,7 +27,6 @@ if ( ! empty( $_POST ) ) {
     }
 }
 */ 
-
 ?>
 
 <!DOCTYPE HTML>

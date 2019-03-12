@@ -19,7 +19,8 @@ value="<?PHP echo $_SESSION["password"]; ?>"
 </script>
 
     <?php
-  //      $object = new Dbh;
+        $conn = openConn();
+  /*     $object = new Dbh;
        
         $servername="127.0.0.1";
         $username="root";
@@ -37,7 +38,7 @@ value="<?PHP echo $_SESSION["password"]; ?>"
         }
         $conn= null;
 
-
+*/
     ?>
 
 <p class="headline">Camagru</p>

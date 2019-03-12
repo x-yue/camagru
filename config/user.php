@@ -1,4 +1,6 @@
 <?php
+
+/*
 function exist_user($login)
 {
     $path = "private/";
@@ -17,4 +19,5 @@ function exist_user($login)
         }
     }
     return (FALSE);
-}
+}*/
+?>
