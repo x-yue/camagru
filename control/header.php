@@ -39,3 +39,5 @@ if ( ! empty( $_POST ) ) {
 
 <body>
 	<div class="banner">
+<!--<a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a> -->
+	<img id="logo" src="/camagru/images/logo.png">

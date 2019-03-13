@@ -6,8 +6,8 @@ include ('control/header.php');
     //echo "<script>location.href = '../index.php';</script>";
 //}
 ?>
-<a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
-
+<!-- <a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
+-->
 <script>
         document.getElementById("title").innerHTML = "Account Information";
 </script>
