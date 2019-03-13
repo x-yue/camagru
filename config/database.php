@@ -1,13 +1,9 @@
 <?php
 
-$host = "127.0.0.1";
-$port = "8080";
+$host = "localhost";
 $username = "root";
 $password = "REHzyfRC";
 $dbname = "camagrudb";
-$dsn = "mysql:host='.$host.';dbname='.$dbname';port=
-.$port.'";
-//"mysql:host=".$host.";dbname=".$dbname.""
-//"mysql:host=$host;dbname=$dbname";
+$dsn = "mysql:host=$host;dbname=$dbname;";
 
 ?>  

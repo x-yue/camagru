@@ -1,25 +1,29 @@
 <?php
 include ('control/header.php');
-
+/*
 if (!isset($_SESSION['username'])){
     echo "<script>alert('You need to sign in first.')</script>";
-    echo "<script type='text/javascript'>location.href = '../index.php';</script>";
-}
+    echo "<script>location.href = '../index.php';</script>";
+}*/
 
 ?>
+    <a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
+
     <script>
         document.getElementById("title").innerHTML = "Feed";
     </script>
     <p class="headline">Newsfeed</p>
     <div align="right">
         <br>
-        <a id="username">Hello, </a>
-        <a id="username"></a>    
+        <a class="hdtext">Hello</a>&thinsp;&hearts;&thinsp;
         <script>
+            //<a id="username" class="hdtext"></a>
          //document.getElementById("username").innerHTML = $(username)
         </script>
         &nbsp;
-        <a id="account" href="account.php">Account</a>
+        <a class="hdtext" href="home.php">Home</a>
+        &hairsp;
+        <a class="hdtext" href="account.php">Account</a>
         &hairsp;
         <a id="logout" href="index.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
     </div>

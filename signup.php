@@ -2,32 +2,39 @@
 include ('control/header.php');
 ?>
 
+<a href="../index.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
+
 <script>
         document.getElementById("title").innerHTML = "Sign Up";
 </script>
 
-<p class="headline">Sign Up</p>
-    <div id="login">
+    <p class="headline">Sign Up</p>
+
+    <?php include "config/signin.php"; ?>        
+
+<!--    <div id="login">
         <br>
     	<form action="/config/signin.php" method= "post">
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="login" name="username" placeholder="Login" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" name="submit" value="Sign in" required>
-            <!-- here to insert signin codes server side  --> 
+            
         </form>
-        <div style="height:3px;"><br></div>
+        <div style="height:3px;"><br></div> -->
         <a id="forgetpw" href="forgetpw.php">I forget my password</a>
-    </div>
+    </div> 
 </div>
 
 <div align="center" class="signupform">
     <div id="form">
         <h2>Create your account</h2>
-        <form action="/config/setup.php" method="POST">
+        <form action="config/setup.php" method="POST">
             <label for="email">E-Mail</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;:
-            <input type="email" name="email" class="input" placeholder="xxxxx@xxxx.xxx" required><br>
+            <input type="email" name="email" class="input" placeholder="xxxxx@xxxx.xxx" required>
+            <br>
             <label for="login">Username</label>: 
-            <input type="text" name="username" class="input" required><br>
+            <input type="text" name="username" class="input" required>
+            <br>
             <label for="password">Password</label>&thinsp;&hairsp;: 
             <input type="password" name="password" placeholder="minimum 6 characters" class="input" required>
             <br>
@@ -37,6 +44,8 @@ include ('control/header.php');
             </div>
        </form>
     </div>
+    <br>
+    <a href="index.php"><button class="button">Homepage</button></a>
 </div>
 
-<?php include('control/footer.php');?>
+<?php include ('control/footer.php');?>

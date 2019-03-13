@@ -14,43 +14,25 @@ value="<?PHP echo $_SESSION["password"]; ?>"
  */
 ?>
 
+<a href="../index.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
+
 <script>
         document.getElementById("title").innerHTML = "Camagru";
 </script>
 
-    <?php
-        $conn = openConn();
-  /*     $object = new Dbh;
-       
-        $servername="127.0.0.1";
-        $username="root";
-        $password="sherlock";
+    <p class="headline">Camagru</p>
 
-        try{
-            $conn = new PDO("mysql:host=$servername", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql="CREATE DATABASE CamagruDB";
-            $conn->exep($sql);
-            echo "CamagruDB is Created Sucessfully";
-        }
-        catch (PDOException $e){
-            echo $sql . "<br>Connection failed: " . $e->getMessage();
-        }
-        $conn= null;
+<?php include "config/signin.php"; ?>
 
-*/
-    ?>
-
-<p class="headline">Camagru</p>
-    <div id="login">
+<!--    <div id="login">
         <br>
-    	<form action="config/signin.php" method= "post">
+    	<form action="/config/signin.php" method= "post">
             <input type="login" name="username" placeholder="Login" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" name="submit" value="Sign in" required>
-            <!-- here to insert signin codes server side  --> 
+            
         </form>
-        <div style="height:3px;"><br></div>
+        <div style="height:3px;"><br></div> -->
         <a id="forgetpw" href="forgetpw.php">I forget my password</a>
     </div>
 </div>
@@ -63,4 +45,4 @@ value="<?PHP echo $_SESSION["password"]; ?>"
     <a href="signup.php"><button class="button">Sign Up</button></a>
 </div>
 
-<?php include('control/footer.php');?>
+<?php include ('control/footer.php');?>

@@ -1,6 +1,6 @@
 /* over all */
 body {
-	background-image: url("/images/bg.png");
+	background-image: url("/images/bg2.png");
 	background-color:white;
 	background-size: 180%;
 	background-attachment: fixed;
@@ -56,10 +56,11 @@ h2 {
 	margin-right: 20px;
 	text-align: right;	
 }
-#username, #greetings{
+.hdtext, #logout{
 	color: whitesmoke;
 	font-size:15px;
 	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
 }
 #forgetpw {
 	text-decoration: none;
@@ -68,17 +69,7 @@ h2 {
 	font-weight: initial;
 }
 #logout{
-	color: white;
-	font-family: Arial, Helvetica, sans-serif;	
-	font-size: 15px;
 	margin-right: 30px;
-	text-decoration: none;
-}
-#account{
-	color: white;
-	font-family: Arial, Helvetica, sans-serif;	
-	font-size: 15px;
-	text-decoration: none;
 }
 
 /* center part - welcome index.php */
@@ -90,13 +81,27 @@ h2 {
 	text-shadow: 2px 2px rgb(24, 24, 24);
 	font-weight: bold;
 }
+#errormsgbox {
+	height: auto;
+	width: 800px;
+	background-color: white;
+	opacity:0.85;
+	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
+}
+#errorMessage{
+	margin-top: 30%;
+	text-align: center;
+	color: #105497;
+	font-size: 35px;
+	font-weight: bold;
+}
 
 /* signup */ 
 #signup{
 	color: white;
-	font-family: Arial, Helvetica, sans-serif;	
 	font-size: 15px;
 	text-decoration: none;
+	font-weight: initial;
 }
 .signupform {
     min-height: 60vh;
@@ -106,7 +111,6 @@ h2 {
 	font-size: 1.5em;
 	font-weight: normal;
 	color: white;
-	opacity: 0.85;
 }
 #form {
 	height: 250px;
@@ -157,7 +161,7 @@ canvas {
 	padding: 5px;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 } 
-#addon, #upload {
+#addon {
 	position: absolute;
 	height: 500px;
 	width: 500px;
@@ -165,7 +169,15 @@ canvas {
 	object-fit: fill;
 	margin:2%;
 	z-index: 2;
-
+}
+#upload {
+	position: absolute;
+	height: 500px;
+	width: 500px;
+	padding: 5px;
+	object-fit: fill;
+	margin:2%;
+	z-index: 2;
 }
 .filters {
 	height: 100px;
@@ -174,11 +186,11 @@ canvas {
 	background-color: white;
 	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.6);
 	opacity: 0.5;
-}
-.gallery {
+} 
+#posts {
 	height: 250px;
 	width: 250px;
-	background: transparent;
+	object-fit: fill;
 }
 .button {
 	margin-top: 15px;
@@ -218,16 +230,16 @@ canvas {
 	text-align: left;
 	opacity: 0.85;
 }
-#firstchangeform {
+#shortchangeform {
 	height: 190px;
 }
 
  /* footer */
 #copyright {
 	text-align: right;
-	bottom: auto;
+	bottom: 0px;
 	right: 16px;
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-family: Impact, 'Arial Narrow Bold', sans-serif;
 	color: dimgrey;
 	position: absolute;
 }

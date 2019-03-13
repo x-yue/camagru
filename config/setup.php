@@ -1,17 +1,25 @@
 <?php 
-include "database.php";
+require "database.php";
 
-function openConn(){
-    global $dsn, $username, $password;
 try {
     $conn = new PDO($dsn, $username, $password);
 
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connected successfully";
+       // echo "Connected successfully";
 } catch (PDOException $e) {
     echo "Connection failed because: " . $e->getMessage();
 }
-}
+
+
+
+
+
+
+
+
+
+
+
 /* $username = $_POST[]
 // $email = $_POST[]
 // $password = hash -- $_POST[]
@@ -24,31 +32,31 @@ echo "successful";
 function error()
 {
     echo "<script>alert('Something went wrong, please try again.')</script>";
-    echo "<script type='text/javascript'>location.href = '../signup.php';</script>";
+    echo "<script>location.href = '../signup.php';</script>";
 	exit;
 }
 
 function repeated_username(){
     echo "<script>alert('The account with this username already existed')</script>";
-    echo "<script type='text/javascript'>location.href = '../signup.php';</script>";
+    echo "<script>location.href = '../signup.php';</script>";
     exit;
 }
 
 function repeated_email(){
     echo "<script>alert('The account with this email address already existed')</script>";
-    echo "<script type='text/javascript'>location.href = '../signup.php';</script>";
+    echo "<script>location.href = '../signup.php';</script>";
     exit;
 }
 
 function password_secure(){
     echo "<script>alert('The password must contrain minimum 6 charactors')</script>";
-    echo "<script type='text/javascript'>location.href = '../signup.php';</script>";
+    echo "<script>location.href = '../signup.php';</script>";
     exit;
 }
 
 function signedup(){
     echo "<script>alert('Congratulations, you are signed up! Sign in now :)')</script>";
-    echo "<script type='text/javascript'>location.href = '../index.php';</script>";
+    echo "<script>location.href = '../index.php';</script>";
     exit;
 }
 

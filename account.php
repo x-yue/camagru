@@ -1,11 +1,12 @@
 <?php
 include ('control/header.php');
 
-if (!isset($_SESSION['username'])){
-    echo "<script>alert('You need to sign in first.')</script>";
-    echo "<script type='text/javascript'>location.href = '../index.php';</script>";
-}
+//if (!isset($_SESSION['username'])){
+  //  echo "<script>alert('You need to sign in first.')</script>";
+    //echo "<script>location.href = '../index.php';</script>";
+//}
 ?>
+<a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
 
 <script>
         document.getElementById("title").innerHTML = "Account Information";
@@ -14,12 +15,16 @@ if (!isset($_SESSION['username'])){
 <p class="headline" id="homeheadline">Account Information</p> 
     <div align="right"  >
         <br>
-        <a id="username">Hello, </a>
-        <a id="username"></a>    
+        <a iclass="hdtext">Hello</a>&thinsp;&hearts;&thinsp;
         <script>
-            document.getElementById("username").innerHTML = $_SESSION["username"];
+            //<a id="username" class="hdtext"></a>
+            //document.getElementById("username").innerHTML = $_SESSION["username"];
         </script>
         &nbsp;
+        <a class="hdtext" href="feed.php">Feed</a>
+        &hairsp;
+        <a class="hdtext" href="home.php">Home</a>
+        &hairsp;
         <a id="logout" href="index.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
     </div>
 </div>
@@ -27,7 +32,7 @@ if (!isset($_SESSION['username'])){
 <!-- password table -->
 <div align="center" class="accinfo">
 
-    <div class="changeform" id="firstchangeform">
+    <div class="changeform" id="shortchangeform">
         <h2>Change your password</h2>
         <form action method="post">
             <label for="password">Old Password</label>
@@ -88,6 +93,25 @@ if (!isset($_SESSION['username'])){
             <br>
             <div align="center">
                 <input type="submit" value="Submit" class="input">
+            </div>
+       </form>
+    </div>
+
+<!-- delete my account --> 
+    <div class="changeform" id="shortchangeform">
+        <h2>Delete Account</h2>
+        <form action method="post">
+            <label for="email">E-Mail</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+            <input type="email" name="oldemail" class="input" placeholder="xxxxx@xxxx.xxx" required>
+            <br>
+            <label for="password">Password</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;: 
+            <input type="password" name="password" placeholder="**********" class="input" required>
+            <br>
+            <br>
+            <div align="center">
+                <input type="submit" value="Send an email for confirmation" class="input">
             </div>
        </form>
     </div>

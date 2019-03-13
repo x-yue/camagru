@@ -2,20 +2,24 @@
 include ('control/header.php');
 ?>
 
+    <a href="../index.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
+
 <script>
     document.getElementById("title").innerHTML = "Forget Password";
 </script>
 
-<p class="headline">Camagru</p> 
-    <div id="login">
+    <p class="headline">Camagru</p> 
+
+    <?php include "config/signin.php"; ?>      
+    <!-- <div id="login">
         <br>
     	<form action="" method= "post">
             <input type="text" name="login" placeholder="Login"/>
             <input type="password" name="passwd" placeholder="Password"/>
             <input type="submit" name="submit" value="Sign in" >
-            <!-- here to insert signin codes server side  --> 
+         here to insert signin codes server side 
         </form>
-        <div style="height:3px;"><br></div>
+        <div style="height:3px;"><br></div> -->
 	    <a id="signup" href="signup.php" >Sign Up</a>
     </div>
 </div>
@@ -24,8 +28,7 @@ include ('control/header.php');
     <div id="form">
         <h2>Find my Password</h2>
         <form action method="post">
-            <label for="email">E-Mail</label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;:
+            <label for="email">E-Mail</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;:
             <input type="email" name="email" class="input" style="width:200px;" placeholder="xxxxxxxx@xxxx.xxx" required>
             <p id="notice">* Please put your e-mail to find your password</p>
             <br>
@@ -34,6 +37,8 @@ include ('control/header.php');
             </div>
        </form>
     </div>
+    <br>
+    <a href="index.php"><button class="button">Homepage</button></a>
 </div>
 
-<?php include('control/footer.php');?>
+<?php include ('control/footer.php');?>

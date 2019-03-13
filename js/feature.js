@@ -11,7 +11,6 @@ randomHeadline = function () {
     let randomNumber = Math.floor(Math.random() * 6);
     document.getElementById('homeheadline').innerHTML = headlines[randomNumber];
 };
-
 randomHeadline();
 
 let filterAdded = 0;
@@ -41,37 +40,54 @@ if (navigator.mediaDevices.getUserMedia) {
 
 function takeAPicture(){
   if (filterAdded === 1)
-  {  
-      var canvas = document.getElementById("gallery");
-      //var image = new Image();
-      var ctx = canvas.getContext("2d");
+  {
+    var canvas = document.createElement("canvas");
+  /*  canvas.id = "canvasPhoto";
+    canvas.width = 500;
+    canvas.height = 500;
+    canvas.onlick = pasteSticker;} */
       var image = document.getElementById("canvas_container");
-      ctx.drawImage(image, 5, 5);
-      //ctxl.stroke();
-      //image.src = canvas.toDataURL("image/png");
-      //window.location.href = image;
-   //   saveToGallery();
-    
-   /* var canvas = document.getElementById("screen")
-      var table = canvas.msGetInputContext("2d");
-      var mirror = document.getElementById("addon")
+      var canvas = document.getElementById("posts");
+      var ctx = canvas.getContext("2d");
+   // var dataURL = canvas.toDataURL('image/png');
+      ctx.drawImage(image1, 0, 0, 300, 200);
+      ctx.drawImage(image, 0, 0, 300, 200);
+        //image.src = canvas.toDataURL("image/png");
+      //window.location.href = image; 
 
-      mirror.addEventListener("contextmenu", function(e){
-          var dataURL = canvas.toDataURL('image/png');
-          mirror.src = dataURL;*/
-    //  });
-    //  window.localhost.href = image;
-      
-//        window.open('', document.getElementById('screen').toDataURL("image/png"));
-  }
+  }  
   else {
       alert("You have to add one of filters above to your picture.");
   }
 }
 
-function saveToGallery(){
+// Function to take the picture from loic
+function replaceVideo() {
+	var canvas = document.createElement("canvas");
+	canvas.id = "canvasPhoto";
+	canvas.width = 640;
+	canvas.height = 480;
+	canvas.onclick = pasteSticker;
 
+
+	// 	importImg.onload = function () {
+	// 		canvas.getContext('2d').drawImage(importImg, 0, 0, 640, 480);
+	// 		origImg.src = canvas.toDataURL();
+	// 	}
+	if (importImg) {
+		importImg.onload = function () {
+			canvas.getContext('2d').drawImage(importImg, 0, 0, 640, 480);
+			origImg.src = canvas.toDataURL();
+		}
+	}
+	else {
+		canvas.getContext('2d').drawImage(video, 0, 0, 640, 480);
+		origImg.src = canvas.toDataURL();
+	}
+	document.getElementById("camera").appendChild(canvas);
+	video.parentNode.removeChild(video);
 }
+
 
 
 

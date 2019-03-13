@@ -1,8 +1,6 @@
 <?php
 require "config/setup.php";
-//if (!isset($_SESSION)){
-//	session_start();
-//}
+
 /*
 if ($_POST['submit'] == 'Sign In')
 {
@@ -41,4 +39,3 @@ if ( ! empty( $_POST ) ) {
 
 <body>
 	<div class="banner">
-		<a href="../index.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>

@@ -7,28 +7,29 @@ if (!isset($_SESSION['username'])){
     $name = $_SESSION["username"];
     echo "<script>alert($name)</script>";
     echo "<script>alert('You need to sign in first.')</script>";
-    echo "<script type='text/javascript'>location.href = '../index.php';</script>";
+    echo "<script>location.href = '../index.php';</script>";
 }*/
-
-
 ?>
+
+	<a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
 
 <script>
     document.getElementById("title").innerHTML = "Home";
 </script>
 
-<p class="headline" id="homeheadline"></p>
-
+    <p class="headline" id="homeheadline"></p>
     <div align="right">
         <br>
-        <a id="greetings">Hello, </a>
-        <a id="username">Friend</a>&thinsp;&hearts; 
+        <a class="hdtext">Hello</a>&thinsp;&hearts;&thinsp;
         <script>
+            //<a id="username" class="hdtext"></a>
             //verify if this works
          //   document.getElementById("username").innerHTML = $_SESSION['username'];
         </script>
         &nbsp;
-        <a id="account" href="account.php">Account</a>
+        <a class="hdtext" href="feed.php">Feed</a>
+        &hairsp;
+        <a class="hdtext" href="account.php">Account</a>
         &hairsp;
         <a id="logout" href="config/logout.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
     </div>
@@ -38,7 +39,6 @@ if (!isset($_SESSION['username'])){
         <img id="upload">
         <img id="addon" value="empty">
         <video autoplay="true" id="camerastream"></video>
-        
 </div>
 
 <div align="center">
@@ -51,9 +51,11 @@ if (!isset($_SESSION['username'])){
         ?>
     </form>
 </div>
-        <div align = "center">
-            <button class="button" onclick="addUpload('uploads/upload.png')">Add Uploaded Picture to Screen</button>
-        </div>
+
+<div align = "center">
+    <button class="button" onclick="addUpload('uploads/upload.png')">Add Uploaded Picture to Screen</button>
+</div>
+
 <div align="center">
     <td><img onclick="addFilter('images/filter1.png')" class="filters" src="images/filter1.png"></a></td>
     <td><img onclick="addFilter('images/filter2.png')" class="filters" src="images/filter2.png"></a></td>
@@ -78,23 +80,24 @@ if (!isset($_SESSION['username'])){
 ?>
 <br>
 
-<div align="center" id="gallery">
-   <tr>
-    <td><img class="posts" src=""></td>
-    <td><img class="posts" ></td>
-    <td><img class="posts" ></td>
-    <td><img class="posts" ></td>
-    <script>
-//        return "<td><img class="posts" src=''><td>";
-    </script>
+<div align="center">
+    <div id="gallery">
+    <canvas id="posts"><img src=""></canvas>
+    <canvas id="posts"><img src=""></canvas>
+    <canvas id="posts"><img src=""></canvas>
+  <!--
+    <td><img src="" class="posts"></td>
+    <td><img src="" class="posts"></td>
+    <td><img src="" class="posts"></td>
+    <td><img src="" class="posts"></td>  -->
 </div>
-
+<br> 
+  <!-- it might be too complicated to publish
+      <button class="button" onclick="publishPic()">Publish this picture</button>
+-->
+</div>
 
 <script src="js/feature.js"></script>
 
 
-<?php
-
-include 'control/footer.php';
-
-?>
+<?php include 'control/footer.php';?>
