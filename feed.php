@@ -29,9 +29,64 @@ if (!isset($_SESSION['username'])){
     </div>
 </div>
 
-<div align="center">
-    <iframe src=""id="scrollingfeed" scrolling="yes">
-<!-- src => where the pictures are saved! -->  
+<div align="center" id="newsfeed">
+<!-- create a whilte loop for all the posts --> 
+
+    <article align="left" class="feed">
+        <td class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></td>
+        <td><header align="right" id="feedusername">Username</header></td>
+        <div align="right">
+            <li>Comments</li>
+        <div>
+
+    <div align="right">
+        <a id="numofheart">100</a>    
+        <img id="heart" src="images/heart.png"> 
+    </div>
+    </article><br>
+    
+    <article align="left" class="feed">
+        <td class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></td>
+        <td><header align="right" id="feedusername">Username</header></td>
+        <div align="right">
+            <li>Comments</li>
+        <div>
+
+    <div align="right">
+        <a id="numofheart">100</a>    
+        <img id="heart" src="images/heart.png"> 
+    </div>
+    </article><br>
+
+    <article align="left" class="feed">
+        <td class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></td>
+        <td><header align="right" id="feedusername">Username</header></td>
+        <div align="right">
+            <li>Comments</li>
+        <div>
+
+    <div align="right">
+        <a id="numofheart">100</a>    
+        <img id="heart" src="images/heart.png"> 
+    </div>
+    </article><br>
+
+    <article align="left" class="feed">
+        <td class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></td>
+        <td><header align="right" id="feedusername">Username</header></td>
+        <div align="right">
+            <li>Comments</li>
+        <div>
+
+    <div align="right">
+        <a id="numofheart">100</a>    
+        <img id="heart" src="images/heart.png"> 
+    </div>
+    </article><br>
+
+</div>
+<!--    <iframe src=""id="scrollingfeed" scrolling="yes">
+ src => where the pictures are saved! -->  
 
     </iframe>   
 </div>

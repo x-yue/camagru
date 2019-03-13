@@ -82,14 +82,15 @@ h2 {
 	font-weight: bold;
 }
 #errormsgbox {
-	height: auto;
+	height: 400px;
 	width: 800px;
+	margin-top: 20%;	
 	background-color: white;
+	padding:10px;
 	opacity:0.85;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 }
 #errorMessage{
-	margin-top: 30%;
 	text-align: center;
 	color: #105497;
 	font-size: 35px;
@@ -129,13 +130,34 @@ h2 {
 /* feed */
 #scrollingfeed {
 	width: 450px;
-	margin-top: 5%;
+	margin-top: 20px;
 	min-height: 450px;
 	scroll-behavior: smooth;
 	overflow-y: auto;
 	border: white;
 	border-radius: 1px;
 	background-color: lightgrey;
+}
+.feed {
+	height: 500px;
+	width: 750px;
+	margin-top: 25px;
+	background-color: white;
+	padding: 5px;
+	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
+}
+.feedphoto {
+	height: 500px;
+	width: 500px;
+	object-fit: cover;
+}
+#heart {
+	height:20px;
+	width:20px;
+	margin-top: 400px;
+}
+#feedusername{
+	margin-top:-490px;
 }
 
 /* home page after logged in */
@@ -155,18 +177,20 @@ video {
 	z-index: 1;
 } 
 canvas {
-	height: 500px;
-	width: 500px;
 	background-color: white;
+	object-fit: fill;
 	padding: 5px;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 } 
+#posts {
+	height: 300px;
+	width: 300px;
+}
 #addon {
 	position: absolute;
 	height: 500px;
 	width: 500px;
 	padding: 5px;
-	object-fit: fill;
 	margin:2%;
 	z-index: 2;
 }
@@ -187,11 +211,6 @@ canvas {
 	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.6);
 	opacity: 0.5;
 } 
-#posts {
-	height: 250px;
-	width: 250px;
-	object-fit: fill;
-}
 .button {
 	margin-top: 15px;
 	padding: 5px 25px;
@@ -237,9 +256,8 @@ canvas {
  /* footer */
 #copyright {
 	text-align: right;
-	bottom: 0px;
+	bottom: 0;
 	right: 16px;
 	font-family: Impact, 'Arial Narrow Bold', sans-serif;
 	color: dimgrey;
-	position: absolute;
 }

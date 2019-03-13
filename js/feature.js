@@ -26,6 +26,11 @@ function addUpload(imgSource){
   image.src = imgSource;
 };
 
+function removeUpload(){
+  image = document.getElementById("upload");
+  image.src = null;
+}
+
 //video steam with webcam 
 var video = document.querySelector("#camerastream");
 if (navigator.mediaDevices.getUserMedia) {       
@@ -41,17 +46,36 @@ if (navigator.mediaDevices.getUserMedia) {
 function takeAPicture(){
   if (filterAdded === 1)
   {
-    var canvas = document.createElement("canvas");
-  /*  canvas.id = "canvasPhoto";
-    canvas.width = 500;
-    canvas.height = 500;
-    canvas.onlick = pasteSticker;} */
-      var image = document.getElementById("canvas_container");
+   // var canvas = document.createElement("canvas");
+  // /*  canvas.id = "canvasPhoto";
+  //   canvas.width = 500;
+  //   canvas.height = 500;
+  //   canvas.onlick = pasteSticker;} */
+    //  var image = document.getElementById("upload");
+
+  //   var canvas = document.createElement("canvas");
+    //  canvas.id = "gallery";
+//      document.getElementById('gallery').inerHTML = "<canvas onclick='selectPicture()' id='posts'></canvas>";
+
+
       var canvas = document.getElementById("posts");
+      var camerastream = document.getElementById("camerastream");
+      var addon = document.getElementById("addon");
+      var upload = document.getElementById("upload");
       var ctx = canvas.getContext("2d");
+      ctx.drawImage(camerastream, 0, 0, 300, 150);
+      ctx.drawImage(upload, 0, 0, 300, 150);
+      ctx.drawImage(addon, 0, 0, 300, 150);
+
    // var dataURL = canvas.toDataURL('image/png');
-      ctx.drawImage(image1, 0, 0, 300, 200);
-      ctx.drawImage(image, 0, 0, 300, 200);
+    //  ctx.drawImage(image1, 0, 0, 300, 200);
+    //  ctx.drawImage(camerastream , 0,0, 1280, 720, 0, 0, 800, 720 );
+      // ctx.drawImage(upload , 0,0, 1280, 720, 0, 0, 750, 500 );
+ 
+    // ctx.drawImage(camerastream, 0,0);
+
+//     ctx.drawImage(upload, 0,0);
+    //  ctx.drawImage(addon, 0, 0, 500, 500);
         //image.src = canvas.toDataURL("image/png");
       //window.location.href = image; 
 
@@ -67,9 +91,8 @@ function replaceVideo() {
 	canvas.id = "canvasPhoto";
 	canvas.width = 640;
 	canvas.height = 480;
-	canvas.onclick = pasteSticker;
-
-
+  canvas.onclick = pasteSticker;
+  
 	// 	importImg.onload = function () {
 	// 		canvas.getContext('2d').drawImage(importImg, 0, 0, 640, 480);
 	// 		origImg.src = canvas.toDataURL();

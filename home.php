@@ -35,7 +35,7 @@ if (!isset($_SESSION['username'])){
     </div>
 </div>
 
-<div id="canvas_container" align="center">
+<div align="center">
         <img id="upload">
         <img id="addon" value="empty">
         <video autoplay="true" id="camerastream"></video>
@@ -53,7 +53,9 @@ if (!isset($_SESSION['username'])){
 </div>
 
 <div align = "center">
-    <button class="button" onclick="addUpload('uploads/upload.png')">Add Uploaded Picture to Screen</button>
+    <button class="button" onclick="addUpload('uploads/upload.png')">Use Uploaded Picture</button>
+    &nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="removeUpload()">Remove Uploaded Picture</button>
 </div>
 
 <div align="center">
@@ -69,7 +71,7 @@ if (!isset($_SESSION['username'])){
 
 <!-- come back here after saving a picture --> 
 <div align="center">
-    <button class="button" onclick="takeAPicture()">Capture the Moment</button>
+    <button class="button" onclick="takeAPicture()">Capture the moment</button>
 </div>
 
 <?php
@@ -81,20 +83,18 @@ if (!isset($_SESSION['username'])){
 <br>
 
 <div align="center">
-    <div id="gallery">
-    <canvas id="posts"><img src=""></canvas>
-    <canvas id="posts"><img src=""></canvas>
-    <canvas id="posts"><img src=""></canvas>
-  <!--
+    <div align="center" id="gallery">
+        <canvas onclick="selectPicture()" id="posts"></canvas>
     <td><img src="" class="posts"></td>
     <td><img src="" class="posts"></td>
     <td><img src="" class="posts"></td>
-    <td><img src="" class="posts"></td>  -->
-</div>
+    <td><img src="" class="posts"></td>
+    </div>
+
 <br> 
-  <!-- it might be too complicated to publish
-      <button class="button" onclick="publishPic()">Publish this picture</button>
--->
+    <button class="button" onclick="saveToGalley()">Save to Gallery</button>
+    &nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="deleteSelected()">Delete This Picture</button>
 </div>
 
 <script src="js/feature.js"></script>
