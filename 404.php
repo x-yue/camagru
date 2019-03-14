@@ -2,11 +2,11 @@
 include 'control/header.php';
 
 ?>
-
+<!--
 <a href="../index.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
-
+-->
 <script>
-        document.getElementById("title").innerHTML = "404";
+    document.getElementById("title").innerHTML = "404";
 </script>
 <p class="headline">404: page not found</p>
 

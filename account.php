@@ -6,14 +6,13 @@ include ('control/header.php');
     //echo "<script>location.href = '../index.php';</script>";
 //}
 ?>
-<!-- <a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
--->
+
 <script>
         document.getElementById("title").innerHTML = "Account Information";
 </script>
 
 <p class="headline" id="homeheadline">Account Information</p> 
-    <div align="right"  >
+    <div id="topline" align="right"  >
         <br>
         <a iclass="hdtext">Hello</a>&thinsp;&hearts;&thinsp;
         <script>

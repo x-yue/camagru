@@ -9,16 +9,16 @@ if (!isset($_SESSION['username'])){
     echo "<script>alert('You need to sign in first.')</script>";
     echo "<script>location.href = '../index.php';</script>";
 }*/
-?>
+// include_once "config/fresh_upload.php"
 
-	<a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
+?>
 
 <script>
     document.getElementById("title").innerHTML = "Home";
 </script>
 
     <p class="headline" id="homeheadline"></p>
-    <div align="right">
+    <div id="topline" align="right">
         <br>
         <a class="hdtext">Hello</a>&thinsp;&hearts;&thinsp;
         <script>
@@ -45,20 +45,23 @@ if (!isset($_SESSION['username'])){
     <form action="config/upload.php" method='post' enctype="multipart/form-data">
         <input type="file" name="userfile" required>
         <input type="submit" name="submit" value="Upload Image">
-        <?php
-          //  if ($_POST["submit"] == "Upload Image" && isset($_POST["userfile"]))
-          //      echo "<script>document.getElementById('upload').src='upload/upload.png';</script>";
-        ?>
     </form>
 </div>
 
+<?php 
+include 'config/upload.php';
+if ($uploaded_file){
+    echo "good";
+    echo $uploaded_file;
+}
+?>
+
 <div align = "center">
-    <button class="button" onclick="addUpload('uploads/upload.png')">Use Uploaded Picture</button>
-    &nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="addUpload('<?php include 'config/upload.php'; echo $uploaded_file;?>')">Use Uploaded Picture</button>&nbsp;&nbsp;&nbsp;
     <button class="button" onclick="removeUpload()">Remove Uploaded Picture</button>
 </div>
 
-<div align="center">
+<div id="filterGallery" align="center">
     <td><img onclick="addFilter('images/filter1.png')" class="filters" src="images/filter1.png"></a></td>
     <td><img onclick="addFilter('images/filter2.png')" class="filters" src="images/filter2.png"></a></td>
     <td><img onclick="addFilter('images/filter3.png')" class="filters" src="images/filter3.png"></a></td>
@@ -69,7 +72,6 @@ if (!isset($_SESSION['username'])){
     <td><img onclick="addFilter('images/filter8.png')" class="filters" src="images/filter8.png"></a></td>
 </div>
 
-<!-- come back here after saving a picture --> 
 <div align="center">
     <button class="button" onclick="takeAPicture()">Capture the moment</button>
 </div>
@@ -83,17 +85,18 @@ if (!isset($_SESSION['username'])){
 <br>
 
 <div align="center">
-    <div align="center" id="gallery">
-        <canvas onclick="selectPicture()" id="posts"></canvas>
-    <td><img src="" class="posts"></td>
-    <td><img src="" class="posts"></td>
-    <td><img src="" class="posts"></td>
-    <td><img src="" class="posts"></td>
-    </div>
-
-<br> 
+    <canvas id="posts"></canvas>
+    <br> 
     <button class="button" onclick="saveToGalley()">Save to Gallery</button>
-    &nbsp;&nbsp;&nbsp;
+</div>
+
+<div align="center" id="gallery">
+    onclick="selectPicture()"
+    <td><img src="" class="posts"></td>
+    <td><img src="" class="posts"></td>
+    <td><img src="" class="posts"></td>
+    <td><img src="" class="posts"></td>
+    <br>
     <button class="button" onclick="deleteSelected()">Delete This Picture</button>
 </div>
 

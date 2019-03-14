@@ -49,18 +49,23 @@ h2 {
 	position: absolute;
 	text-shadow: 3px 3px black;
 	opacity: 0.8;
-	margin: 10px 85px;
+	margin: 26px 85px;
 }
 #login{
 	position: relative;
+	margin-top: 20px;
 	margin-right: 20px;
 	text-align: right;	
+}
+#topline{
+	margin-top: 20px;
 }
 .hdtext, #logout{
 	color: whitesmoke;
 	font-size:15px;
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
+
 }
 #forgetpw {
 	text-decoration: none;
@@ -230,7 +235,7 @@ canvas {
     min-height: 60vh;
     width: 70%;
     font-family: "Goudy Old Style";
-	margin: auto; /* it will adjust after */
+	margin: auto;
 	font-size: 1.5em;
 	font-weight: normal;
 	color: white;
@@ -257,6 +262,7 @@ canvas {
 #copyright {
 	text-align: right;
 	bottom: 0;
+	position: fixed;
 	right: 16px;
 	font-family: Impact, 'Arial Narrow Bold', sans-serif;
 	color: dimgrey;

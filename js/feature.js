@@ -28,7 +28,12 @@ function addUpload(imgSource){
 
 function removeUpload(){
   image = document.getElementById("upload");
-  image.src = null;
+  if (image.src) {
+    image.src = "/camagru/images/empty.png";
+  }
+  else {
+    exit;
+  }
 }
 
 //video steam with webcam 
@@ -46,18 +51,6 @@ if (navigator.mediaDevices.getUserMedia) {
 function takeAPicture(){
   if (filterAdded === 1)
   {
-   // var canvas = document.createElement("canvas");
-  // /*  canvas.id = "canvasPhoto";
-  //   canvas.width = 500;
-  //   canvas.height = 500;
-  //   canvas.onlick = pasteSticker;} */
-    //  var image = document.getElementById("upload");
-
-  //   var canvas = document.createElement("canvas");
-    //  canvas.id = "gallery";
-//      document.getElementById('gallery').inerHTML = "<canvas onclick='selectPicture()' id='posts'></canvas>";
-
-
       var canvas = document.getElementById("posts");
       var camerastream = document.getElementById("camerastream");
       var addon = document.getElementById("addon");
@@ -66,25 +59,25 @@ function takeAPicture(){
       ctx.drawImage(camerastream, 0, 0, 300, 150);
       ctx.drawImage(upload, 0, 0, 300, 150);
       ctx.drawImage(addon, 0, 0, 300, 150);
-
-   // var dataURL = canvas.toDataURL('image/png');
-    //  ctx.drawImage(image1, 0, 0, 300, 200);
-    //  ctx.drawImage(camerastream , 0,0, 1280, 720, 0, 0, 800, 720 );
-      // ctx.drawImage(upload , 0,0, 1280, 720, 0, 0, 750, 500 );
- 
-    // ctx.drawImage(camerastream, 0,0);
-
-//     ctx.drawImage(upload, 0,0);
-    //  ctx.drawImage(addon, 0, 0, 500, 500);
-        //image.src = canvas.toDataURL("image/png");
-      //window.location.href = image; 
-
   }  
   else {
       alert("You have to add one of filters above to your picture.");
   }
 }
 
+function saveToGallery(){
+      var canvas = document.getElementById("posts");
+      var dataURL = canvas.toDataURL("image/png");
+      // var image = 
+      // image.src= 
+
+
+
+   // var dataURL = canvas.toDataURL('image/png');
+   
+        //image.src = canvas.toDataURL("image/png");
+      //window.location.href = image; 
+}
 // Function to take the picture from loic
 function replaceVideo() {
 	var canvas = document.createElement("canvas");
@@ -111,14 +104,6 @@ function replaceVideo() {
 	video.parentNode.removeChild(video);
 }
 
-
-
-
-
-
-//function popUp(id, text){
-//  document.getElementById(id).innerHTML = text;
-//}
 
 
 /*

@@ -52,3 +52,5 @@ signin
 	signup
 	reinitiatepw
 	
+photo reference 
+<a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>

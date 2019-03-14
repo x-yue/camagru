@@ -1,18 +1,15 @@
 <?php
 
 $target_dir = "../uploads/";
-$target_file = "../uploads/upload.png";
-//$target_file = $target_dir . basename($_FILES["userfile"]["name"]);
+//$target_file = "../uploads/upload.png";
+$target_file = $target_dir . basename($_FILES["userfile"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 if($_POST["submit"] == "Upload Image") {
-    $check = getimagesize($_FILES["userfile"]["tmp_name"]);
-    if($check !== false) {
-    //    echo "File is an image - " . $check["mime"] . ".";
+    if(($check = getimagesize($_FILES["userfile"]["tmp_name"])) !== false) {
         $uploadOk = 1;
     } else {
-        echo "<script>alert('File is not an image.');</script>";
         $uploadOk = 0;
     }
 }
@@ -24,28 +21,26 @@ if (file_exists($target_file)) {
 }*/
 
 if ($_FILES["userfile"]["size"] > 10000000) {
-    echo "<script>alert('Sorry, your file is too large.');</script>";
     $uploadOk = 0;
 }
 
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
-    echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.');</script>";
     $uploadOk = 0;
 }
 
+// changed so it will only give one alert message when $uploadOk ==0
 if ($uploadOk == 0) {
-    echo "<script>alert('Sorry, your file was not uploaded, please try again')</script>";
+    echo "<script>alert('Sorry, your file was not uploaded, it could be caused by the size of file, or tyle of picture, or it's simply not an image, please try again')</script>";
 } else {
+    $filename = basename($_FILES["userfile"]["name"]);
+    $uploaded_file = "/uploads/" . $filename;
     if (move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file)) {
         echo "<script>alert('Image uploaded successfully')</script>";
-        echo "<script type='text/javascript'>location.href = '../home.php';</script>";
+        echo "<script>location.href = '../home.php';</script>";
     } else {
-        echo "<script>alert('Sorry, there was an error uploading your file.')</script>";
+        echo "<script>alert('Sorry, there was an error uploading your file. It's not you, it's us, please try again)</script>";
     }
 }
-
-//echo '<script>"The file '. basename( $_FILES["userfile"]["name"]). ' has been uploaded."</script>';
-//echo "<script>alert('The account with this email address already existed')</script>";
 
 ?>

@@ -2,8 +2,6 @@
 include ('control/header.php');
 ?>
 
-<a href="../index.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
-
 <script>
         document.getElementById("title").innerHTML = "Sign Up";
 </script>

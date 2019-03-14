@@ -7,13 +7,12 @@ if (!isset($_SESSION['username'])){
 }*/
 
 ?>
-    <a href="../feed.php"><img id="logo" src="/images/logo.png" alt="logo"><img></a>
 
     <script>
         document.getElementById("title").innerHTML = "Feed";
     </script>
     <p class="headline">Newsfeed</p>
-    <div align="right">
+    <div id="topline" align="right">
         <br>
         <a class="hdtext">Hello</a>&thinsp;&hearts;&thinsp;
         <script>
