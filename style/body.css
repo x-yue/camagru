@@ -86,8 +86,10 @@ h2 {
 	text-shadow: 2px 2px rgb(24, 24, 24);
 	font-weight: bold;
 }
+
+/* page 404 */
 #errormsgbox {
-	height: 400px;
+	height: 330px;
 	width: 800px;
 	margin-top: 20%;	
 	background-color: white;
@@ -159,7 +161,7 @@ h2 {
 #heart {
 	height:20px;
 	width:20px;
-	margin-top: 400px;
+	margin-top: 395px;
 }
 #feedusername{
 	margin-top:-490px;
@@ -228,6 +230,11 @@ canvas {
 	cursor: pointer;
 	text-align: center;
 	opacity: 0.9;
+}
+.gallery {
+	height: 300px;
+	width: 300px;
+	margin: auto;	
 }
 
 /* account info - change password/email/username */

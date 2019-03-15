@@ -42,26 +42,32 @@ if (!isset($_SESSION['username'])){
 </div>
 
 <div align="center">
-    <form action="config/upload.php" method='post' enctype="multipart/form-data">
+    <form action="config/upload.php" method='post' enctype="multipart/form-data"> 
         <input type="file" name="userfile" required>
         <input type="submit" name="submit" value="Upload Image">
     </form>
 </div>
 
+
+
 <?php 
-include 'config/upload.php';
-if ($uploaded_file){
-    echo "good";
-    echo $uploaded_file;
-}
-?>
+// include 'config/upload.php'; 
+
+// echo "<br>";
+// echo "test";
+// echo "<br>";
+// echo uploadFileName();
+// echo "<br>";
+?> 
+
+<!-- change the uploading system to database  -->
 
 <div align = "center">
-    <button class="button" onclick="addUpload('<?php include 'config/upload.php'; echo $uploaded_file;?>')">Use Uploaded Picture</button>&nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="addUpload('uploads/upload.png')">Use Uploaded Picture</button>&nbsp;&nbsp;&nbsp;
     <button class="button" onclick="removeUpload()">Remove Uploaded Picture</button>
 </div>
 
-<div id="filterGallery" align="center">
+<div id="filtergallery" align="center">
     <td><img onclick="addFilter('images/filter1.png')" class="filters" src="images/filter1.png"></a></td>
     <td><img onclick="addFilter('images/filter2.png')" class="filters" src="images/filter2.png"></a></td>
     <td><img onclick="addFilter('images/filter3.png')" class="filters" src="images/filter3.png"></a></td>
@@ -81,26 +87,27 @@ if ($uploaded_file){
 // add picture to folder with static number image[$number].png;
 // private 
 // 
+// echo '<img src="data:image/jpeg;base64,' . base64_encode($row['destinationimage']) . '" />';
 ?>
 <br>
 
 <div align="center">
     <canvas id="posts"></canvas>
     <br> 
-    <button class="button" onclick="saveToGalley()">Save to Gallery</button>
+    <button class="button" onclick="saveToGalley()">Save to Gallery and Share with Friends</button>
 </div>
-
-<div align="center" id="gallery">
-    onclick="selectPicture()"
-    <td><img src="" class="posts"></td>
-    <td><img src="" class="posts"></td>
-    <td><img src="" class="posts"></td>
-    <td><img src="" class="posts"></td>
+<br>
+<div align="center">
+  
+    <td><img src="" onclick="selectPicture()" class="gallery"></td>
+    <td><img src="" onclick="selectPicture()" class="gallery"></td>
+    <td><img src="" onclick="selectPicture()" class="gallery"></td>
+    <td><img src="" onclick="selectPicture()" class="gallery"></td>
     <br>
-    <button class="button" onclick="deleteSelected()">Delete This Picture</button>
 </div>
 
 <script src="js/feature.js"></script>
 
+</body>
 
 <?php include 'control/footer.php';?>

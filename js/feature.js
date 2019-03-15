@@ -1,4 +1,6 @@
-let headlines = [
+// this function will show a random headline
+randomHeadline = function () {
+  let headlines = [
     "Cheese :)",
     "Fromage =P",
     "Smile!",
@@ -6,9 +8,7 @@ let headlines = [
     "Don't be shy",
     "Click and upload"];
 
-// this function will show a random headline
-randomHeadline = function () {
-    let randomNumber = Math.floor(Math.random() * 6);
+  let randomNumber = Math.floor(Math.random() * 6);
     document.getElementById('homeheadline').innerHTML = headlines[randomNumber];
 };
 randomHeadline();
@@ -65,6 +65,7 @@ function takeAPicture(){
   }
 }
 
+// save to gallery function to save the picture to database
 function saveToGallery(){
       var canvas = document.getElementById("posts");
       var dataURL = canvas.toDataURL("image/png");
@@ -78,6 +79,7 @@ function saveToGallery(){
         //image.src = canvas.toDataURL("image/png");
       //window.location.href = image; 
 }
+
 // Function to take the picture from loic
 function replaceVideo() {
 	var canvas = document.createElement("canvas");
@@ -104,7 +106,12 @@ function replaceVideo() {
 	video.parentNode.removeChild(video);
 }
 
+function selectPicture(){
 
+}
+function deleteSelected(){
+
+}
 
 /*
 window.addEventListener('load', function() {

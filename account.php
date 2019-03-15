@@ -115,5 +115,5 @@ include ('control/header.php');
        </form>
     </div>
 </div>
-
+</body>
 <?php include('control/footer.php');?>

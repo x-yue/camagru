@@ -30,58 +30,71 @@ if (!isset($_SESSION['username'])){
 
 <div align="center" id="newsfeed">
 <!-- create a whilte loop for all the posts --> 
+<?php 
+    if ($post == null){
+        echo "<div align='center'>";
+        echo "<p id='nonewsfeed'>Oups, there is no post from anyone yet, go to your home page and share something with us!</p>";
+        echo "<a href='home.php'><button class='button'>My Page</button></a>";
+        echo "</div>";
+    }
+?>
 
-    <article align="left" class="feed">
-        <td class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></td>
-        <td><header align="right" id="feedusername">Username</header></td>
+    <div align="left" class="feed">
+        <table>
+            <div class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></div>
+            <div align="right">
+                <p id="feedusername">Username</p>
+                <p id="comments">Comments</p>
+            </div>
+        </table>
         <div align="right">
-            <li>Comments</li>
-        <div>
+            <a id="numofheart">100</a>    
+            <img id="heart" src="images/heart.png"> 
+        </div>
+    </div><br>
 
-    <div align="right">
-        <a id="numofheart">100</a>    
-        <img id="heart" src="images/heart.png"> 
-    </div>
-    </article><br>
-    
-    <article align="left" class="feed">
-        <td class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></td>
-        <td><header align="right" id="feedusername">Username</header></td>
+      <div align="left" class="feed">
+        <table>
+            <div class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></div>
+            <div align="right">
+                <p id="feedusername">Username</p>
+                <p id="comments">Comments</p>
+            </div>
+        </table>
         <div align="right">
-            <li>Comments</li>
-        <div>
+            <a id="numofheart">100</a>    
+            <img id="heart" src="images/heart.png"> 
+        </div>
+    </div><br>
 
-    <div align="right">
-        <a id="numofheart">100</a>    
-        <img id="heart" src="images/heart.png"> 
-    </div>
-    </article><br>
-
-    <article align="left" class="feed">
-        <td class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></td>
-        <td><header align="right" id="feedusername">Username</header></td>
+      <div align="left" class="feed">
+        <table>
+            <div class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></div>
+            <div align="right">
+                <p id="feedusername">Username</p>
+                <p id="comments">Comments</p>
+            </div>
+        </table>
         <div align="right">
-            <li>Comments</li>
-        <div>
+            <a id="numofheart">100</a>    
+            <img id="heart" src="images/heart.png"> 
+        </div>
+    </div><br>
 
-    <div align="right">
-        <a id="numofheart">100</a>    
-        <img id="heart" src="images/heart.png"> 
-    </div>
-    </article><br>
-
-    <article align="left" class="feed">
-        <td class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></td>
-        <td><header align="right" id="feedusername">Username</header></td>
+      <div align="left" class="feed">
+        <table>
+            <div class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></div>
+            <div align="right">
+                <p id="feedusername">Username</p>
+                <p id="comments">Comments</p>
+            </div>
+        </table>
         <div align="right">
-            <li>Comments</li>
-        <div>
+            <a id="numofheart">100</a>    
+            <img id="heart" src="images/heart.png"> 
+        </div>
+    </div><br>
 
-    <div align="right">
-        <a id="numofheart">100</a>    
-        <img id="heart" src="images/heart.png"> 
-    </div>
-    </article><br>
 
 </div>
 <!--    <iframe src=""id="scrollingfeed" scrolling="yes">
@@ -89,5 +102,5 @@ if (!isset($_SESSION['username'])){
 
     </iframe>   
 </div>
-
+</body>
 <?php include('control/footer.php');?>

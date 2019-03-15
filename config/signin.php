@@ -1,43 +1,108 @@
 <?php
-/*
-function errorsignin()
+
+
+//to see if the password match
+// $salt = "sherlock_";
+
+// $incomingPassword = $_POST['password'];
+// $storedHash = getStoredHash( $_POST['username'] );
+
+// $incomingHash = hash( 'whirlpool',salt.$incomingPassword );
+
+// if ( $incomingHash == $storedHash ) {
+//   echo('Passwords match!');
+// }
+
+function error()
 {
     echo "<script>alert('Something went wrong, please try again.')</script>";
-  //  echo "<script>location.href='../index.php';</script>";
-	exit;
-}
-
-// to remove later 
-function errorsignin2()
-{
-    echo "<script>alert('try again.')</script>";
-   // echo "<script>location.href='../index.php';</script>";
-	exit;
-}
-
-
-function wrongpw(){
-    echo "<script>alert('The username and password don't match, try again or click forget my password.')</script>";
- //   echo "<script>location.href='../index.php';</script>";
+    echo "<script>location.href='../index.php';</script>";
 	exit;
 }
 
 function nonexist(){
-    echo "<script>alert('No account associate with this username exists, please sign up.')</script>";
+    echo "<script>alert('No account associate with this username exists, please try again or sign up.')</script>";
     echo "<script>location.href='../signup.php';</script>";
 	exit;
 }
 
-function signedin(){
-    $_SESSION["username"]= $_POST["username"];
-    $_SESSION["password"] = $_POST["password"];
-    $name = $_SESSION["username"];
-    echo "<script>alert('Welcome back, $name.')</script>";
-//    echo "<div id="snackbar">Welcome back, $name</div>";
-// work on the snackbar when i get time to
-// it's on w3 school 
-    echo "<script>location.href='../home.php';</script>";
+function wrongpw(){
+    echo "<script>alert('The username and password don't match, try again or click forget my password.')</script>";
+    echo "<script>location.href='../index.php';</script>";
+	exit;
+}
+
+function inactiveNotice(){
+    echo "<script>alert('It seems you haven't activated your account, have a look at your mailbox, we have sent you a confirmation email.')</script>";
+    echo "<script>location.href = '../index.php';</script>";
+    exit; 
+}
+
+function bannedNotice(){
+    echo "<script>alert('Hello, your account has been banned from this website, please contact us if you have questions.')</script>";
+    echo "<script>location.href = '../index.php';</script>";
+    exit; 
+}
+
+function signedIn(){
+    echo "<script>alert('Welcome Back, $username')</script>";
+    echo "<script>location.href = '../feed.php';</script>";
     exit;
+}
+
+
+/*
+if ($_POST['submit'] == 'Sign In')
+{
+	$_SESSION['username'] = $_POST['username'];
+	$_SESSION['password'] = $_POST['password'];
+// } */
+
+// if ($_POST['submit'] == 'Sign In' && $_POST["username"] && $_POST["password"]){
+//     $username = $_POST["username"];
+//     $raw_password = $_POST["password"];
+//     $password = '';
+//     if ($username){ 
+//         $salt = "sherlock_";
+//         if (hash("whirlpool", $salt.$raw_password) == $password)) {   
+//             $status = fetch($loginsystem);
+//             if ($status == "i"){
+//                 inactiveNotice();
+//             }
+//             else if ($status == "b"){
+//                 bannedNotice();
+//             }
+//             else if ($status == "a"){
+//                 signedIn();
+//             } else {
+//                 error();
+//             } 
+//         } else {
+//             wrongpw();
+//         }
+//     } else {
+//         nonexist();
+//     }
+// } else {
+//     error();
+// }
+
+/*
+if ( ! empty( $_POST ) ) {
+    if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
+        // Getting submitted user data from database
+        $con = new mysqli($db_host, $db_user, $db_pass, $db_name);
+        $stmt = $con->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param('s', $_POST['username']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    	$user = $result->fetch_object();
+    		
+    	// Verify user password and set $_SESSION
+    	if ( password_verify( $_POST['password'], $user->password ) ) {
+    		$_SESSION['user_id'] = $user->ID;
+    	}
+    }
 }
 
 if ($_POST["submit"] == "Sign in" && $_POST["username"] && $_POST["password"])

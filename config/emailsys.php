@@ -10,6 +10,10 @@ $msg = wordwrap($msg,70);
 
 $destination = "testeryuxu@gmail.com";
 
+function sendConfirmationEmail($email){
+    
+}
+
 
 // send email
 mail($destination, $subject, $msg);

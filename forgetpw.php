@@ -9,15 +9,6 @@ include ('control/header.php');
     <p class="headline">Camagru</p> 
 
     <?php include "config/signin.php"; ?>      
-    <!-- <div id="login">
-        <br>
-    	<form action="" method= "post">
-            <input type="text" name="login" placeholder="Login"/>
-            <input type="password" name="passwd" placeholder="Password"/>
-            <input type="submit" name="submit" value="Sign in" >
-         here to insert signin codes server side 
-        </form>
-        <div style="height:3px;"><br></div> -->
 	    <a id="signup" href="signup.php" >Sign Up</a>
     </div>
 </div>
@@ -38,5 +29,5 @@ include ('control/header.php');
     <br>
     <a href="index.php"><button class="button">Homepage</button></a>
 </div>
-
+</body>
 <?php include ('control/footer.php');?>
