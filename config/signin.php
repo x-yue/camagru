@@ -1,6 +1,6 @@
 <?php
 
-
+include "setup.php";
 //to see if the password match
 // $salt = "sherlock_";
 
@@ -15,9 +15,9 @@
 
 function error()
 {
-    echo "<script>alert('Something went wrong, please try again.')</script>";
-    echo "<script>location.href='../index.php';</script>";
-	exit;
+   // echo "<script>alert('Signing In: Something went wrong, please try again.')</script>";
+    // echo "<script>location.href='index.php';</script>";
+	// exit;
 }
 
 function nonexist(){
@@ -44,9 +44,11 @@ function bannedNotice(){
     exit; 
 }
 
-function signedIn(){
+function signedIn($username){
+    session_start();
+    $_SESSION["username"] = $username;
     echo "<script>alert('Welcome Back, $username')</script>";
-    echo "<script>location.href = '../feed.php';</script>";
+    echo "<script>location.href = 'feed.php';</script>";
     exit;
 }
 
@@ -58,34 +60,41 @@ if ($_POST['submit'] == 'Sign In')
 	$_SESSION['password'] = $_POST['password'];
 // } */
 
-// if ($_POST['submit'] == 'Sign In' && $_POST["username"] && $_POST["password"]){
-//     $username = $_POST["username"];
-//     $raw_password = $_POST["password"];
-//     $password = '';
-//     if ($username){ 
-//         $salt = "sherlock_";
-//         if (hash("whirlpool", $salt.$raw_password) == $password)) {   
-//             $status = fetch($loginsystem);
-//             if ($status == "i"){
-//                 inactiveNotice();
-//             }
-//             else if ($status == "b"){
-//                 bannedNotice();
-//             }
-//             else if ($status == "a"){
-//                 signedIn();
-//             } else {
-//                 error();
-//             } 
-//         } else {
-//             wrongpw();
-//         }
-//     } else {
-//         nonexist();
-//     }
-// } else {
-//     error();
-// }
+// $duplicate=mysqli_query($conn,"select * from user_login
+// where user_name='$user_name' or email_id='$email_id'");
+
+if ($_POST['submit'] == 'Sign In' && $_POST["username"] && $_POST["password"]){
+    $username = $_POST["username"];
+    echo $username;
+    $raw_password = $_POST["password"];
+    $salt = "sherlock_";
+    $password = hash("whirlpool", $salt.$raw_password);
+    signedIn($username);
+    // $password = '';
+    // if ($username){ 
+    //     $salt = "sherlock_";
+    //     if (hash("whirlpool", $salt.$raw_password) == $password) {   
+    //         $status = fetch($loginsystem);
+    //         if ($status == "i"){
+    //             inactiveNotice();
+    //         }
+    //         else if ($status == "b"){
+    //             bannedNotice();
+    //         }
+    //         else if ($status == "a"){
+    //             signedIn($username);
+    //         } else {
+    //             error();
+    //         } 
+    //     } else {
+    //         wrongpw();
+    //     }
+    // } else {
+    //     nonexist();
+    // }
+} else {
+    error();
+}
 
 /*
 if ( ! empty( $_POST ) ) {
@@ -132,10 +141,9 @@ else
 
     <div id="login">
         <br>
-    	<form action="/config/signin.php" method= "post">
+    	<form action="config/signin.php" method= "post">
             <input type="login" name="username" placeholder="Login" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" name="submit" value="Sign in" required>
-            <!-- here to insert signin codes server side  --> 
         </form>
         <div style="height:3px;"><br></div>

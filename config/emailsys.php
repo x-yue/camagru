@@ -1,5 +1,8 @@
 <?php
 
+
+function sendEmail($email){
+}
 //this file is to make an email system
 $subject = "mysubject";
 // the message
@@ -10,8 +13,27 @@ $msg = wordwrap($msg,70);
 
 $destination = "testeryuxu@gmail.com";
 
-function sendConfirmationEmail($email){
-    
+
+
+
+function deleteConfirmation($email){
+
+
+}
+
+
+function confirmedUser($username){
+    $active = "a";
+    $sql = "UPDATE loginsystem SET status = $active WHERE username = $username"; 
+    echo "<script>alert('Congratulations, you are all set! You can sign in now. :)')</script>";
+    echo "<script>location.href = '../index.php';</script>";
+    exit;
+}
+
+function sendConfirmationEmail($username, $email){
+
+    confirmedUser($username);
+    return 1;
 }
 
 

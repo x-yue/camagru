@@ -1,16 +1,15 @@
 <?php
 include 'control/header.php';
-/*include 'config/signin.php';
+// include 'config/signin.php';
 
-if (!isset($_SESSION['username'])){
-    // to remove later 
-    $name = $_SESSION["username"];
-    echo "<script>alert($name)</script>";
-    echo "<script>alert('You need to sign in first.')</script>";
-    echo "<script>location.href = '../index.php';</script>";
-}*/
-// include_once "config/fresh_upload.php"
-
+// if (!isset($_SESSION['username'])){  
+//     echo "<script>alert('You need to sign in first.')</script>";
+//     echo "<script>location.href = 'index.php';</script>";
+// } else {
+//     session_start();
+//     $name = $_SESSION["username"];
+//  //   echo "<script>alert($name)</script>";
+// }
 ?>
 
 <script>

@@ -1,5 +1,11 @@
 <?php
-include ('control/header.php');
+include 'control/header.php';
+// include 'config/signin.php';
+
+// if (isset($_SESSION['username'])){  
+//     echo "<script>location.href = 'feed.php';</script>";
+// }
+
 ?>
 
 <script>

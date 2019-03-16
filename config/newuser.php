@@ -2,9 +2,34 @@
 include "emailsys.php";
 include "setup.php";
 
+//user status : a = activated i = inactivated b = banned
+//examples 
+// tester
+// testeryuxu@gmail.com
+// d43482912a81822f60c60ba51a7562ab2ff8b603f72d1fadaa...
+// i
+// banned
+// example@example.com
+// d43482912a81822f60c60ba51a7562ab2ff8b603f72d1fadaa...
+// b
+// admin
+// joyce008008@gmail.com
+// d43482912a81822f60c60ba51a7562ab2ff8b603f72d1fadaa...
+// a
+// test
+// test
+// test
+// t
+
+// if ($stmt->execute()) { 
+//     // it worked
+//  } else {
+//     // it didn't
+//  }
+
 function error()
 {
-    echo "<script>alert('Something went wrong, please try again.')</script>";
+    echo "<script>alert('Creating Account: Something went wrong, please try again.')</script>";
     echo "<script>location.href = '../signup.php';</script>";
 	exit;
 }
@@ -21,72 +46,70 @@ function repeated_email(){
     exit;
 }
 
-function signedup(){
-    sendConfirmationEmail($email);
+function passwordNoMatch(){
+    echo "<script>alert('The passwords do not match, please try again')</script>";
+    echo "<script>location.href = '../signup.php';</script>";
+    exit;     
+}
+
+function passwordSecure(){
+    echo "<script>alert('The password must contain at least 6 characters, please try again.');</script>";
+    echo "<script>location.href = '../signup.php';</script>";
+    exit;
+}
+
+function signedup($username, $email, $password){
+    $status = "i"; // inactive account
+    $sql = "INSERT INTO 'loginsystem' ('username', 'email', 'password', 'status') VALUES (:username, :email, :'password', :'status')";
+    echo "111";
+    $stmt = $conn->prepare($sql);
+    echo "244222";
+    $stmt->execute(["username" => $username, "email"=>$email, "password"=>$password, "status"=>$status]);
+ //   sendConfirmationEmail($username, $email);
+    echo "3333";
     echo "<script>alert('A confirmation email is sent to you, please click the link inside.')</script>";
     echo "<script>location.href = '../index.php';</script>";
     exit;
 }
 
-function confirmedUser(){
-    echo "<script>alert('Congratulations, you are all set! You can sign in now. :)')</script>";
-    echo "<script>location.href = '../index.php';</script>";
-    exit;
-}
-
-
 if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && $_POST["email"] && $_POST["verifypw"])
 {
-    $email = $_POST["email"];
     $username = $_POST["username"];
+    $email = $_POST["email"];
     $raw_password = $_POST["password"];
     $salt = "sherlock_";
-
     if ($raw_password != $_POST["verifypw"]) {
-        echo "<script>alert('The passwords do not match, please try again')</script>";
-        echo "<script>location.href = '../signup.php';</script>";
-        exit;        
+        passwordNoMatch();
     } else {
         if (strlen($raw_password) < 6) {
-        echo "<script>alert('The password must contain at least 6 characters, please try again.');</script>";
-        echo "<script>location.href = '../signup.php';</script>";
-        exit;
+            passwordSecure();
         }
     }
-    $stmt = $conn->prepare("SELECT username FROM loginsystem WHERE username = ?");
-    $stmt->execute($username);
-    if ($stmt->rawCount() > 0){
-        echo "test";
+
+//check duplicate username
+    $sql_username = "SELECT 'username' FROM 'loginsystem' WHERE 'username' = ?";
+    $stmt = $conn->prepare($sql_username);
+    if ($stmt->execute($username)){
+         echo 'executed';
+     } else {
+         echo "wrong";
+     };
+    if ($stmt->rowCount() > 0){
         repeated_username();
     }
-    echo "test1";
-
-    $stmt = $conn->prepare("SELECT email FROM loginsystem WHERE ? = email");
+//check duplicate email
+    $sql_email = "SELECT email FROM loginsystem WHERE email = ?";
+    $stmt = $conn->prepare($sql_email);
     $stmt->execute($email);
-    if ($stmt->rawCount() > 0){
+    if ($stmt->rowCount() > 0){
         repeated_email();
     }
-    echo "test2";
-
-    //do a search in database for usernames and emails if there is repeated answer 
-    //otherwise insert client in the databse 
-    //$password = hash("whirlpool", $salt.$raw_password);
-    // $sql = "INSERT INTO loginsystem(username, email, password) values (:username, :email, :password)";
-    // $stmt = $conn->prepare($sql);
-    // $stmt->execute(["username" => $username, "email"=>$email, "password"=>$password]);
-    echo "tes3";
-    
-    signedup();
-
+    $password = hash("whirlpool", $salt.$raw_password);
+    signedup($username, $email, $password);
 } else {
     error();
 }
 
-// // user status : 
-// a = activated
-// i = inactivated
-// d = deactivated
-// b = banned
 
 //ALTER TABLE `tableName` ADD UNIQUE `indexName` ( `columnName` )
 

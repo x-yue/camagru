@@ -1,6 +1,11 @@
 <?php
-include ('control/header.php');
-?>
+include 'control/header.php';
+// include 'config/signin.php';
+
+// if (isset($_SESSION['username'])){  
+//     echo "<script>location.href = '/camagru/feed.php';</script>";
+// }
+// ?>
 
 <script>
     document.getElementById("title").innerHTML = "Forget Password";
@@ -16,7 +21,7 @@ include ('control/header.php');
 <div align="center" class="accinfo">
     <div id="form">
         <h2>Find my Password</h2>
-        <form action method="post">
+        <form action="config/findpw.php" method="post">
             <label for="email">E-Mail</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;:
             <input type="email" name="email" class="input" style="width:200px;" placeholder="xxxxxxxx@xxxx.xxx" required>
             <p id="notice">* Please put your e-mail to find your password</p>
