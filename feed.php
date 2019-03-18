@@ -1,5 +1,6 @@
 <?php
 include 'control/header.php';
+include "config/setup.php";
 
 session_start();
 if (!isset($_SESSION['username'])){  
@@ -30,25 +31,32 @@ if (!isset($_SESSION['username'])){
     </div>
 </div>
 
+
 <div align="center" id="newsfeed">
-<!-- create a whilte loop for all the posts --> 
-<?php
-    if ($post == null){
+
+<?php     
+    $conn = db_connect();
+    $sql = "SELECT * FROM imagelist";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetch();
+    $conn = null;
+    if (!$res){
         echo "<div align='center'>";
+        echo "<div id='errormsgbox' style='height:250px'>";
         echo "<p id='nonewsfeed'>Oups, there is no post from anyone yet, go to your home page and share something with us!</p>";
-        echo "<a href='home.php'><button class='button'>My Page</button></a>";
-        echo "</div>";
+        echo "<a href='home.php'><button class='button'>MySpace</button></a></div></div>";
+    } else {
+        include "addfeed.php";
     }
+    exit;
 ?>
-<!-- <div align="center" >
-    <div id="errormsgbox">
-    <p id="errorMessage">Oups, there is no post from anyone yet, go to your home page and share something with us!</p>   
-    <br>
-    <a href="home.php"><button class="button">MySpace</button></a>
-    </div>
-</div> -->
+    <!-- //      ALTER TABLE `gallery` CHANGE `img3` `img3` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL; -->
+   
+<!-- create a whilte loop for all the posts --> 
 
-    <div align="left" class="feed">
+
+    <!-- <div align="left" class="feed">
         <table>
             <div class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></div>
             <div align="right">
@@ -102,14 +110,15 @@ if (!isset($_SESSION['username'])){
             <a id="numofheart">100</a>    
             <img id="heart" src="images/heart.png"> 
         </div>
-    </div><br>
+    </div><br> -->
 
 
 </div>
 <!--    <iframe src=""id="scrollingfeed" scrolling="yes">
  src => where the pictures are saved! -->  
 
-    </iframe>   
-</div>
+    <!-- </iframe>    -->
+<!-- </div> -->
 </body>
-<?php include('control/footer.php');?>
+
+<?php include 'control/footer.php';?>
