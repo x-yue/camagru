@@ -3,6 +3,7 @@ body {
 	background-image: url("/camagru/images/bg2.png");
 	background-color:white;
 	background-size: cover;
+	background-position: fixed;
 }
 div {
 	display: block;
@@ -96,7 +97,7 @@ h2 {
 	opacity:0.85;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
 }
-#errorMessage{
+#errorMessage, #nonewsfeed{
 	text-align: center;
 	color: #105497;
 	font-size: 35px;
