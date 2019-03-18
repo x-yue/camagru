@@ -2,28 +2,28 @@
 include "emailsys.php";
 include "setup.php";
 
+
 function error(){
     echo "<script>alert('Something went wrong, please try again.')</script>";
     echo "<script>location.href='../account.php';</script>";
 	exit; 
 }
 
-function notMatch(){
-    echo "<script>alert('The username and and password you put in do not match, please try again');</script>";
+function wrongPassword(){
+    echo "<script>alert('The password you put in is incorrect, please try again');</script>";
     echo "<script>location.href='../account.php';</script>";
     exit;
 }
 
-function samePassword(){
-    echo "<script>alert('The old and new passwords are identical, nothing will be changed.');</script>";
+function repeatUsername(){
+    echo "<script>alert('The old and new username are identical, nothing will be changed.');</script>";
     echo "<script>location.href='../account.php';</script>";
     exit;
 }
 
-function passwordSecure(){
-    echo "<script>alert('The password must contain at least 6 characters, please try again.');</script>";
-    echo "<script>location.href = '../account.php';</script>";
-    exit;
+function existUsername(){
+    echo "<script>alert('The new username already existed, please try with something else.');</script>";
+    echo "<script>location.href='../account.php';</script>";
 }
 
 function successfulChange(){
@@ -32,45 +32,51 @@ function successfulChange(){
     exit;
 }
 
+
 if ($_POST["submit"] == 'Submit' && $_POST["oldun"] && $_POST["newun"] && $_POST["password"]){
-// changed one line only 
-    $username = $_POST["user"];
-    $oldpw = $_POST["oldpw"];
-    $newpw = $_POST["newpw"];
+
+    $oldun = $_POST["oldun"];
+    $newun = $_POST["newun"];
+    $raw_password = $_POST["password"];
     $salt = "sherlock_";
 
+   //verify if the old password is correct
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE username = '$username'";
+    $sql = "SELECT passwd FROM loginsystem WHERE username = '$oldun'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->fetch();
     $conn = null;
-
-    //verify if the old password is correct
-    $oldpwhash = hash("whirlpool", $salt.$oldpw);
-    if ($res[0] == $oldpwhash)
+    $password = hash("whirlpool", $salt.$raw_password);
+    if ($res[0] == $password)
     {   
-        //verify password length 
-        if (strlen($newpw) < 6){
-            passwordSecure();
-        }
-        //verify if two passwords are the same
-        if ($oldpw != $newpw){
-            $newpwhash = hash("whirlpool", $salt.$newpw);
-            $conn = db_connect();
-            $sql = "UPDATE loginsystem SET passwd = '$newpwhash' where username = '$username'";
-            $stmt = $conn->prepare($sql);
-            if ($stmt->execute()) {
-                $conn = null;
-                successfulChange();
+        //verify if the new username is already used
+        $conn = db_connect();
+        $sql = "SELECT * FROM loginsystem WHERE username = '$newun'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        $conn = null;
+        if (!$res){
+            //verify if two username are the same
+            if ($oldun != $newun){
+                $conn = db_connect();
+                $sql = "UPDATE loginsystem SET username = '$newun' where username = '$oldun'";
+                $stmt = $conn->prepare($sql);
+                if ($stmt->execute()) {
+                    $conn = null;
+                    successfulChange();
+                } else {
+                    error();
+                }
             } else {
-                error();
+                repeatUsername();
             }
         } else {
-            samePassword();
+            existUsername();
         }    
     } else {
-        notMatch();
+        wrongPassword();
     }
 } else {
     error();

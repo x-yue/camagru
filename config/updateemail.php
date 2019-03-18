@@ -8,22 +8,21 @@ function error(){
 	exit; 
 }
 
-function notMatch(){
-    echo "<script>alert('The username and and password you put in do not match, please try again');</script>";
+function wrongPassword(){
+    echo "<script>alert('The password you put in is incorrect, please try again');</script>";
     echo "<script>location.href='../account.php';</script>";
     exit;
 }
 
-function samePassword(){
-    echo "<script>alert('The old and new passwords are identical, nothing will be changed.');</script>";
+function repeatEmail(){
+    echo "<script>alert('The old and new emails are identical, nothing will be changed.');</script>";
     echo "<script>location.href='../account.php';</script>";
     exit;
 }
 
-function passwordSecure(){
-    echo "<script>alert('The password must contain at least 6 characters, please try again.');</script>";
-    echo "<script>location.href = '../account.php';</script>";
-    exit;
+function existedEmail(){
+    echo "<script>alert('The new email already link to an account, please try with another one.');</script>";
+    echo "<script>location.href='../account.php';</script>";
 }
 
 function successfulChange(){
@@ -33,44 +32,49 @@ function successfulChange(){
 }
 
 if ($_POST["submit"] == 'Submit' && $_POST["oldemail"] && $_POST["newemail"] && $_POST["password"]){
-    //updated one line only
-    $username = $_POST["user"];
-    $oldpw = $_POST["oldpw"];
-    $newpw = $_POST["newpw"];
+   
+    $oldemail = $_POST["oldemail"];
+    $newemail = $_POST["newemail"];
+    $raw_password = $_POST["password"];
     $salt = "sherlock_";
-
+    
+    //verify if the old password is correct
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE username = '$username'";
+    $sql = "SELECT passwd FROM loginsystem WHERE email = '$oldemail'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->fetch();
     $conn = null;
-
-    //verify if the old password is correct
-    $oldpwhash = hash("whirlpool", $salt.$oldpw);
-    if ($res[0] == $oldpwhash)
+    $password = hash("whirlpool", $salt.$raw_password);
+    if ($res[0] == $password)
     {   
-        //verify password length 
-        if (strlen($newpw) < 6){
-            passwordSecure();
-        }
-        //verify if two passwords are the same
-        if ($oldpw != $newpw){
-            $newpwhash = hash("whirlpool", $salt.$newpw);
-            $conn = db_connect();
-            $sql = "UPDATE loginsystem SET passwd = '$newpwhash' where username = '$username'";
-            $stmt = $conn->prepare($sql);
-            if ($stmt->execute()) {
-                $conn = null;
-                successfulChange();
+        //verify if the new email already existed
+        $conn = db_connect();
+        $sql = "SELECT * FROM loginsystem WHERE email = '$newemail'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        $conn = null;
+        if (!$res) {
+            //verify different emails
+            if ($oldemail != $newemail){
+                $conn = db_connect();
+                $sql = "UPDATE loginsystem SET email = '$newemail' where email = '$oldemail'";
+                $stmt = $conn->prepare($sql);
+                if ($stmt->execute()) {
+                    $conn = null;
+                    successfulChange();
+                } else {
+                    error();
+                }
             } else {
-                error();
+                repeatEmail();
             }
         } else {
-            samePassword();
-        }    
+            existedEmail();
+        }
     } else {
-        notMatch();
+        wrongPassword();
     }
 } else {
     error();
