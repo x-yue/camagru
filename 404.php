@@ -12,9 +12,7 @@ include 'control/header.php';
 <br>
 <div align="center" >
     <div id="errormsgbox">
-    <p id="errorMessage">"Oops, I screwed up and you discovered my fatal flaw. 
-Well, we're not all perfect, but we try.  Can you try this
-again or maybe visit our homepage to start fresh. We'll do better next time."</p>   
+    <p id="errorMessage">"Oops, I screwed up and you discovered my fatal flaw. Well, we're not all perfect, but we try.  Can you try this again or maybe visit our homepage to start fresh. We'll do better next time."</p>   
     <br>
     <a href="index.php"><button class="button">Homepage</button></a>
     </div>
