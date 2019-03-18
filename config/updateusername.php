@@ -50,16 +50,16 @@ if ($_POST["submit"] == 'Submit' && $_POST["oldun"] && $_POST["newun"] && $_POST
     $password = hash("whirlpool", $salt.$raw_password);
     if ($res[0] == $password)
     {   
-        //verify if the new username is already used
-        $conn = db_connect();
-        $sql = "SELECT * FROM loginsystem WHERE username = '$newun'";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $res = $stmt->fetch();
-        $conn = null;
-        if (!$res){
-            //verify if two username are the same
-            if ($oldun != $newun){
+        //verify if two username are the same
+        if ($oldun != $newun){
+            $conn = db_connect();
+            $sql = "SELECT * FROM loginsystem WHERE username = '$newun'";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $res = $stmt->fetch();
+            $conn = null;
+            if (!$res){
+                //verify if the new username already existed
                 $conn = db_connect();
                 $sql = "UPDATE loginsystem SET username = '$newun' where username = '$oldun'";
                 $stmt = $conn->prepare($sql);
@@ -70,10 +70,10 @@ if ($_POST["submit"] == 'Submit' && $_POST["oldun"] && $_POST["newun"] && $_POST
                     error();
                 }
             } else {
-                repeatUsername();
+                existUsername();
             }
         } else {
-            existUsername();
+            repeatUsername();
         }    
     } else {
         wrongPassword();
