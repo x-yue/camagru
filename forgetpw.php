@@ -35,4 +35,4 @@ include 'control/header.php';
     <a href="index.php"><button class="button">Homepage</button></a>
 </div>
 </body>
-<?php include ('control/footer.php');?>
+<?php include 'control/footer.php';?>

@@ -2,30 +2,7 @@
 include "emailsys.php";
 include "setup.php";
 
-//user status : a = activated i = inactivated b = banned
-//examples 
-// tester
-// testeryuxu@gmail.com
-// d43482912a81822f60c60ba51a7562ab2ff8b603f72d1fadaa...
-// i
-// banned
-// example@example.com
-// d43482912a81822f60c60ba51a7562ab2ff8b603f72d1fadaa...
-// b
-// admin
-// joyce008008@gmail.com
-// d43482912a81822f60c60ba51a7562ab2ff8b603f72d1fadaa...
-// a
-// test
-// test
-// test
-// t
-
-// if ($stmt->execute()) { 
-//     // it worked
-//  } else {
-//     // it didn't
-//  }
+//user status : a = activated i = inactivated b = banned t = test
 
 function error()
 {
@@ -60,13 +37,29 @@ function passwordSecure(){
 
 function signedup($username, $email, $password){
     $status = "i"; // inactive account
-    $sql = "INSERT INTO 'loginsystem' ('username', 'email', 'password', 'status') VALUES (:username, :email, :'password', :'status')";
-    echo "111";
+ try{
+    // $sql = "INSERT INTO loginsystem (username, email, password, status) VALUES (:username, :email, :password, :status)";
+    // echo "111";
+    // $stmt = $conn->prepare($sql);
+    // $stmt->bindparam(':username', $username);
+    // $stmt->bindparam(':email', $email);
+    // $stmt->bindparam(':password', $password);
+    // $stmt->bindparam(':status', $status);
+
+    $sql = "INSERT INTO loginsystem (username, email, 'password', 'status') VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
+    $stmt->exucute($username, $email, $password, $status);
     echo "244222";
-    $stmt->execute(["username" => $username, "email"=>$email, "password"=>$password, "status"=>$status]);
+///    $stmt->execute();
+    // $stmt->execute(["username" => $username, "email"=>$email, "password"=>$password, "status"=>$status]);
  //   sendConfirmationEmail($username, $email);
-    echo "3333";
+    echo "3333";}
+    catch(PDOException $e)
+    {
+    echo "Error: " . $e->getMessage();
+    }
+    $stmt = null;
+    $conn = null;
     echo "<script>alert('A confirmation email is sent to you, please click the link inside.')</script>";
     echo "<script>location.href = '../index.php';</script>";
     exit;
@@ -86,17 +79,22 @@ if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && 
         }
     }
 
+//    $sql = "INSERT INTO `loginsystem` (`username`, `email`, `password`, `status`) VALUES (\'yuxu\', \'joyce008008@gmail.com\', \'d43482912a81822f60c60ba51a7562ab2ff8b603f72d1fadaa202ed336244a0853ee52b0562bf46c34e1f915d8725db8f2c20d6402a5deacdf1ea352207707df\', \'i\')";
+
 //check duplicate username
-    $sql_username = "SELECT 'username' FROM 'loginsystem' WHERE 'username' = ?";
+    $sql_username = "SELECT `username` FROM `loginsystem` WHERE `username` = ?";
     $stmt = $conn->prepare($sql_username);
-    if ($stmt->execute($username)){
-         echo 'executed';
-     } else {
-         echo "wrong";
-     };
+    $stmt->execute($username);
     if ($stmt->rowCount() > 0){
         repeated_username();
     }
+    if ($stmt->error){
+        echo "Error";
+    }
+    else{
+        echo "Ok";
+    }
+    $stmt = null;
 //check duplicate email
     $sql_email = "SELECT email FROM loginsystem WHERE email = ?";
     $stmt = $conn->prepare($sql_email);
@@ -104,6 +102,7 @@ if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && 
     if ($stmt->rowCount() > 0){
         repeated_email();
     }
+    $stmt = null;
     $password = hash("whirlpool", $salt.$raw_password);
     signedup($username, $email, $password);
 } else {
