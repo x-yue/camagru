@@ -47,11 +47,11 @@ if (!isset($_SESSION['username'])){
         echo "<p id='nonewsfeed'>Oups, there is no post from anyone yet, go to your home page and share something with us!</p>";
         echo "<a href='home.php'><button class='button'>MySpace</button></a></div></div>";
     } else {
+        //      ALTER TABLE `gallery` CHANGE `img3` `img3` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
         include "addfeed.php";
     }
     exit;
 ?>
-    <!-- //      ALTER TABLE `gallery` CHANGE `img3` `img3` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL; -->
    
 <!-- create a whilte loop for all the posts --> 
 
