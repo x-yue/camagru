@@ -32,9 +32,24 @@ if (!isset($_SESSION['username'])){
 
 <!-- in this order: password - username - email address - delete account --> 
 
-<!-- password table -->
-<div align="center" class="accinfo">
 
+<div align="center" class="accinfo">
+    
+    <!-- Accout information -->
+    <!-- <div class="changeform">
+        <h2>Your information</h2>
+        <label>Username</label> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a><?php //echo $name; ?></a>
+        <br>
+        <label>Email</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a><?php //echo $name; ?></a>
+
+
+    </div> -->
+
+    <!-- password table -->
     <div class="changeform">
         <h2>Change your password</h2>
         <form action="config/updatepw.php" method="post">
