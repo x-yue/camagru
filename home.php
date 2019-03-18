@@ -1,15 +1,15 @@
 <?php
 include 'control/header.php';
-// include 'config/signin.php';
 
-// if (!isset($_SESSION['username'])){  
-//     echo "<script>alert('You need to sign in first.')</script>";
-//     echo "<script>location.href = 'index.php';</script>";
-// } else {
-//     session_start();
-//     $name = $_SESSION["username"];
-//  //   echo "<script>alert($name)</script>";
-// }
+session_start();
+if (!isset($_SESSION['username'])){  
+    echo "<script>alert('You need to sign in first.')</script>";
+    echo "<script>location.href = 'index.php';</script>";
+} else {
+    session_start();
+    $name = $_SESSION["username"];
+}
+
 ?>
 
 <script>
@@ -19,13 +19,9 @@ include 'control/header.php';
     <p class="headline" id="homeheadline"></p>
     <div id="topline" align="right">
         <br>
-        <a class="hdtext">Hello</a>&thinsp;&hearts;&thinsp;
-        <script>
-            //<a id="username" class="hdtext"></a>
-            //verify if this works
-         //   document.getElementById("username").innerHTML = $_SESSION['username'];
-        </script>
-        &nbsp;
+        <a class="hdtext">Hello,</a>
+        <a class="hdtext"><?php echo $name; ?></a>&thinsp;&hearts;
+        &hairsp;
         <a class="hdtext" href="feed.php">Feed</a>
         &hairsp;
         <a class="hdtext" href="account.php">Account</a>
@@ -97,12 +93,13 @@ include 'control/header.php';
 </div>
 <br>
 <div align="center">
-  
-    <td><img src="" onclick="selectPicture()" class="gallery"></td>
-    <td><img src="" onclick="selectPicture()" class="gallery"></td>
-    <td><img src="" onclick="selectPicture()" class="gallery"></td>
-    <td><img src="" onclick="selectPicture()" class="gallery"></td>
-    <br>
+  <?php
+    echo "<td><img src='' onclick='selectPicture()' class='gallery'></td>";
+    echo "<td><img src='' onclick='selectPicture()' class='gallery'></td>";
+    echo "<td><img src='' onclick='selectPicture()' class='gallery'></td>";
+    echo "<td><img src='' onclick='selectPicture()' class='gallery'></td>";
+    echo "<br>"
+    ?>
 </div>
 
 <script src="js/feature.js"></script>

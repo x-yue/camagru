@@ -16,9 +16,13 @@ if ( isset( $_SESSION['user_id'] ) ) {
 ?>
 
 <?php
+
 session_start();
-// Destroying the session clears the $_SESSION variable, thus "logging" the user
-// out. This also happens automatically when the browser is closed
-session_destroy();
-echo "<script>location.href='../index.php';</script>";
+unset($_SESSION["username"]);
+if (session_destroy()){
+    header("location:../index.php");
+} else {
+    echo "<script>alert('there is a problem with signing out, please try again')</script>";
+}
+
 ?>

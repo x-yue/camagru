@@ -1,5 +1,5 @@
 <?php
-require "config/setup.php";
+
 ?>
 
 <!DOCTYPE HTML>

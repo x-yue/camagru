@@ -1,48 +1,47 @@
 <?php
 include 'control/header.php';
-// include 'config/signin.php';
 
-// if (!isset($_SESSION['username'])){  
-//     echo "<script>alert('You need to sign in first.')</script>";
-//     echo "<script>location.href = 'index.php';</script>";
-// } else {
-//     session_start();
-//     $name = $_SESSION["username"];
+session_start();
+if (!isset($_SESSION['username'])){  
+    echo "<script>alert('You need to sign in first.')</script>";
+    echo "<script>location.href = 'index.php';</script>";
+} else {
+    session_start();
+    $name = $_SESSION["username"];
+}
 
-
-//if (!isset($_SESSION['username'])){
-  //  echo "<script>alert('You need to sign in first.')</script>";
-    //echo "<script>location.href = '../index.php';</script>";
-//}
 ?>
 
 <script>
-        document.getElementById("title").innerHTML = "Account Information";
+    document.getElementById("title").innerHTML = "Account Information";
 </script>
 
 <p class="headline" id="homeheadline">Account Information</p> 
     <div id="topline" align="right"  >
         <br>
-        <a iclass="hdtext">Hello</a>&thinsp;&hearts;&thinsp;
-        <script>
-            //<a id="username" class="hdtext"></a>
-            //document.getElementById("username").innerHTML = $_SESSION["username"];
-        </script>
-        &nbsp;
+        <a class="hdtext">Hello,</a>
+        <a class="hdtext"><?php echo $name; ?></a>&thinsp;&hearts;
+        &hairsp;
         <a class="hdtext" href="feed.php">Feed</a>
         &hairsp;
         <a class="hdtext" href="home.php">Home</a>
         &hairsp;
-        <a id="logout" href="index.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
+        <a id="logout" href="config/logout.php" onclick="return confirm('Are you ure to log out?');">Logout</a>
     </div>
 </div>
-        <!-- in this order: password - username - email address --> 
+
+<!-- in this order: password - username - email address - delete account --> 
+
 <!-- password table -->
 <div align="center" class="accinfo">
 
-    <div class="changeform" id="shortchangeform">
+    <div class="changeform">
         <h2>Change your password</h2>
-        <form action="config/changeacc.php" method="post">
+        <form action="config/updatepw.php" method="post">
+            <label for="login">Username</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;: 
+            <input type="text" name="user" placeholder="your username" class="input" required>
+            <br>
             <label for="password">Old Password</label>
             &nbsp;&nbsp;&hairsp;: 
             <input type="password" name="oldpw" placeholder="your old password" class="input" required>
@@ -53,7 +52,7 @@ include 'control/header.php';
             <br>
             <br>
             <div align="center">
-                <input type="submit" value="Submit" class="input">
+                <input type="submit" name="submit" value="Submit" class="input">
             </div>
        </form>
     </div>
@@ -61,8 +60,7 @@ include 'control/header.php';
 <!-- username table -->
     <div class="changeform">
         <h2>Change your username</h2>
-        <form action="config/changeacc.php" method="post">
-        
+        <form action="config/updateusername.php" method="post">
             <label for="login">Old Username</label>
             &nbsp;&nbsp;&hairsp;: 
             <input type="text" name="oldun" placeholder="your old username" class="input" required>
@@ -77,7 +75,7 @@ include 'control/header.php';
             <br>
             <br>
             <div align="center">
-                <input type="submit" value="Submit" class="input">
+                <input type="submit" name="submit" value="Submit" class="input">
             </div>
        </form>
     </div>
@@ -85,7 +83,7 @@ include 'control/header.php';
 <!-- email table -->
     <div class="changeform">
         <h2>Change your email address</h2>
-        <form action="config/changeacc.php" method="post">
+        <form action="config/updateemail.php" method="post">
             <label for="email">Old E-Mail</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
             <input type="email" name="oldemail" class="input" placeholder="xxxxx@xxxx.xxx" required>
@@ -100,7 +98,7 @@ include 'control/header.php';
             <br>
             <br>
             <div align="center">
-                <input type="submit" value="Submit" class="input">
+                <input type="submit" name="submit" value="Submit" class="input">
             </div>
        </form>
     </div>
@@ -108,10 +106,10 @@ include 'control/header.php';
 <!-- delete my account --> 
     <div class="changeform" id="shortchangeform">
         <h2>Delete Account</h2>
-        <form action="config/changeacc.php" method="post">
+        <form action="config/deleteacc.php" method="post">
             <label for="email">E-Mail</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-            <input type="email" name="oldemail" class="input" placeholder="xxxxx@xxxx.xxx" required>
+            <input type="email" name="email" class="input" placeholder="xxxxx@xxxx.xxx" required>
             <br>
             <label for="password">Password</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;: 
@@ -119,10 +117,10 @@ include 'control/header.php';
             <br>
             <br>
             <div align="center">
-                <input type="submit" value="Send an email for confirmation" class="input">
+                <input type="submit" name="submit" value="Send an email for confirmation" class="input">
             </div>
        </form>
     </div>
 </div>
 </body>
-<?php include('control/footer.php');?>
+<?php include 'control/footer.php';?>
