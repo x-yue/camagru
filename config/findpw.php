@@ -1,5 +1,5 @@
 <?php
-include 'config/setup.php';
+include 'setup.php';
 
 session_start();
 if (isset($_SESSION['username'])){
@@ -7,28 +7,127 @@ if (isset($_SESSION['username'])){
     echo "<script>location.href = 'feed.php';</script>";
 }
 
-function emailNoMatch(){
-    echo "<script>alert('Sorry, there is no account link to this email address, please try again');</script>";
-    echo "<script>location.href = '../index.php';</script>";
-    exit;   
+function error()
+{
+    echo "<script>alert('Something went wrong, please try again.')</script>";
+    echo "<script>location.href = '../forgetpw.php';</script>";
+	exit;
 }
 
-function emailSent() {
-    echo "<script>alert('The password is sent to your mailbox.');</script>";
+function sendPassword($email){
+    $conn = db_connect();
+    $sql = "SELECT passwd FROM loginsystem WHERE email = '$email'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetch();
+    $conn = null;
+    $password = $res[0];
+    $subject = "Find My Password with Camagru";
+    $message = "testeryuxu@gmail.com";
+    // <html>
+    //     <head>
+    //         <title>You lost it, we find it for you</title>
+    //     </head>    
+    //     <body>
+    //         <a href='camagru/changepassword'>Click Here to Change your password</a> 
+    //     </body>
+        
+    // </html>"
+    
+    if (mail($email, $subject, $message)){
+        echo "<script>alert('An email is sent to your mailbox ;)');</script>";
+    } else {
+        error();
+    }
+}
+
+function wrongMatchEmailUsername(){
+    echo "<script>alert('Sorry, the username and email you put in do not match, please try again, perhaps with the one you are more sure about ;)');</script>";
+    echo "<script>location.href = '../forgetpw.php';</script>";
+    exit;
+}
+
+function noInput(){
+    echo "<script>alert('Did you forget something? we cannot help if you give us nothing.');</script>";
+    echo "<script>location.href = '../forgetpw.php';</script>";
+    exit;  
+}
+
+function noUsernameExist(){
+    echo "<script>alert('Sorry, there is no account with this username, please try again');</script>";
+    echo "<script>location.href = '../forgetpw.php';</script>";
+    exit;
+}
+
+function noEmailExist(){
+    echo "<script>alert('Sorry, there is no account link to this email address, please try again');</script>";
+    echo "<script>location.href = '../forgetpw.php';</script>";
+    exit;
+}
+
+function sendEmail($email) {
+    sendPassword($email);
     echo "<script>location.href = '../index.php';</script>";
     exit;
 }
 
+//there are 4 cases for username and email inputs
 if ($_POST["submit"] == "Send me an email"){
+    
+    //both username and email
     if ($_POST["username"] && $_POST["email"]){
-
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $conn = db_connect();
+        $sql = "SELECT * FROM loginsystem WHERE username = '$username' AND email = '$email'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        $conn = null;
+        if (!$res){
+            wrongMatchEmailUsername();
+        } elseif ($res) {
+            sendEmail($email);
+        } else {
+            error();
+        }
     }
+    // only username
     if ($_POST["username"] && !$_POST["email"]){
-
+        $username = $_POST['username'];
+        $conn = db_connect();
+        $sql = "SELECT email FROM loginsystem WHERE username = '$username'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        $conn = null;
+        if (!$res){
+            noUsernameExist();
+        } elseif ($res){
+            sendEmail($res[0]);
+        } else {
+            error();
+        }
     }
+    //only email
     if (!$_POST["username"] && $_POST["email"]){
-
-    } if (!$_POST["username"] && !$_POST["email"]){
+        $email = $_POST['email'];
+        $conn = db_connect();
+        $sql = "SELECT * FROM loginsystem WHERE email = '$email'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        $conn = null;
+        if (!$res){
+            noEmailExist();
+        } elseif ($res){
+            sendEmail($email);
+        } else {
+            error();
+        }
+    } 
+    // no input
+    if (!$_POST["username"] && !$_POST["email"]){
         noInput();  
     } else {
         error();
@@ -36,57 +135,5 @@ if ($_POST["submit"] == "Send me an email"){
 } else {
     error();
 }
-{
-    // if email can be found from the database 
-    // send an email with the password
-    
-}
 
-// // the message
-// $msg = "First line of text\nSecond line of text";
-
-// // use wordwrap() if lines are longer than 70 characters
-// $msg = wordwrap($msg,70);
-
-// mail(to,subject,message,headers,parameters);
-
-// // send email
-// mail("someone@example.com","My subject",$msg);
-function testEmail(){
-$to = "yue_x@icloud.com";
-$subject = "HTML email";
-
-$message = "
-<html>
-    <head>
-        <title>HTML email</title>
-    </head>
-
-    <body>
-        <p>This email contains HTML Tags!</p>
-        <table>
-            <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-            </tr>
-        </table>
-    </body>
-    
-</html>
-";
-
-// Always set content-type when sending HTML email
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-// More headers
-$headers .= 'From: <yue_x@icloud.com>' . "\r\n";
-//$headers .= 'Cc: myboss@example.com' . "\r\n";
-}
-testEmail();
-//mail($to,$subject,$message,$headers);
 ?>

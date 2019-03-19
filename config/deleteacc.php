@@ -1,6 +1,13 @@
 <?php
-include "emailsys.php";
 include "setup.php";
+
+session_start();
+if (!isset($_SESSION['username'])){  
+    echo "<script>alert('You need to sign in first.')</script>";
+    echo "<script>location.href = 'index.php';</script>";
+} else {
+    $name = $_SESSION["username"];
+}
 
 function error(){
     echo "<script>alert('Something went wrong, please try again.')</script>";
@@ -16,28 +23,36 @@ function notMatch(){
 
 function waitForConfirmation(){
     echo "<script>alert('We are sad to see you go, but we have sent you an email to confirmation deletion of your account, meanwhile, you are remaining signed in.');</script>";
- //   include_once "logout.php";
     echo "<script>location.href='../account.php';</script>";
     exit;
 }
 
 
-if ($_POST["submit"] == 'Send an email for confirmation' && $_POST["email"] && $_POST["password"]){
-    $email = $_POST["email"];
+if ($_POST["submit"] == 'Send an email for confirmation' && $_POST["password"]){
+
+    //find email attached to this account
+    $conn = db_connect();
+    $sql = "SELECT email FROM loginsystem WHERE username = '$name'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetch();
+    $email = $res[0];
+    $conn = null;
+    
     $raw_password = $_POST["password"];
     $salt = "sherlock_";
 
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE email = '$email'";
+    $sql = "SELECT passwd FROM loginsystem WHERE username = '$name'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->fetch();
     $conn = null;
    
-    //verify if the old password is correct
+    //verify if the password is correct
     $password =  hash("whirlpool", $salt.$raw_password);
-    if ($res[0] == $password)
-    {
+    if ($res[0] == $password){
+    ////////////////////////////////////    emailDeletation();
         waitForConfirmation();
     } else {
         notMatch();

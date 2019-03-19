@@ -1,5 +1,5 @@
 <?php
-include "emailsys.php";
+// include "emailsys.php";
 include "setup.php";
 
 session_start();

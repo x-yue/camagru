@@ -1,5 +1,4 @@
 <?php
-include "emailsys.php";
 include "setup.php";
 
 //user status : a = activated i = inactivated b = banned t = test
@@ -35,13 +34,18 @@ function passwordSecure(){
     exit;
 }
 
+// function sendConfirmationEmail($username, $email){
+
+// }
+
+
 function signedup($username, $email, $password){
     $status = "i";
     $conn = db_connect();
     $sql = "INSERT INTO loginsystem (username, email, passwd, active) VALUES ('$username', '$email', '$password', '$status')";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-    sendConfirmationEmail($username, $email);
+ //   sendConfirmationEmail($username, $email);
     $conn = null;
     echo "<script>alert('A confirmation email is sent to you, please click the link inside.')</script>";
     echo "<script>location.href = '../index.php';</script>";

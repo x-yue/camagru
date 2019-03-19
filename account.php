@@ -33,20 +33,8 @@ if (!isset($_SESSION['username'])){
 
 
 <div align="center" class="accinfo">
-    
-    <!-- Accout information -->
-    <!-- <div class="changeform">
-        <h2>Your information</h2>
-        <label>Username</label> 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a><?php //echo $name; ?></a>
-        <br>
-        <label>Email</label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a><?php //echo $name; ?></a>
-    </div> -->
 
-    <!-- password table -->
+<!------------- password table -------------------->
     <div class="changeform" id="shortchangeform">
         <h2>Change your password</h2>
         <form action="config/updatepw.php" method="post">
@@ -65,14 +53,10 @@ if (!isset($_SESSION['username'])){
        </form>
     </div>
 
-<!-- username table -->
+<!--------------------- username table ------------->
     <div class="changeform" id="shortchangeform">
         <h2>Change your username</h2>
         <form action="config/updateusername.php" method="post">
-            <!-- <label for="login">Old Username</label>
-            &nbsp;&nbsp;&hairsp;: 
-            <input type="text" name="oldun" placeholder="your old username" class="input" required>
-            <br> -->
             <label for="login">New Username</label>
             &thinsp;: 
             <input type="text" name="newun" placeholder="your new username" class="input" required>
@@ -88,7 +72,7 @@ if (!isset($_SESSION['username'])){
        </form>
     </div>
 
-<!-- email table -->
+<!--------------------- email table -------------------->
     <div class="changeform">
         <h2>Change your email address</h2>
         <form action="config/updateemail.php" method="post">
@@ -111,14 +95,10 @@ if (!isset($_SESSION['username'])){
        </form>
     </div>
 
-<!-- delete my account --> 
+<!--------------------- delete my account ------------------> 
     <div class="changeform" id="shortchangeform">
         <h2>Delete Account</h2>
         <form action="config/deleteacc.php" method="post">
-            <label for="email">E-Mail</label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-            <input type="email" name="email" class="input" placeholder="xxxxx@xxxx.xxx" required>
-            <br>
             <label for="password">Password</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;: 
             <input type="password" name="password" placeholder="**********" class="input" required>

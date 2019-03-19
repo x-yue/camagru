@@ -1,5 +1,4 @@
 <?php
-
 include "setup.php";
 
 function error()
