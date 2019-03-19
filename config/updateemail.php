@@ -2,6 +2,14 @@
 include "emailsys.php";
 include "setup.php";
 
+session_start();
+if (!isset($_SESSION['username'])){  
+    echo "<script>alert('You need to sign in first.')</script>";
+    echo "<script>location.href = 'index.php';</script>";
+} else {
+    $name = $_SESSION["username"];
+}
+
 function error(){
     echo "<script>alert('Something went wrong, please try again.')</script>";
     echo "<script>location.href='../account.php';</script>";
@@ -10,6 +18,12 @@ function error(){
 
 function wrongPassword(){
     echo "<script>alert('The password you put in is incorrect, please try again');</script>";
+    echo "<script>location.href='../account.php';</script>";
+    exit;
+}
+
+function wrongEmail(){
+    echo "<script>alert('The email you put in does not link to your account, please verify and try again');</script>";
     echo "<script>location.href='../account.php';</script>";
     exit;
 }
@@ -32,11 +46,22 @@ function successfulChange(){
 }
 
 if ($_POST["submit"] == 'Submit' && $_POST["oldemail"] && $_POST["newemail"] && $_POST["password"]){
-   
+
     $oldemail = $_POST["oldemail"];
     $newemail = $_POST["newemail"];
     $raw_password = $_POST["password"];
     $salt = "sherlock_";
+
+    //verify if the old email is correctly linked to the username
+    $conn = db_connect();
+    $sql = "SELECT email FROM loginsystem WHERE username = '$name'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetch();
+    $conn = null;
+    if ($res[0] != $oldemail){
+        wrongEmail();
+    } 
     
     //verify if the old password is correct
     $conn = db_connect();

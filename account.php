@@ -6,7 +6,6 @@ if (!isset($_SESSION['username'])){
     echo "<script>alert('You need to sign in first.')</script>";
     echo "<script>location.href = 'index.php';</script>";
 } else {
-    session_start();
     $name = $_SESSION["username"];
 }
 
@@ -45,18 +44,12 @@ if (!isset($_SESSION['username'])){
         <label>Email</label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a><?php //echo $name; ?></a>
-
-
     </div> -->
 
     <!-- password table -->
-    <div class="changeform">
+    <div class="changeform" id="shortchangeform">
         <h2>Change your password</h2>
         <form action="config/updatepw.php" method="post">
-            <label for="login">Username</label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;: 
-            <input type="text" name="user" placeholder="your username" class="input" required>
-            <br>
             <label for="password">Old Password</label>
             &nbsp;&nbsp;&hairsp;: 
             <input type="password" name="oldpw" placeholder="your old password" class="input" required>
@@ -73,13 +66,13 @@ if (!isset($_SESSION['username'])){
     </div>
 
 <!-- username table -->
-    <div class="changeform">
+    <div class="changeform" id="shortchangeform">
         <h2>Change your username</h2>
         <form action="config/updateusername.php" method="post">
-            <label for="login">Old Username</label>
+            <!-- <label for="login">Old Username</label>
             &nbsp;&nbsp;&hairsp;: 
             <input type="text" name="oldun" placeholder="your old username" class="input" required>
-            <br>
+            <br> -->
             <label for="login">New Username</label>
             &thinsp;: 
             <input type="text" name="newun" placeholder="your new username" class="input" required>

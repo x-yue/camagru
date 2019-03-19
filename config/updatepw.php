@@ -2,6 +2,14 @@
 include "emailsys.php";
 include "setup.php";
 
+session_start();
+if (!isset($_SESSION['username'])){  
+    echo "<script>alert('You need to sign in first.')</script>";
+    echo "<script>location.href = 'index.php';</script>";
+} else {
+    $name = $_SESSION["username"];
+}
+
 function error(){
     echo "<script>alert('Something went wrong, please try again.')</script>";
     echo "<script>location.href='../account.php';</script>";
@@ -32,20 +40,20 @@ function successfulChange(){
     exit;
 }
 
-if ($_POST["submit"] == 'Submit' && $_POST["user"] && $_POST["oldpw"] && $_POST["newpw"]){
-    $username = $_POST["user"];
+if ($_POST["submit"] == 'Submit' && $_POST["oldpw"] && $_POST["newpw"]){
+    
     $oldpw = $_POST["oldpw"];
     $newpw = $_POST["newpw"];
     $salt = "sherlock_";
 
+    //verify if the old password is correct
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE username = '$username'";
+    $sql = "SELECT passwd FROM loginsystem WHERE username = '$name'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->fetch();
     $conn = null;
 
-    //verify if the old password is correct
     $oldpwhash = hash("whirlpool", $salt.$oldpw);
     if ($res[0] == $oldpwhash)
     {   
@@ -57,7 +65,7 @@ if ($_POST["submit"] == 'Submit' && $_POST["user"] && $_POST["oldpw"] && $_POST[
         if ($oldpw != $newpw){
             $newpwhash = hash("whirlpool", $salt.$newpw);
             $conn = db_connect();
-            $sql = "UPDATE loginsystem SET passwd = '$newpwhash' where username = '$username'";
+            $sql = "UPDATE loginsystem SET passwd = '$newpwhash' where username = '$name'";
             $stmt = $conn->prepare($sql);
             if ($stmt->execute()) {
                 $conn = null;

@@ -6,7 +6,6 @@ if (!isset($_SESSION['username'])){
     echo "<script>alert('You need to sign in first.')</script>";
     echo "<script>location.href = 'index.php';</script>";
 } else {
-    session_start();
     $name = $_SESSION["username"];
 }
 

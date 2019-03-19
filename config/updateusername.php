@@ -2,6 +2,13 @@
 include "emailsys.php";
 include "setup.php";
 
+session_start();
+if (!isset($_SESSION['username'])){  
+    echo "<script>alert('You need to sign in first.')</script>";
+    echo "<script>location.href = 'index.php';</script>";
+} else {
+    $name = $_SESSION["username"];
+}
 
 function error(){
     echo "<script>alert('Something went wrong, please try again.')</script>";
@@ -26,23 +33,22 @@ function existUsername(){
     echo "<script>location.href='../account.php';</script>";
 }
 
-function successfulChange(){
+function successfulChange($newun){
+    $_SESSION["username"] = $newun;
     echo "<script>alert('You have changed your information with success');</script>";
     echo "<script>location.href='../account.php';</script>";
     exit;
 }
 
+if ($_POST["submit"] == 'Submit' && $_POST["newun"] && $_POST["password"]){
 
-if ($_POST["submit"] == 'Submit' && $_POST["oldun"] && $_POST["newun"] && $_POST["password"]){
-
-    $oldun = $_POST["oldun"];
     $newun = $_POST["newun"];
     $raw_password = $_POST["password"];
     $salt = "sherlock_";
 
    //verify if the old password is correct
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE username = '$oldun'";
+    $sql = "SELECT passwd FROM loginsystem WHERE username = '$name'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->fetch();
@@ -51,7 +57,7 @@ if ($_POST["submit"] == 'Submit' && $_POST["oldun"] && $_POST["newun"] && $_POST
     if ($res[0] == $password)
     {   
         //verify if two username are the same
-        if ($oldun != $newun){
+        if ($newun != $name){
             $conn = db_connect();
             $sql = "SELECT * FROM loginsystem WHERE username = '$newun'";
             $stmt = $conn->prepare($sql);
@@ -61,11 +67,11 @@ if ($_POST["submit"] == 'Submit' && $_POST["oldun"] && $_POST["newun"] && $_POST
             if (!$res){
                 //verify if the new username already existed
                 $conn = db_connect();
-                $sql = "UPDATE loginsystem SET username = '$newun' where username = '$oldun'";
+                $sql = "UPDATE loginsystem SET username = '$newun' where username = '$name'";
                 $stmt = $conn->prepare($sql);
                 if ($stmt->execute()) {
                     $conn = null;
-                    successfulChange();
+                    successfulChange($newun);
                 } else {
                     error();
                 }

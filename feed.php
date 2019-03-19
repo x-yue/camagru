@@ -7,7 +7,6 @@ if (!isset($_SESSION['username'])){
     echo "<script>alert('You need to sign in first.')</script>";
     echo "<script>location.href = 'index.php';</script>";
 } else {
-    session_start();
     $name = $_SESSION["username"];
 }
 
@@ -34,6 +33,20 @@ if (!isset($_SESSION['username'])){
 
 <div align="center" id="newsfeed">
 
+    <div align="left" class="feed">
+        <table>
+            <div class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></div>
+            <div align="right">
+                <p id="feedusername">Username</p>
+                <p id="comments">Comments</p>
+            </div>
+        </table>
+        <div align="right">
+            <a id="numofheart">100</a>    
+            <img id="heart" src="images/heart.png"> 
+        </div>
+    </div><br>  
+
 <?php     
     $conn = db_connect();
     $sql = "SELECT * FROM imagelist";
@@ -47,8 +60,17 @@ if (!isset($_SESSION['username'])){
         echo "<p id='nonewsfeed'>Oups, there is no post from anyone yet, go to your home page and share something with us!</p>";
         echo "<a href='home.php'><button class='button'>MySpace</button></a></div></div>";
     } else {
+//        include "addfeed.php";
+        echo "<div align='center' class='feed'>";
+        echo "<table><div class='feedphoto'><img class='' src='uploads/upload.png'></div>";
+        echo '<div align="right">';
+        echo '<p id="feedusername">Username</p>';
+        echo '<p id="comments">Comments</p></div></table>';
+        echo '<div align="right">';
+        echo '<a id="numofheart">100</a>';    
+        echo '<img id="heart" src="images/heart.png">';
+        echo '</div></div><br>';
         //      ALTER TABLE `gallery` CHANGE `img3` `img3` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
-        include "addfeed.php";
     }
     exit;
 ?>
@@ -68,9 +90,9 @@ if (!isset($_SESSION['username'])){
             <a id="numofheart">100</a>    
             <img id="heart" src="images/heart.png"> 
         </div>
-    </div><br>
+    </div><br> -->
 
-      <div align="left" class="feed">
+     <!-- <div align="left" class="feed">
         <table>
             <div class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></div>
             <div align="right">

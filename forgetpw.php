@@ -1,5 +1,6 @@
 <?php
 include 'control/header.php';
+include 'config/setup.php';
 
 session_start();
 if (isset($_SESSION['username'])){
@@ -31,12 +32,15 @@ if (isset($_SESSION['username'])){
     <div id="form">
         <h2>Find my Password</h2>
         <form action="config/findpw.php" method="post">
-            <label for="email">E-Mail</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;:
-            <input type="email" name="email" class="input" style="width:200px;" placeholder="xxxxxxxx@xxxx.xxx" required>
-            <p id="notice">* Please put your e-mail to find your password</p>
+            <label>Username</label>&nbsp;&nbsp;&nbsp;&nbsp;&hairsp;:
+            <input type="text" name="username" class="input" style="width:200px;" placeholder="your username">
+            <br>
+            <label for="email">Email</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;&hairsp;:
+            <input type="email" name="email" class="input" style="width:200px;" placeholder="xxxxxxxx@xxxx.xxx">
+            <p id="notice">* You can use your username or email to find your password</p>
             <br>
             <div align="center">
-                <input type="submit" name="forgetpw" value="Send me an e-mail" class="input">
+                <input type="submit" name="submit" value="Send me an email" class="input">
             </div>
        </form>
     </div>
