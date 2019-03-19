@@ -23,7 +23,7 @@ function sendPassword($email){
     $conn = null;
     $password = $res[0];
     $subject = "Find My Password with Camagru";
-    $message = "testeryuxu@gmail.com";
+    $message = "
     // <html>
     //     <head>
     //         <title>You lost it, we find it for you</title>
@@ -32,8 +32,8 @@ function sendPassword($email){
     //         <a href='camagru/changepassword'>Click Here to Change your password</a> 
     //     </body>
         
-    // </html>"
-    
+    // </html>
+    ";
     if (mail($email, $subject, $message)){
         echo "<script>alert('An email is sent to your mailbox ;)');</script>";
     } else {
@@ -71,7 +71,6 @@ function sendEmail($email) {
     exit;
 }
 
-//there are 4 cases for username and email inputs
 if ($_POST["submit"] == "Send me an email"){
     
     //both username and email

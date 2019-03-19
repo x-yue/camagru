@@ -38,6 +38,19 @@ function passwordSecure(){
 
 // }
 
+function sendConfirmationEmail($username, $email){
+    $subject = "Confirmation Email with Camagru";
+    $message = "Hello $username, Welcome.\nPlease the link below to activate your account";
+    $message .= "<br>";
+    $message .= "link";
+
+    if (mail($email, $subject, $message)){
+        echo "<script>alert('A confirmation email is sent to you, please click the link inside to activate your account.')</script>";
+    } else {
+        error();
+    }
+}
+
 
 function signedup($username, $email, $password){
     $status = "i";
@@ -45,9 +58,8 @@ function signedup($username, $email, $password){
     $sql = "INSERT INTO loginsystem (username, email, passwd, active) VALUES ('$username', '$email', '$password', '$status')";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
- //   sendConfirmationEmail($username, $email);
     $conn = null;
-    echo "<script>alert('A confirmation email is sent to you, please click the link inside.')</script>";
+    sendConfirmationEmail($username, $email);
     echo "<script>location.href = '../index.php';</script>";
     exit;
 }
