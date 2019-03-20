@@ -1,13 +1,9 @@
 <?php
-//include "setup.php";
+
+// include "setup.php";
+
 //syntax: mail($to, $subject, $message, $headers, $parameters);
 
-// function error()
-// {
-//     echo "<script>alert('Creating Account: Something went wrong, please try again.')</script>";
-//     echo "<script>location.href = '../signup.php';</script>";
-// 	exit;
-// }
 
 // function deleteConfirmation($email){
 // }
@@ -51,7 +47,12 @@
 // }
 
 
-$to      = $email; // Send email to our user
+
+function testemail(){
+    $name = "test";
+    $password = "xx";
+    $email  = "testeryuxu@gmail.com";
+
 $subject = 'Signup | Verification'; // Give the email a subject 
 $message = '
  
@@ -64,18 +65,46 @@ Password: '.$password.'
 ------------------------
  
 Please click this link to activate your account:
-http://www.yourwebsite.com/verify.php?email='.$email.'&hash='.$hash.'
+http://localhost:8300/camagru/confirmation.php?username='.$name.'$active=a
  
 '; // Our message above including the link
                      
-$headers = 'From:noreply@yourwebsite.com' . "\r\n"; // Set from headers
-mail($to, $subject, $message, $headers); // Send our email
+$headers = 'From:noreply@camagru.com' . "\r\n"; // Set from headers
+if (mail($email, $subject, $message, $headers)){
+    echo "ok";
+} else {
+    echo "problem";
+} // Send our email
 
+}
 
+function errorEmail()
+{
+    echo "<script>alert('Mailing Sytem: Something went wrong, please try again.')</script>";
+    echo "<script>location.href = '../signup.php';</script>";
+	exit;
+}
 
+function sendConfirmationEmail($username, $email){
+    $subject = "Confirmation Email with Camagru";
+    $message = '
+    
+    Hello '.$username.'
+    Thank you for signing up with Camagru! Your account has been created.
+    
+    Please click the link below to activate your account:
+    http://localhost:8300/camagru/confirmation.php?email='.$email.'&username='.$username.'&active=a
+    
+    ';
+    
+    $header = "From: noreply@camagru.com" . "\r\n";
+    if (mail($email, $subject, $message, $header)){
+        echo "<script>alert('A confirmation email is sent to ".$email.", please click the link inside to activate your account.')</script>";
+    } else {
+        errorEmail();
+    }
+}
 
-
-
-
+sendConfirmationEmail("test", "joyce008008@gmail.com");
 
 ?>

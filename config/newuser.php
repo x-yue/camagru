@@ -34,23 +34,32 @@ function passwordSecure(){
     exit;
 }
 
-// function sendConfirmationEmail($username, $email){
-
-// }
+function errorEmail()
+{
+    echo "<script>alert('Mailing Sytem: Something went wrong, please try again.')</script>";
+    echo "<script>location.href = '../signup.php';</script>";
+	exit;
+}
 
 function sendConfirmationEmail($username, $email){
     $subject = "Confirmation Email with Camagru";
-    $message = "Hello $username, Welcome.\nPlease the link below to activate your account";
-    $message .= "<br>";
-    $message .= "link";
-
-    if (mail($email, $subject, $message)){
-        echo "<script>alert('A confirmation email is sent to you, please click the link inside to activate your account.')</script>";
+    $message = '
+    
+    Hello '.$username.'
+    Thank you for signing up with Camagru! Your account has been created.
+    
+    Please click the link below to activate your account:
+    http://localhost:8300/camagru/config/confirmation.php?email='.$email.'&username='.$username.'&active=a
+    
+    ';
+    
+    $header = "From: noreply@camagru.com" . "\r\n";
+    if (mail($email, $subject, $message, $header)){
+        echo "<script>alert('A confirmation email is sent to ".$email.", please click the link inside to activate your account.')</script>";
     } else {
-        error();
+        errorEmail();
     }
 }
-
 
 function signedup($username, $email, $password){
     $status = "i";
@@ -69,10 +78,11 @@ if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && 
     $username = $_POST["username"];
     $email = $_POST["email"];
     $raw_password = $_POST["password"];
-    $salt = "sherlock_";
+ 
     if ($raw_password != $_POST["verifypw"]) {
         passwordNoMatch();
     } else {
+        // check if the length is more than 6
         if (strlen($raw_password) < 6) {
             passwordSecure();
         }
@@ -99,6 +109,7 @@ if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && 
     if ($res){
         repeated_email();
     }
+    $salt = "sherlock_";
     $password = hash("whirlpool", $salt.$raw_password);
     signedup($username, $email, $password);
 } else {

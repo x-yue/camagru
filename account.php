@@ -23,9 +23,11 @@ if (!isset($_SESSION['username'])){
         &hairsp;
         <a class="hdtext" href="feed.php">Feed</a>
         &hairsp;
+        <a class="hdtext" href="mygallery.php">myGallery</a>
+        &hairsp;
         <a class="hdtext" href="home.php">Home</a>
         &hairsp;
-        <a id="logout" href="config/logout.php" onclick="return confirm('Are you ure to log out?');">Logout</a>
+        <a id="logout" href="config/logout.php" onclick="return confirm('Are you sure to log out?');">Logout</a>
     </div>
 </div>
 

@@ -14,30 +14,33 @@ function error()
 	exit;
 }
 
+function errorEmail()
+{
+    echo "<script>alert('Mailing Sytem: Something went wrong, please try again.')</script>";
+    echo "<script>location.href = '../signup.php';</script>";
+	exit;
+}
+
 function sendPassword($email){
-    $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE email = '$email'";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $res = $stmt->fetch();
-    $conn = null;
-    $password = $res[0];
-    $subject = "Find My Password with Camagru";
-    $message = "
-    // <html>
-    //     <head>
-    //         <title>You lost it, we find it for you</title>
-    //     </head>    
-    //     <body>
-    //         <a href='camagru/changepassword'>Click Here to Change your password</a> 
-    //     </body>
-        
-    // </html>
-    ";
-    if (mail($email, $subject, $message)){
-        echo "<script>alert('An email is sent to your mailbox ;)');</script>";
+    $subject = "Reset My Password with Camagru";
+    $message = '
+    
+    Dear Camagru User,
+    
+    Please click on the link below to reset your password:
+
+    http://localhost:8300/camagru/config/resetpw.php?email='.$email.'
+
+    * If you did not request the password reset, please ignore this email
+    * If you have doubt about the security, please contact us.
+
+    ';
+
+    $header = "From: noreply@camagru.com" . "\r\n";    
+    if (mail($email, $subject, $message, $header)){
+        echo "<script>alert('An email for resetting your password is on its way ;)');</script>";
     } else {
-        error();
+        errorEmail();
     }
 }
 

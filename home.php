@@ -23,6 +23,8 @@ if (!isset($_SESSION['username'])){
         &hairsp;
         <a class="hdtext" href="feed.php">Feed</a>
         &hairsp;
+        <a class="hdtext" href="mygallery.php">myGallery</a>
+        &hairsp;
         <a class="hdtext" href="account.php">Account</a>
         &hairsp;
         <a id="logout" href="config/logout.php" onclick="return confirm('Are you sure to logout?');">Logout</a>
@@ -93,12 +95,37 @@ if (!isset($_SESSION['username'])){
 <br>
 <div align="center">
   <?php
-    echo "<td><img src='' onclick='selectPicture()' class='gallery'></td>";
-    echo "<td><img src='' onclick='selectPicture()' class='gallery'></td>";
-    echo "<td><img src='' onclick='selectPicture()' class='gallery'></td>";
-    echo "<td><img src='' onclick='selectPicture()' class='gallery'></td>";
-    echo "<br>"
+  // only show 5 recent pictures <br>
+   
+    echo "<td><div class='gallery_block'>";
+    echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";
+    echo "<br>";
+    echo '<a>100</a>';   
+    echo '<img id="heart" style="margin:auto;" src="images/heart.png">';
+    echo '<button class="redbutton" onclick="deleteGalleryPhoto()">Delete</button>';
+    echo "</div></td>";
+
+    // echo "<td><div class='gallery_block'>";
+    // echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";
+    // echo "<br>";
+    // echo '<a>100</a>';   
+    // echo '<img id="heart" style="margin:auto;" src="images/heart.png">';
+    // echo '<button class="redbutton" onclick="deleteGalleryPhoto()">Delete</button>';
+    // echo "</div></td>";
+    
+    // echo "<td><div class='gallery_block'>";
+    // echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";
+    // echo "<br>";
+    // echo '<a>100</a>';   
+    // echo '<img id="heart" style="margin:auto;" src="images/heart.png">';
+    // echo '<button class="redbutton" onclick="deleteGalleryPhoto()">Delete</button>';
+    // echo "</div></td>";
+   
+
+    echo '<a href="mygallery.php"><button class="button">See More Posted Picture</button></a>';
+
     ?>
+
 </div>
 
 <script src="js/feature.js"></script>
