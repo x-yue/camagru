@@ -23,7 +23,7 @@ if (!isset($_SESSION['username'])){
         &hairsp;
         <a class="hdtext" href="feed.php">Feed</a>
         &hairsp;
-        <a class="hdtext" href="mygallery.php">myGallery</a>
+        <a class="hdtext" href="mygallery.php">Gallery</a>
         &hairsp;
         <a class="hdtext" href="account.php">Account</a>
         &hairsp;
@@ -44,22 +44,20 @@ if (!isset($_SESSION['username'])){
     </form>
 </div>
 
-
-
 <?php 
-// include 'config/upload.php'; 
+include 'config/upload.php'; 
 
-// echo "<br>";
-// echo "test";
-// echo "<br>";
-// echo uploadFileName();
-// echo "<br>";
+$conn = db_connect();
+$sql = "SELECT uploadimg FROM upload WHERE username = '$name'";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$upload = $stmt->fetch();
+$conn = null;
+
 ?> 
 
-<!-- change the uploading system to database  -->
-
 <div align = "center">
-    <button class="button" onclick="addUpload('uploads/upload.png')">Use Uploaded Picture</button>&nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="addUpload('<?php if ($upload){ echo $upload[0]; } else { echo 'images/empty.png'; } ?>')">Use Uploaded Picture</button>&nbsp;&nbsp;&nbsp;
     <button class="button" onclick="removeUpload()">Remove Uploaded Picture</button>
 </div>
 

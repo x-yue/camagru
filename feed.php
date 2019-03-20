@@ -22,7 +22,7 @@ if (!isset($_SESSION['username'])){
         <a class="hdtext">Hello,</a>
         <a class="hdtext"><?php echo $name; ?></a>&thinsp;&hearts;
         &hairsp;
-        <a class="hdtext" href="mygallery.php">myGallery</a>
+        <a class="hdtext" href="mygallery.php">Gallery</a>
         &hairsp;
         <a class="hdtext" href="home.php">Home</a>
         &hairsp;

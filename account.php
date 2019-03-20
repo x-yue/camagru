@@ -23,7 +23,7 @@ if (!isset($_SESSION['username'])){
         &hairsp;
         <a class="hdtext" href="feed.php">Feed</a>
         &hairsp;
-        <a class="hdtext" href="mygallery.php">myGallery</a>
+        <a class="hdtext" href="mygallery.php">Gallery</a>
         &hairsp;
         <a class="hdtext" href="home.php">Home</a>
         &hairsp;
