@@ -98,8 +98,6 @@ $conn = null;
     echo "<td><div class='gallery_block'>";
     echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";
     echo "<br>";
-    echo '<a>100</a>';   
-    echo '<img id="heart" style="margin:auto;" src="images/heart.png">';
     echo '<button class="redbutton" onclick="deleteGalleryPhoto()">Delete</button>';
     echo "</div></td>";
 

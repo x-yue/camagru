@@ -42,7 +42,7 @@ if (!isset($_SESSION['username'])){
     $stmt->execute();
     $res = $stmt->fetch();
     $conn = null;
-    if ($res){
+    if (!$res){
         echo "<div align='center'>";
         echo "<div id='msgbox' style='height:250px'>";
         echo "<p id='myemptygallery'>You have not shared anything, go to your home page and share something with us!</p>";
@@ -58,11 +58,7 @@ if (!isset($_SESSION['username'])){
         }
 ?>
 
-
-
 </div>
-
-
 </body>
 
 <?php include 'control/footer.php';?>
