@@ -1,23 +1,17 @@
 <?php
-/*
-login page:
-// You'd put this code at the top of any "protected" page you create
 
-// Always start this first
-session_start();
+include "setup.php";
 
-if ( isset( $_SESSION['user_id'] ) ) {
-    // Grab user data from the database using the user_id
-    // Let them access the "logged in only" pages
-} else {
-    // Redirect them to the login page
-    header("Location: http://www.yourdomain.com/login.php");
-} */
-?>
-
-<?php
+function removeUpload($name) {
+    $conn = db_connect();
+    $sql = "DELETE FROM upload WHERE username = '$name'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $conn = null;
+}
 
 session_start();
+removeUpload($_SESSION["username"]);
 unset($_SESSION["username"]);
 if (session_destroy()){
     header("location:../index.php");

@@ -75,31 +75,77 @@ $conn = null;
 <div align="center">
     <button class="button" onclick="takeAPicture()">Capture the moment</button>
 </div>
-
-<?php
-// create images/gallery/username folder  if it doesn't exist
-// add picture to folder with static number image[$number].png;
-// private 
-// 
-// echo '<img src="data:image/jpeg;base64,' . base64_encode($row['destinationimage']) . '" />';
-?>
+ 
 <br>
-
+<!-- 
 <div align="center">
     <canvas id="posts"></canvas>
-    <br> 
-    <button class="button" onclick="saveToGalley()">Save to Gallery and Share with Friends</button>
+    <br>
+    <button class="button" onclick="<?php //saveImage(); ?>">Save to Gallery and Share with Friends</button>
 </div>
-<br>
+-->
+
+<div align="center">    
+    <canvas id="posts"></canvas> 
+    <form action="" method="post">   
+    <input type="submit" name="submit" onclick="canvasData()" value="Save to Gallery and Share with the World" class="button">
+</div>
+
+<script>
+
+ 
+//  var form = document.createElement("form");
+//     form.setAttribute("method", "post");
+//     form.setAttribute("action", "config/process.php");
+//     alert('test');
+    
+//     var hiddenField = document.createElement("input");
+//     hiddenField.setAttribute("type", "hidden");
+// 	hiddenField.setAttribute("name", "screen");
+// 	hiddenField.setAttribute("value", canvasData);
+//     form.appendChild(hiddenField);
+//     alert('test');
+// }
+
+
+  //  $.post("config/process.php", canvasData);
+    // alert(canvasData);
+ //   window.location.href = "config/process.php?canvasData=" + canvasData;
+
+    // if (photo.setAttribute("gallery/example.png", canvasData)){
+    //     alert(canvasData);
+    // } else {
+    //     alert("bad");
+    // };
+
+    // var ajax = new XMLHttpRequuest();
+    // ajax.open("POST", "config/process.php", true);
+    // ajax.setRequestHeader("Content-type", "application")
+    // $.post("save.php", {data: canvas.toDataURL("image/png")});
+    // echo 'test'
+// function saveToGallery(){ 
+//     var data = document.getElementById("posts").toDataURL();
+//     $.post("config/process.php", {
+//         imageDta: data}
+//     }, function (data) {
+//         window.location = data;
+//     });
+// }
+</script>
+
+<?php 
+    include "config/process.php";
+?>
+
 <div align="center">
   <?php
   // only show 5 recent pictures <br>
    
-    echo "<td><div class='gallery_block'>";
-    echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";
-    echo "<br>";
-    echo '<button class="redbutton" onclick="deleteGalleryPhoto()">Delete</button>';
-    echo "</div></td>";
+    // echo "<td><div class='gallery_block'>";
+    // echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";
+    // echo "<br>";
+    // echo '<button class="redbutton" onclick="deleteGalleryPhoto()">Delete</button>';
+    // echo "</div></td>";
 
     // echo "<td><div class='gallery_block'>";
     // echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";

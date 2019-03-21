@@ -1,4 +1,3 @@
-// this function will show a random headline
 randomHeadline = function () {
   let headlines = [
     "Cheese :)",
@@ -49,7 +48,7 @@ if (navigator.mediaDevices.getUserMedia) {
 }
 
 function takeAPicture(){
-  if (filterAdded === 1)
+  if (filterAdded == 1)
   {
       var canvas = document.getElementById("posts");
       var camerastream = document.getElementById("camerastream");
@@ -65,12 +64,23 @@ function takeAPicture(){
   }
 }
 
+function canvasData(){
+    alert('test');
+    var canvas = document.getElementById("posts");
+    var canvasData = canvas.toDataURL("image/png");
+    if (window.location.href = "http://localhost:8300/camagru/config/process.php?canvasData=" + canvasData){
+        alert(canvasData);
+    }else {
+        alert("error");
+    }
+}
+
 // save to gallery function to save the picture to database
-function saveToGallery(){
-      var canvas = document.getElementById("posts");
-      var dataURL = canvas.toDataURL("image/png");
-      // var image = 
-      // image.src= 
+// function saveToGallery(){
+//       var canvas = document.getElementById("posts");
+//       var data = canvas.toDataURL("image/png");
+//       photo.setAttribute("src", data);
+//       var dir = "../gallery/";
 
 
 
@@ -78,112 +88,4 @@ function saveToGallery(){
    
         //image.src = canvas.toDataURL("image/png");
       //window.location.href = image; 
-}
 
-// Function to take the picture from loic
-function replaceVideo() {
-	var canvas = document.createElement("canvas");
-	canvas.id = "canvasPhoto";
-	canvas.width = 640;
-	canvas.height = 480;
-  canvas.onclick = pasteSticker;
-  
-	// 	importImg.onload = function () {
-	// 		canvas.getContext('2d').drawImage(importImg, 0, 0, 640, 480);
-	// 		origImg.src = canvas.toDataURL();
-	// 	}
-	if (importImg) {
-		importImg.onload = function () {
-			canvas.getContext('2d').drawImage(importImg, 0, 0, 640, 480);
-			origImg.src = canvas.toDataURL();
-		}
-	}
-	else {
-		canvas.getContext('2d').drawImage(video, 0, 0, 640, 480);
-		origImg.src = canvas.toDataURL();
-	}
-	document.getElementById("camera").appendChild(canvas);
-	video.parentNode.removeChild(video);
-}
-
-function selectPicture(){
-
-}
-function deleteSelected(){
-
-}
-
-/*
-window.addEventListener('load', function() {
-  document.querySelector('input[type="file"]').addEventListener('change', function() {
-      if (this.files && this.files[0]) {
-          var img = document.querySelector('img');  // $('img')[0]
-          img.src = URL.createObjectURL(this.files[0]); // set src to file url
-          img.onload = imageIsLoaded; // optional onload event listener
-      }
-  });
-});
-
-function imageIsLoaded(e) { alert(e); }
-*/
-
-/*
-takeAPicture = function() {
-    var streaming = false,
-        video        = document.querySelector('#video'),
-        cover        = document.querySelector('#cover'),
-        canvas       = document.querySelector('#canvas'),
-        photo        = document.querySelector('#photo'),
-        startbutton  = document.querySelector('#startbutton'),
-        width = 320,
-        height = 0;
-  
-    navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
-    navigator.getMedia(
-      {
-        video: true,
-        audio: false
-      },
-      function(stream) {
-        if (navigator.mozGetUserMedia) {
-          video.mozSrcObject = stream;
-        } else {
-          var vendorURL = window.URL || window.webkitURL;
-          video.src = vendorURL.createObjectURL(stream);
-        }
-        video.play();
-      },
-      function(err) {
-        console.log("An error occured! " + err);
-      }
-    );
-  
-    video.addEventListener('canplay', function(ev){
-      if (!streaming) {
-        height = video.videoHeight / (video.videoWidth/width);
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        streaming = true;
-      }
-    }, false);
-  
-    function takepicture() {
-      canvas.width = width;
-      canvas.height = height;
-      canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-      var data = canvas.toDataURL('image/png');
-      photo.setAttribute('src', data);
-    }
-  
-    startbutton.addEventListener('click', function(ev){
-        takepicture();
-      ev.preventDefault();
-    }, false);
-};
-
-*/
