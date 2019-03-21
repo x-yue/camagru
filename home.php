@@ -45,7 +45,7 @@ if (!isset($_SESSION['username'])){
 </div>
 
 <?php 
-include 'config/upload.php'; 
+include 'config/setup.php'; 
 
 $conn = db_connect();
 $sql = "SELECT uploadimg FROM upload WHERE username = '$name'";
