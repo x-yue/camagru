@@ -134,7 +134,7 @@ $conn = null;
 </script>
 
 <?php 
-    include "config/process.php";
+    // include "config/process.php";
 ?>
 
 <div align="center">
@@ -164,7 +164,7 @@ $conn = null;
     // echo "</div></td>";
    
 
-    echo '<a href="mygallery.php"><button class="button">See More Posted Picture</button></a>';
+    // echo '<a href="mygallery.php"><button class="button">See More Posted Picture</button></a>';
 
     ?>
 
