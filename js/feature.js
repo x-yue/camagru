@@ -47,6 +47,13 @@ if (navigator.mediaDevices.getUserMedia) {
     });
 }
 
+//snackbar
+function snackBarEdit(){
+    var bar = document.getElementById("snackbar");
+    bar.className = "show";
+    setTimeout( function(){ bar.className = bar.className.replace("show", ""); }, 3000);
+}
+
 function takeAPicture(){
   if (filterAdded == 1)
   {
@@ -65,15 +72,82 @@ function takeAPicture(){
 }
 
 function canvasData(){
-    alert('test');
+  alert("test");  
     var canvas = document.getElementById("posts");
     var canvasData = canvas.toDataURL("image/png");
-    if (window.location.href = "http://localhost:8300/camagru/config/process.php?canvasData=" + canvasData){
-        alert(canvasData);
-    }else {
-        alert("error");
-    }
-}
+    // canvasData.replace('data:image/png;base64,', '');
+    // canvasData.replace(' ', '+');
+      // if (document.getElementByName("canvasData").value = canvasData){
+      //   alert("good");
+      // } else {
+      //   alert('fail');
+      // };
+    var form = document.getElementById("postsform");
+    var test = document.getElementsByName("imgData");
+    test.setAttribute("value", "test");
+    form.appendChild(test);
+  }
+    // var form = document.createElement("form");
+    // form.setAttribute("method", "post");
+    // form.setAttribute("action", "config/process.php");
+    
+    // var form = document.getElementById("postsform");
+    // var hiddenField = document.createElement("input");
+    // hiddenField.setAttribute("type", "hidden");
+    // hiddenField.setAttribute("name", "screen");
+    // hiddenField.setAttribute("value", canvasData);
+    // form.appendChild(hiddenField);
+
+    // var form = new FormData(document.forms["form"]);
+    // var xhr = new XMLHttpRequest();
+    // // xhr.onreadystatechange = function() {}
+    // if (xhr.open("POST", '../config/process.php', true)){
+    //   alert("good");
+    // } else {
+    //   alert("ok");
+    // };
+    // if (xhr.send(form)){
+    //   alert('succeed');
+    // } else {
+    //   alert("oooooerror");
+    // };
+
+    // var blob = new Blob([canvasData], {type: "text/plain;charset=utf-8"});
+    // saveAs(blob, '../config/imginfo.txt');
+    
+    // canvasData = atob(canvasData);
+    // if (window.location.href = "http://localhost:8300/camagru/config/process.php?canvasData=" + canvasData){
+    //     alert(canvasData);
+    // }else {
+    //     alert("error");
+    // }
+
+
+
+
+
+  //  $.post("config/process.php", canvasData);
+    // alert(canvasData);
+ //   window.location.href = "config/process.php?canvasData=" + canvasData;
+
+    // if (photo.setAttribute("gallery/example.png", canvasData)){
+    //     alert(canvasData);
+    // } else {
+    //     alert("bad");
+    // };
+
+    // var ajax = new XMLHttpRequuest();
+    // ajax.open("POST", "config/process.php", true);
+    // ajax.setRequestHeader("Content-type", "application")
+    // $.post("save.php", {data: canvas.toDataURL("image/png")});
+
+
+
+
+
+
+
+
 
 // save to gallery function to save the picture to database
 // function saveToGallery(){
@@ -88,4 +162,3 @@ function canvasData(){
    
         //image.src = canvas.toDataURL("image/png");
       //window.location.href = image; 
-
