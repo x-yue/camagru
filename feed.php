@@ -62,19 +62,32 @@ if (!isset($_SESSION['username'])){
         echo "<p id='nonewsfeed'>Oups, there is no post from anyone yet, go to your home page and share something with us!</p>";
         echo "<a href='home.php'><button class='button'>MySpace</button></a></div></div>";
     } else {
-        //<!-- create a whilte loop for all the posts --> 
+        $conn = db_connect();
+        $sql = "SELECT * FROM imagelist ORDER BY date_creation DESC";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetchall();
+        $conn = null;
 
-        echo "<div align='left' class='feed'>";
-        echo "<table><img class='feedphoto' src='uploads/upload.png'>";
-        echo '<div align="right">';
-        echo '<p id="feedusername">Username</p>';
-        echo '<p id="comments">Comments</p></div></table>';
-        echo '<div align="right">';
-        echo '<a id="numofheart">100</a>';    
-        echo '<img id="heart" src="images/heart.png">';
-        echo '</div></div><br>';
-        //      ALTER TABLE `gallery` CHANGE `img3` `img3` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
-    }
+        $count = 0;
+        while ($res[$count]){
+            $img = $res[$count][0];
+            $username = $res[$count][1];
+            $time = $res[$count][2];
+            $comments = $res[$count][3];
+            $likes = $res[$count][4];
+            echo "<div align='left' class='feed'>";
+            echo "<table><img class='feedphoto' src=$img>";
+            echo '<div align="right">';
+            echo "<p id='feedusername'>$username</p>";
+            echo "<p id='comments'>$comments Comments</p></div></table>";
+            echo '<div align="right">';
+            echo "<a id='numofheart'>$likes </a>";    
+            echo '<img id="heart" src="images/heart.png">';
+            echo '</div></div><br>';
+            $count++;
+        }
+    }    
     exit;
 ?>
 
