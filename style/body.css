@@ -1,9 +1,8 @@
 /* over all */
 body {
 	background-image: url("/camagru/images/bg.png");
-	background-color:white;
+	background-color: aliceblue;
 	background-size: contain;
-	background-position: fixed;
 }
 div {
 	display: block;
@@ -31,36 +30,6 @@ h2 {
 	left:50%;
 	bottom: 30px;
 }
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
-#snackbar.show {
-	visibility: visible; /* Show the snackbar */
-	/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
-	However, delay the fade out process for 2.5 seconds */
-	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-	animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  }
-  
-  /* Animations to fade the snackbar in and out */
-  @-webkit-keyframes fadein {
-	from {bottom: 0; opacity: 0;} 
-	to {bottom: 30px; opacity: 1;}
-  }
-  
-  @keyframes fadein {
-	from {bottom: 0; opacity: 0;}
-	to {bottom: 30px; opacity: 1;}
-  }
-  
-  @-webkit-keyframes fadeout {
-	from {bottom: 30px; opacity: 1;} 
-	to {bottom: 0; opacity: 0;}
-  }
-  
-  @keyframes fadeout {
-	from {bottom: 30px; opacity: 1;}
-	to {bottom: 0; opacity: 0;}
-  }
-
 
 /* banner */
 .banner{
@@ -177,20 +146,10 @@ h2 {
 	opacity: 0.85;
 }
 
-/* feed */
-#scrollingfeed {
-	width: 450px;
-	margin-top: 20px;
-	min-height: 450px;
-	scroll-behavior: smooth;
-	overflow-y: auto;
-	border: white;
-	border-radius: 1px;
-	background-color: lightgrey;
-}
+/* feed page */
 .feed {
-	height: 500px;
-	width: 750px;
+	height: 700px;
+	width: 500px;
 	margin-top: 25px;
 	background-color: white;
 	padding: 5px;
@@ -201,14 +160,68 @@ h2 {
 	width: 500px;
 	object-fit: cover;
 }
-#heart {
-	height:20px;
-	width:20px;
-	margin-top: 395px;
+#heartfeed {
+	margin-top: -50px;
+	height:15px;
+	width:15px;
+}
+#numofheart{
+	font-family: Arial, Helvetica, sans-serif;	
+	color: darkred;
+	font-size: 16px;
 }
 #feedusername{
-	margin-top:-490px;
+	margin-top: auto;
+	margin-left: auto;
+	margin:auto;
+	font-size: 20px;
+	text-align: left;
+	color:darkred;
 }
+#likeunlick {
+	text-align: center;
+}
+#likebutton{
+	margin-top: 2px;
+	padding: 5px;
+	width: 249px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	color: white;
+	background-color: lightpink;
+	cursor: pointer;
+	text-align: center;
+	opacity: 0.9;
+	margin-left: 1px;
+	position: relative;
+}
+#commentbox{
+	width: 419px;
+	margin-left:2px;
+	margin-right:2.3px;
+	position: relative;
+}
+#commenthistory{
+	height: 126px;
+	text-align: left;
+	font-size: 12;
+	width: max-content;
+	color: rosybrown;
+
+}
+#commentuser{
+	font-style: bold;
+}
+#commenttext{
+	font-style: normal;
+}
+#commenttime{
+	color: grey;
+	font-style: italic;
+}
+
 
 /* home page after logged in */
 video {
@@ -311,12 +324,16 @@ canvas {
 	margin: auto;	
 }
 .mygallery {
-	height: 525px;
-	width: 410px;
+	height: 410px;
+	width: 575px;
 	background-color: white;
 	margin: auto;
-	margin-top: 15px;
+	margin-top: 10px;
 	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.6);
+}
+#heart {
+	height:20px;
+	width:20px;
 }
 
 /* account info - change password/email/username */
