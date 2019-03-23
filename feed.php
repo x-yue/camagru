@@ -32,22 +32,7 @@ if (!isset($_SESSION['username'])){
     </div>
 </div>
 
-
 <div align="center" id="newsfeed">
-
-    <!-- <div align="left" class="feed">
-        <table>
-            <div class="feedphoto"><img  class="feedphoto" src="uploads/upload.png"></div>
-            <div align="right">
-                <p id="feedusername">Username</p>
-                <p id="comments">Comments</p>
-            </div>
-        </table>
-        <div align="right">
-            <a id="numofheart">100</a>    
-            <img id="heart" src="images/heart.png"> 
-        </div>
-    </div><br>   -->
 
 <?php     
     $conn = db_connect();
@@ -71,24 +56,58 @@ if (!isset($_SESSION['username'])){
 
         $count = 0;
         while ($res[$count]){
-            $img = $res[$count][0];
-            $username = $res[$count][1];
+            $imgname = $res[$count][0];
+            $imguser = $res[$count][1];
             $time = $res[$count][2];
             $comments = $res[$count][3];
             $likes = $res[$count][4];
+
             echo "<div align='left' class='feed'>";
-            echo "<table><img class='feedphoto' src=$img>";
+            echo "<table><tr align='left'><img class='feedphoto' src=$imgname></tr>";
             echo '<div align="right">';
-            echo "<p id='feedusername'>$username</p>";
-            echo "<p id='comments'>$comments Comments</p></div></table>";
+            echo "<p id='feedusername'>@$imguser</p>";
+            echo "<p id='feedusername' style='font-size:15px;'>$time</p>";
+            echo '<div align="right" style="margin-top:-40px;">'; 
+            echo "<a id='numofheart'>$likes </a>";
+            echo '<img id="heartfeed" src="images/heart.png"></div>';
+            echo "<div id='commenthistory' align='right'>";
+           // while loop to show all the comments;
+            $i = 0;
+            while ($comment[$i]){
+                $commentuser = $comment[$i][0];
+                $commenttext = $comment[$i][1];
+                $commenttime = $comment[$i][2];
+                echo "<p id='commentuser'>$commentuser : </p></div>";
+                echo "<p id='commenttext'>$commenttext</p></div>";
+                echo "<p id='commenttime'>$commenttime</p></div>";
+                $i++;
+            }
+            echo "</div>";
             echo '<div align="right">';
-            echo "<a id='numofheart'>$likes </a>";    
-            echo '<img id="heart" src="images/heart.png">';
-            echo '</div></div><br>';
+            echo "<form id='commentform'action='config/comment.php' method='post'>";
+            echo "<input id='commentbox' type='text' name='commentaire' placeholder='Leave a comment...'>";
+            echo "<input type='submit' name='submitcomment' value='Comment'>&nbsp;";
+            echo "</form>";
+
+            echo "<form id='likeunlike' action='config/likeunlike.php' method='post'>";
+            $create = explode(' ', $time);
+            $createdate = $create[0];
+            $createtime = $create[1];
+            echo "<input type='hidden' name='date' value=$createdate>"; 
+            echo "<input type='hidden' name='time' value=$createtime>"; 
+            echo "<input type='hidden' name='imguser' value=$imguser>"; 
+            echo "<input type='hidden' name='imgname' value=$imgname>"; 
+            echo "<input id='likebutton' type='submit' name='click' value='Like'>"; 
+            echo "<input id='likebutton' type='submit' name='click' value='Unlike'>"; 
+            echo "</form>";
+            echo "<br>";
+
+            echo '</div></table></div><br>';
             $count++;
         }
     }    
     exit;
+
 ?>
 
 </div>
