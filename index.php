@@ -23,6 +23,7 @@ if (isset($_SESSION['username'])){
             <input type="submit" name="submit" value="Sign in" required>
         </form>
         <div style="height:3px;"><br></div>
+
         <a id="forgetpw" href="forgetpw.php">I forget my password</a>
     </div>
 </div>
@@ -33,6 +34,9 @@ if (isset($_SESSION['username'])){
 <br><br>
 <div align="center">
     <a href="signup.php"><button class="button">Sign Up</button></a>
+    <br>
+    <br>
+    <a href="publicgallery.php"><button class="button">Public Gallery</button></a>
 </div>
 </body>
 
