@@ -137,41 +137,46 @@ $conn = null;
     // include "config/process.php";
 ?>
 
-<div align="center">
-  <?php
-  // only show 5 recent pictures <br>
-   
+<div align="center"><br>
+<?php
+    $conn = db_connect();
+    $sql = "SELECT * FROM imagelist where username = '$name' ORDER BY date_creation DESC";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetchall();
+    $conn = null;
+  
+    if ($res) {
+
+        echo '<table><tr>';
+        $count = 0;
+        while($res[$count] && $count < 5){
+            $img = $res[$count][0];
+            $time = $res[$count][2];
+
+            echo "<td><div class='gallery_block'>";
+            echo "<img src=$img class='gallery'>";
+            echo "<br>";
+            echo "<div align='center'>";
+            echo "<form action='config/deletepostfromhome.php' method='post'>";
+            echo "<input type='hidden' name='imgname' value='$img'>";
+            echo "<input type='hidden' name='createtime' value='$time'>";
+            echo "<input type='hidden' name='username' value='$name'>";
+            echo '<input type="submit" name="delete" value="Delete" class="redbutton"></button>';
+            echo "</form></div></div></td>";
+            $count++;
+        }
+    echo "</tr><table>";
+    echo '<a href="mygallery.php"><button class="button">See More Posted Picture</button></a>';
+}
     // echo "<td><div class='gallery_block'>";
     // echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";
     // echo "<br>";
     // echo '<button class="redbutton" onclick="deleteGalleryPhoto()">Delete</button>';
     // echo "</div></td>";
-
-    // echo "<td><div class='gallery_block'>";
-    // echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";
-    // echo "<br>";
-    // echo '<a>100</a>';   
-    // echo '<img id="heart" style="margin:auto;" src="images/heart.png">';
-    // echo '<button class="redbutton" onclick="deleteGalleryPhoto()">Delete</button>';
-    // echo "</div></td>";
-    
-    // echo "<td><div class='gallery_block'>";
-    // echo "<img src='uploads/upload.png' onclick='selectPicture()' class='gallery'>";
-    // echo "<br>";
-    // echo '<a>100</a>';   
-    // echo '<img id="heart" style="margin:auto;" src="images/heart.png">';
-    // echo '<button class="redbutton" onclick="deleteGalleryPhoto()">Delete</button>';
-    // echo "</div></td>";
-   
-
-    // echo '<a href="mygallery.php"><button class="button">See More Posted Picture</button></a>';
-
-    ?>
+?>
 
 </div>
-
 <script src="js/feature.js"></script>
-
 </body>
-
 <?php include 'control/footer.php';?>

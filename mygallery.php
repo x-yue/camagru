@@ -33,7 +33,7 @@ if (!isset($_SESSION['username'])){
 </div>
 
 <?php     
-    // i could make it like the feed but only for the picture of one's own and add delete button
+
     $conn = db_connect();
     $sql = "SELECT * FROM imagelist where username = '$name' ORDER BY date_creation DESC";
     $stmt = $conn->prepare($sql);
@@ -52,21 +52,19 @@ if (!isset($_SESSION['username'])){
 
             $img = $res[$count][0];
             $time = $res[$count][2];
-            $likes = $res[$count][4];
-            echo $comments;
-            echo $likes;
+            $likes = $res[$count][4];   
             echo "<td><div class='mygallery'>";
             echo "<img src=$img class='mygallerypic'>";
             echo "<br><br>";
-            echo "<div align='center'>";
-            echo "<a id='numofheart'>$likes</a>";
-            echo '<img id="heart" style="margin:auto;" src="images/heart.png">';
-            echo "<form action='config/deletepost.php' method='post'>";
+            echo "<section align='right' style='margin-top: -270px; margin-right: 37px;'>";
+            echo "<a style='color:darkred; font-size:28px;'>$likes</a>&nbsp;";
+            echo '<img id="heart" style="margin-right:25px;" src="images/heart.png">';
+            echo "<form id='delete' action='config/deletepostfromgallery.php' method='post'>";
             echo "<input type='hidden' name='imgname' value='$img'>";
             echo "<input type='hidden' name='createtime' value='$time'>";
             echo "<input type='hidden' name='username' value='$name'>";
             echo '<input type="submit" name="delete" value="Delete" class="redbutton"></button>';
-            echo "</form></div></div></td>";
+            echo "</form></section></div></td>";
             $count++;
         }
     }

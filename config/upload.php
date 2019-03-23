@@ -10,6 +10,10 @@ if (!isset($_SESSION['username'])){
 }
 
 $target_dir = "../uploads/";
+if (!file_exists($target_dir)) {
+    mkdir ($target_dir, 0777, true);
+}
+
 $target_file = $target_dir . basename($_FILES["userfile"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
