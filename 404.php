@@ -1,5 +1,13 @@
 <?php
 include 'control/header.php';
+
+session_start();
+if (!isset($_SESSION['username'])){  
+    $url = "index.php";
+} else {
+    $url = "home.php";
+}
+
 ?>
 
 <script>
@@ -14,7 +22,7 @@ include 'control/header.php';
     <div id="msgbox">
     <p id="errorMessage">Oops, I screwed up and you discovered my fatal flaw. Well, we're not all perfect, but we try.  Can you try this again or maybe visit our homepage to start fresh. We'll do better next time.</p>   
     <br>
-    <a href="index.php"><button class="button">Homepage</button></a>
+    <a href="<?php echo $url ?>"><button class="button">Homepage</button></a>
     </div>
 </div>
 
