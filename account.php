@@ -33,8 +33,22 @@ if (!isset($_SESSION['username'])){
 
 <!-- in this order: password - username - email address - delete account --> 
 
-
 <div align="center" class="accinfo">
+
+<!--------------------- deactivate email notif for comments -----------> 
+<!-- value = 1 / 0 -->
+<div class="changeform" id="shortchangeform" style="height:150px;">
+        <h2>Email Notifications</h2>
+        <form action="config/commentactive.php" method="post"> 
+            <!-- <input type="checkbox" name="commentnotif" class="input" value="true">Deactive notification when sone -->
+            <div align="center">
+                &thinsp;&thinsp;<input type="submit" name="deactive" value="Deactivate Email Notifications" class="input">
+                <br>
+                <input type="submit" name="active" value="Reactivate Email Notifications" class="input">
+                <!-- <input type="submit" name="submit" value="<?php if ($notifstatus = 1){ echo 'Deactivate Email Notifications'; } else { echo 'Activate Email Notifications'; } ?>" class="input"> -->
+            </div>
+       </form>
+    </div>
 
 <!------------- password table -------------------->
     <div class="changeform" id="shortchangeform">
@@ -112,5 +126,6 @@ if (!isset($_SESSION['username'])){
        </form>
     </div>
 </div>
+
 </body>
 <?php include 'control/footer.php';?>
