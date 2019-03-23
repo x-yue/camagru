@@ -10,7 +10,10 @@ if (!isset($_SESSION['username'])){
     $name = $_SESSION["username"];
 }
 
-
+$target_dir = "../gallery/";
+if (!file_exists($target_dir)) {
+    mkdir ($target_dir, 0777, true);
+}
 
 // print_r ($_POST);
 // //file_put_contents("gallery/imagetest.png", $_POST["screen"]);
