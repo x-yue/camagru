@@ -1,5 +1,6 @@
 <?php
 
+date_default_timezone_set('europe/paris');
 include 'setup.php';
 
 session_start();
@@ -7,15 +8,22 @@ if (!isset($_SESSION['username'])){
     echo "<script>alert('You need to sign in first.')</script>";
     echo "<script>location.href = 'index.php';</script>";
 } else {
-    $name = $_SESSION["username"];
+    $session_name = $_SESSION["username"];
 }
 
-function notificationEmails($imguser, $email){
+function errorEmail()
+{
+    echo "<script>alert('Mailing Sytem: Something went wrong, please try again.')</script>";
+    echo "<script>location.href = '../feed.php';</script>";
+	exit;
+}
+
+function notificationEmails($imguser, $imgemail){
     $subject = "You received a comment";
     $message = '
     
     Hello '.$imguser.'
-    '.$name.' left a comment on your photo.
+    Someone left a comment on your photo.
 
     Check it on Camagru with the link below:
     http://localhost:8300/camagru/index.php
@@ -23,24 +31,49 @@ function notificationEmails($imguser, $email){
     ';
     
     $header = "From: noreply@camagru.com" . "\r\n";
-    if (mail($email, $subject, $message, $header)){
+    if (mail($imgemail, $subject, $message, $header)){
     } else {
         errorEmail();
     }
 }
 
-//comments need to be stored in three things
-// [0] commentuser
-// [1] commenttext 
-// [2] commenttime
+if (isset($_POST["submitcomment"]) && $_POST["commentaire"]){
 
-// date_default_timezone_set('europe/paris');
-// $now = date("Y-m-d H:i:s");
+    $commenttext = $_POST["commentaire"];
+    $commentuser = $session_name;
+    $commenttime = date("Y-m-d H:i:s");
+    
+    $createdate = $_POST["date"];
+    $createtime = $_POST["time"];
+    $imgtime = $createdate . ' ' . $createtime;
+    $imgname = $_POST["imgname"];
+    $imguser = $_POST['imguser'];
 
+    $conn = db_connect();
+    $sql = "INSERT INTO comments (commenttext, commentuser, commenttime, imgname, imguser, imgtime) VALUES ('$commenttext', '$commentuser', '$commenttime', '$imgname', '$imguser', '$imgtime')";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $conn = null;
+    
+    $conn = db_connect();
+    $sql = "SELECT email_notification FROM loginsystem WHERE username = '$imguser'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetch();
+    $conn = null;
+    $email_notif = $res[0];
 
-// $conn = db_connect();
-
-
-// $conn = null;
+    if ($email_notif == 1){
+        $conn = db_connect();
+        $sql = "SELECT email FROM loginsystem WHERE username = '$imguser'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        $conn = null;
+        $imgemail = $res[0];
+        notificationEmails($imguser, $imgemail);
+    } 
+    echo "<script>location.href='../feed.php';</script>";
+}
 
 ?>

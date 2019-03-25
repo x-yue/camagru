@@ -10,48 +10,64 @@ if (!isset($_SESSION['username'])){
     $session_user = $_SESSION["username"];
 }
 
+function error(){
+    echo "<script>alert('Something went wrong, please try again.')</script>";
+    echo "<script>location.href = '../feed.php';</script>";
+	exit;
+}
+
 if (isset($_POST["click"])){
-    $createdate = $_POST["date"];
-    $createtime = $_POST["time"];
-    $time = $createdate . ' ' . $createtime;
+
+    $likeuser = $session_user;
+    $input = $_POST["click"];
+    if ($inpit = "Like"){
+        $likenum = 1;
+    } elseif ($input = "Unlike") {
+        $likenum = 0;
+    } else {
+        error();
+    }
+
     $imgname = $_POST["imgname"];
     $imguser = $_POST['imguser'];
+    $createdate = $_POST["date"];
+    $createtime = $_POST["time"];
+    $imgtime = $createdate . ' ' . $createtime;
 
     $conn = db_connect();
-    $sql = "SELECT * FROM imagelist WHERE username = '$imguser' AND image_location = '$imgname' AND date_creation = '$time'";
+    $sql = "SELECT * FROM likes WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime' AND likeuser = '$likeuser'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $res = $stmt->fetch();
     $conn = null;
-
-//like needs to be stored in array
-// [0] likeuser
-// [1] likenum
-// likes should be a while loop to add up all the likes 
-
-    // $likes = $res[4];
-    // $input = $_POST["click"];
-    // if ($input == "Like"){
-    //     $likes++;
-    // }
-    
-    // $i = 0;
-    // while ($likes[$i])
-    //     if ($likes[$i] == $session_user)
-            
-    //     else {
-    //         $i++;
-    //     }
-    // }
-
-    // if ($input == "Unlike"){
-    //     $likes--;
-    // }
-    $conn = db_connect();
-    $sql = "UPDATE imagelist SET likes = '$likes' WHERE username = '$imguser' AND image_location = '$imgname' AND date_creation = '$time'";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $conn = null;
+    if (!$res) {
+        $input = $_POST["click"];
+        if ($input == "Like"){
+            $likenum = 1;
+        } elseif ($input == "Unlike") {
+            $likenum = 0;
+        } else {
+            error();
+        }
+        $conn = db_connect();
+        $sql = "INSERT INTO likes (likeuser, likenum, imgname, imguser, imgtime) VALUES ('$likeuser', '$likenum', '$imgname', '$imguser', '$imgtime')";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $conn = null;
+    } else {
+        if ($input == "Like") {
+            $likenum = 1;
+        } elseif ($input == "Unlike"){
+            $likenum = 0;
+        } else {
+            error();
+        }
+        $conn = db_connect();
+        $sql = "UPDATE likes SET likenum = '$likenum' WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime' AND likeuser = '$likeuser'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $conn = null;
+    }
     echo "<script>location.href='../feed.php';</script>";
 }
 
