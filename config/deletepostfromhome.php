@@ -15,14 +15,20 @@ if (!isset($_SESSION['username'])){
 } else {
     $name = $_SESSION["username"];
 }
-
-if ($_POST['delete'] == "Delete" && $_POST["createtime"] && $_POST["imgname"] && $_POST["username"])
+echo "test";
+if ($_POST['delete'] == "Delete" && $_POST["imgtime"] && $_POST["imgname"] && $_POST["username"])
 {
-    $createtime = $_POST["createtime"];
+    echo $_POST['delete'];
+    $imgtime = $_POST["imgtime"];
     $imgname = $_POST["imgname"];
     $username = $_POST["username"];
+
+    echo $imgtime;
+    echo $imgname;
+    echo $username;
+
     $conn = db_connect();
-    $sql = "DELETE FROM imagelist WHERE username = '$username' AND image_location = '$imgname' AND date_creation = '$createtime'";
+    $sql = "DELETE FROM imagelist WHERE username = '$username' AND image_location = '$imgname' AND date_creation = '$imgtime'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $conn = null;
