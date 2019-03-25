@@ -34,6 +34,26 @@ if (!isset($_SESSION['username'])){
 
 <?php     
 
+function numOfLikes($imgname, $imguser, $imgtime){
+       
+    $conn = db_connect();
+    $sql = "SELECT * FROM likes WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetch();
+    $conn = null;
+    if ($res){
+        $conn = db_connect();
+        $sql = "SELECT SUM(likenum) FROM likes WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetch(); 
+        return $res[0];
+    } else {
+        return 0;
+    }
+}
+
     $conn = db_connect();
     $sql = "SELECT * FROM imagelist where username = '$name' ORDER BY date_creation DESC";
     $stmt = $conn->prepare($sql);
@@ -50,17 +70,18 @@ if (!isset($_SESSION['username'])){
         $count = 0;
         while ($res[$count]){
 
-            $img = $res[$count][0];
+            $imgname = $res[$count][0];
             $time = $res[$count][2];
-            $likes = $res[$count][4];   
+            $likes = numOfLikes($imgname, $name, $time);
+
             echo "<td><div class='mygallery'>";
-            echo "<img src=$img class='mygallerypic'>";
+            echo "<img src=$imgname class='mygallerypic'>";
             echo "<br><br>";
             echo "<section align='right' style='margin-top: -270px; margin-right: 37px;'>";
             echo "<a style='color:darkred; font-size:28px;'>$likes</a>&nbsp;";
             echo '<img id="heart" style="margin-right:25px;" src="images/heart.png">';
             echo "<form id='delete' action='config/deletepostfromgallery.php' method='post'>";
-            echo "<input type='hidden' name='imgname' value='$img'>";
+            echo "<input type='hidden' name='imgname' value='$imgname'>";
             echo "<input type='hidden' name='createtime' value='$time'>";
             echo "<input type='hidden' name='username' value='$name'>";
             echo '<input type="submit" name="delete" value="Delete" class="redbutton"></button>';
