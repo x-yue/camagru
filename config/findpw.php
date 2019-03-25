@@ -17,7 +17,7 @@ function error()
 function errorEmail()
 {
     echo "<script>alert('Mailing Sytem: Something went wrong, please try again.')</script>";
-    echo "<script>location.href = '../signup.php';</script>";
+    echo "<script>location.href = '../forgetpw.php';</script>";
 	exit;
 }
 

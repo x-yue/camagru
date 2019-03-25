@@ -45,7 +45,6 @@ if (!isset($_SESSION['username'])){
                 &thinsp;&thinsp;<input type="submit" name="deactive" value="Deactivate Email Notifications" class="input">
                 <br>
                 <input type="submit" name="active" value="Reactivate Email Notifications" class="input">
-                <!-- <input type="submit" name="submit" value="<?php if ($notifstatus = 1){ echo 'Deactivate Email Notifications'; } else { echo 'Activate Email Notifications'; } ?>" class="input"> -->
             </div>
        </form>
     </div>

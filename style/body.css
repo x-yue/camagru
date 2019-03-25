@@ -1,7 +1,6 @@
 /* over all */
 body {
-	background-image: url("/camagru/images/bg.png");
-	background-color: aliceblue;
+	background-image: url("/camagru/images/background.jpg");
 	background-size: contain;
 }
 div {
@@ -89,16 +88,6 @@ h2 {
 	margin-right: 30px;
 }
 
-/* center part - welcome index.php */
-#welcomepage{
-	margin-top: 15%;
-	text-align: center;
-	color: #84aacf;
-	font-size: 120px;
-	text-shadow: 2px 2px rgb(24, 24, 24);
-	font-weight: bold;
-}
-
 /* page 404 */
 #msgbox {
 	height: 330px;
@@ -158,7 +147,7 @@ h2 {
 .feedphoto {
 	height: 500px;
 	width: 500px;
-	object-fit: cover;
+	object-fit: fill;
 }
 #heartfeed {
 	margin-top: -50px;
@@ -204,24 +193,22 @@ h2 {
 	position: relative;
 }
 #commenthistory{
-	height: 126px;
+	height: 107px;
 	text-align: left;
 	font-size: 12;
-	width: max-content;
-	color: rosybrown;
-
+	width: 490px;
+	color: grey;
+	overflow: auto;
+	border: 2px;
+	margin-top: 5px;	
+	margin-left: 5px;
 }
 #commentuser{
-	font-style: bold;
+	font-style: italic;
 }
 #commenttext{
 	font-style: normal;
 }
-#commenttime{
-	color: grey;
-	font-style: italic;
-}
-
 
 /* home page after logged in */
 video {
