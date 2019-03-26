@@ -53,7 +53,7 @@ function takeAPicture(){
       var camerastream = document.getElementById("camerastream");
       var addon = document.getElementById("addon");
       var upload = document.getElementById("upload");
-      var ctx = canvas.getContext("2d");
+      var ctx = canvas.getContext("2d");      
       ctx.drawImage(camerastream, 0, 0, 300, 150);
       ctx.drawImage(upload, 0, 0, 300, 150);
       ctx.drawImage(addon, 0, 0, 300, 150);

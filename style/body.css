@@ -209,6 +209,16 @@ h2 {
 #commenttext{
 	font-style: normal;
 }
+#pagenum{
+	text-align: center;
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	/* position: absolute; */
+	text-shadow: 1px 1px grey;
+	color: white;
+}
+
 
 /* home page after logged in */
 video {
