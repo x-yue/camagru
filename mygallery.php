@@ -37,16 +37,16 @@ if (!isset($_SESSION['username'])){
 function numOfLikes($imgname, $imguser, $imgtime){
        
     $conn = db_connect();
-    $sql = "SELECT * FROM likes WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime'";
+    $sql = "SELECT * FROM likes WHERE imgname = ? AND imguser = ? AND imgtime = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$imgname, $imguser, $imgtime]);
     $res = $stmt->fetch();
     $conn = null;
     if ($res){
         $conn = db_connect();
-        $sql = "SELECT SUM(likenum) FROM likes WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime'";
+        $sql = "SELECT SUM(likenum) FROM likes WHERE imgname = ? AND imguser = ? AND imgtime = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$imgname, $imguser, $imgtime]);
         $res = $stmt->fetch(); 
         return $res[0];
     } else {
@@ -55,9 +55,9 @@ function numOfLikes($imgname, $imguser, $imgtime){
 }
 
     $conn = db_connect();
-    $sql = "SELECT * FROM imagelist where username = '$name' ORDER BY date_creation DESC";
+    $sql = "SELECT * FROM imagelist where username = ? ORDER BY date_creation DESC";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$name]);
     $res = $stmt->fetchall();
     $conn = null;
 

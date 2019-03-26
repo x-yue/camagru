@@ -48,9 +48,9 @@ if (!isset($_SESSION['username'])){
 include 'config/setup.php'; 
 
 $conn = db_connect();
-$sql = "SELECT uploadimg FROM upload WHERE username = '$name'";
+$sql = "SELECT uploadimg FROM upload WHERE username = ?";
 $stmt = $conn->prepare($sql);
-$stmt->execute();
+$stmt->execute([$name]);
 $upload = $stmt->fetch();
 $conn = null;
 
@@ -90,9 +90,9 @@ $conn = null;
 
 <?php
     $conn = db_connect();
-    $sql = "SELECT * FROM imagelist where username = '$name' ORDER BY date_creation DESC";
+    $sql = "SELECT * FROM imagelist where username = ? ORDER BY date_creation DESC";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$name]);
     $res = $stmt->fetchall();
     $conn = null;
 
