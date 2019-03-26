@@ -81,6 +81,7 @@ if (!isset($_SESSION['username'])){
     $stmt->execute();
     $res = $stmt->fetch();
     $conn = null;
+    
     if (!$res){
         echo "<div align='center'>";
         echo "<div id='msgbox' style='height:250px'>";
@@ -95,22 +96,54 @@ if (!isset($_SESSION['username'])){
         $conn = null;
 
         $count = 0;
+        // ppp = post per page
+        $ppp = 5;
         while ($res[$count]){
+            $count++;
+        }
+        $totalpage = (INT)($count / $ppp + 1);
+
+        if (isset($_GET["page"])){
+            $pagenum = $_GET["page"];
+            if ($_GET['page'] == 0){
+                $pagenum = 1;
+            }
+        } else {
+            $pagenum = 1;
+        }            
+        $count = ($pagenum - 1) * $ppp;
+
+        //page buttons
+        $lastpage = $pagenum - 1;
+        $nextpage = $pagenum + 1;
+        echo "<br>";
+        if ($lastpage > 0){
+            echo "<a href='http://localhost:8300/camagru/feed.php?page=$lastpage' class='button'>Last Page</a>"; 
+            echo "&nbsp;";
+        }
+        echo "<a id='pagenum'>page $pagenum</a>";
+        if ($nextpage <= $totalpage){            
+            echo "&nbsp;";
+            echo "<a href='http://localhost:8300/camagru/feed.php?page=$nextpage' class='button'>Next Page</a>"; 
+        }
+    
+        $i = 0;
+        while ($res[$count] && $i < $ppp){
+            // block
             $imgname = $res[$count][0];
             $imguser = $res[$count][1];
             $time = $res[$count][2];
-
-            $likes = numOfLikes($imgname, $imguser, $time);
-
             $create = explode(' ', $time);
             $createdate = $create[0];
             $createtime = $create[1];
+
             echo "<div align='left' class='feed'>";
             echo "<table><tr align='left'><img class='feedphoto' src=$imgname></tr>";
             echo '<div align="right">';
             echo "<p id='feedusername'>@$imguser</p>";
             echo "<p id='feedusername' style='font-size:15px;'>$createdate</p>";
             echo '<div align="right" style="margin-top: -38px;">'; 
+            $likes = numOfLikes($imgname, $imguser, $time);
             echo "<a id='numofheart'>$likes </a>";
             echo '<img id="heartfeed" src="images/heart.png"></div>';
             echo "<div align='left' style='margin-top: 20px'>";
@@ -124,6 +157,7 @@ if (!isset($_SESSION['username'])){
             echo "<input type='hidden' name='time' value=$createtime>"; 
             echo "<input type='hidden' name='imgname' value=$imgname>";  
             echo "<input type='hidden' name='imguser' value=$imguser>"; 
+            echo "<input type='hidden' name='page' value=$pagenum>"; 
 
             echo "<input id='commentbox' type='text' name='commentaire' placeholder='Leave a comment...' required>";
             echo "<input type='submit' name='submitcomment' value='Comment'>&nbsp;";
@@ -134,16 +168,31 @@ if (!isset($_SESSION['username'])){
             echo "<input type='hidden' name='time' value=$createtime>"; 
             echo "<input type='hidden' name='imguser' value=$imguser>"; 
             echo "<input type='hidden' name='imgname' value=$imgname>"; 
+            echo "<input type='hidden' name='page' value=$pagenum>"; 
+
             echo "<input id='likebutton' type='submit' name='click' value='Like'>"; 
             echo "<input id='likebutton' type='submit' name='click' value='Unlike'>"; 
             echo "</form>";
             echo "<br>";
             echo '</div></table></div><br>';
             $count++;
-        }
-    }    
-    exit;
+            //block
+            $i++;
+            }
 
+            //page buttons
+            echo "<br>";
+            if ($lastpage > 0){
+                echo "<a href='http://localhost:8300/camagru/feed.php?page=$lastpage' class='button'>Last Page</a>"; 
+                echo "&nbsp;";
+            }
+            echo "<a id='pagenum'>page $pagenum</a>";
+            if ($nextpage <= $totalpage){
+                echo "&nbsp;";
+                echo "<a href='http://localhost:8300/camagru/feed.php?page=$nextpage' class='button'>Next Page</a>"; 
+            }
+        }
+    
 ?>
 
 </div>

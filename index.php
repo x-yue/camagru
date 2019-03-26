@@ -37,16 +37,16 @@ if (isset($_SESSION['username'])){
 function numOfLikes($imgname, $imguser, $imgtime){
        
     $conn = db_connect();
-    $sql = "SELECT * FROM likes WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime'";
+    $sql = "SELECT * FROM likes WHERE imgname = ? AND imguser = ? AND imgtime = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$imgname, $imguser, $imgtime]);
     $res = $stmt->fetch();
     $conn = null;
     if ($res){
         $conn = db_connect();
-        $sql = "SELECT SUM(likenum) FROM likes WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime'";
+        $sql = "SELECT SUM(likenum) FROM likes WHERE imgname = ? AND imguser = ?  AND imgtime = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$imgname, $imguser, $imgtime]);
         $res = $stmt->fetch(); 
         return $res[0];
     } else {
@@ -74,7 +74,41 @@ function numOfLikes($imgname, $imguser, $imgtime){
         $conn = null;
 
         $count = 0;
+        // ppp = post per page
+        $ppp = 5;
         while ($res[$count]){
+            $count++;
+        }
+        $totalpage = (INT)($count / $ppp + 1);
+
+        if (isset($_GET["page"])){
+            $pagenum = $_GET["page"];
+            if ($_GET['page'] == 0){
+                $pagenum = 1;
+            }
+        } else {
+            $pagenum = 1;
+        }            
+        $count = ($pagenum - 1) * $ppp;
+
+        //page buttons
+        $lastpage = $pagenum - 1;
+        $nextpage = $pagenum + 1;
+        echo "<br>";
+        if ($lastpage > 0){
+            echo "<a href='http://localhost:8300/camagru/index.php?page=$lastpage' class='button'>Last Page</a>"; 
+            echo "&nbsp;";
+        }
+        echo "<a id='pagenum'>page $pagenum</a>";
+        if ($nextpage <= $totalpage){            
+            echo "&nbsp;";
+            echo "<a href='http://localhost:8300/camagru/index.php?page=$nextpage' class='button'>Next Page</a>"; 
+        }
+
+        $i = 0;
+        while ($res[$count] && $i < $ppp){
+          
+            //BLOCK
             $imgname = $res[$count][0];
             $imguser = $res[$count][1];
             $time = $res[$count][2];
@@ -90,23 +124,24 @@ function numOfLikes($imgname, $imguser, $imgtime){
             echo '<img style="height:17px; width:17px;" src="images/heart.png">';           
             echo '</div></table></div><br>';
             $count++;
+            // BLOCK 
+            $i++;
+        }
+        //page buttons
+        echo "<br>";
+        if ($lastpage > 0){
+            echo "<a href='http://localhost:8300/camagru/index.php?page=$lastpage' class='button'>Last Page</a>"; 
+            echo "&nbsp;";
+        }
+        echo "<a id='pagenum'>page $pagenum</a>";
+        if ($nextpage <= $totalpage){
+            echo "&nbsp;";
+            echo "<a href='http://localhost:8300/camagru/index.php?page=$nextpage' class='button'>Next Page</a>"; 
         }
     }    
-    exit;
 
 ?>
 
-<!-- <div align='center'>
-    <div id="welcomepage">
-        Welcome to Camagru!
-    </div>
-</div>
-<br><br>
-<div align="center">
-    &thinsp;<a href="signup.php"><button class="button">SignUp</button></a>
-    <br>
-    <br>
-    <a href="publicgallery.php"><button class="button"> Gallery </button></a> -->
 </div>
 </body>
 
