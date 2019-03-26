@@ -4,9 +4,9 @@ include "setup.php";
 
 function removeUpload($name) {
     $conn = db_connect();
-    $sql = "DELETE FROM upload WHERE username = '$name'";
+    $sql = "DELETE FROM upload WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$name]);
     $conn = null;
 }
 

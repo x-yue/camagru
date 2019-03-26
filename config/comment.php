@@ -50,30 +50,36 @@ if (isset($_POST["submitcomment"]) && $_POST["commentaire"]){
     $imguser = $_POST['imguser'];
 
     $conn = db_connect();
-    $sql = "INSERT INTO comments (commenttext, commentuser, commenttime, imgname, imguser, imgtime) VALUES ('$commenttext', '$commentuser', '$commenttime', '$imgname', '$imguser', '$imgtime')";
+    $sql = "INSERT INTO comments (commenttext, commentuser, commenttime, imgname, imguser, imgtime) VALUES (?, ?, ?, ?, ?,?)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$commenttext, $commentuser, $commenttime, $imgname, $imguser, $imgtime]);
     $conn = null;
     
     $conn = db_connect();
-    $sql = "SELECT email_notification FROM loginsystem WHERE username = '$imguser'";
+    $sql = "SELECT email_notification FROM loginsystem WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$imguser]);
     $res = $stmt->fetch();
     $conn = null;
     $email_notif = $res[0];
 
     if ($email_notif == 1){
         $conn = db_connect();
-        $sql = "SELECT email FROM loginsystem WHERE username = '$imguser'";
+        $sql = "SELECT email FROM loginsystem WHERE username = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$imguser]);
         $res = $stmt->fetch();
         $conn = null;
         $imgemail = $res[0];
         notificationEmails($imguser, $imgemail);
     } 
-    echo "<script>location.href='../feed.php';</script>";
+
+    if (isset($_POST["page"])){
+        $pagenum = $_POST["page"];
+    } else {
+        $pagenum = 1;
+    }   
+    echo "<script>location.href='../feed.php?page=$pagenum';</script>";
 }
 
 ?>

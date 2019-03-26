@@ -53,9 +53,9 @@ if ($_POST["submit"] == 'Submit' && $_POST["oldemail"] && $_POST["newemail"] && 
 
     //verify if the old email is correctly linked to the username
     $conn = db_connect();
-    $sql = "SELECT email FROM loginsystem WHERE username = '$name'";
+    $sql = "SELECT email FROM loginsystem WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$name]);
     $res = $stmt->fetch();
     $conn = null;
     if ($res[0] != $oldemail){
@@ -64,9 +64,9 @@ if ($_POST["submit"] == 'Submit' && $_POST["oldemail"] && $_POST["newemail"] && 
     
     //verify if the old password is correct
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE email = '$oldemail'";
+    $sql = "SELECT passwd FROM loginsystem WHERE email = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$oldemail]);
     $res = $stmt->fetch();
     $conn = null;
     $password = hash("whirlpool", $salt.$raw_password);
@@ -74,18 +74,18 @@ if ($_POST["submit"] == 'Submit' && $_POST["oldemail"] && $_POST["newemail"] && 
     {   
         //verify if the new email already existed
         $conn = db_connect();
-        $sql = "SELECT * FROM loginsystem WHERE email = '$newemail'";
+        $sql = "SELECT * FROM loginsystem WHERE email = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$newemail]);
         $res = $stmt->fetch();
         $conn = null;
         if (!$res) {
             //verify different emails
             if ($oldemail != $newemail){
                 $conn = db_connect();
-                $sql = "UPDATE loginsystem SET email = '$newemail' where email = '$oldemail'";
+                $sql = "UPDATE loginsystem SET email = ? where email = ?";
                 $stmt = $conn->prepare($sql);
-                if ($stmt->execute()) {
+                if ($stmt->execute([$newemail, $oldemail])) {
                     $conn = null;
                     successfulChange();
                 } else {

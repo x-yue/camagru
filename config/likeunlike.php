@@ -35,9 +35,9 @@ if (isset($_POST["click"])){
     $imgtime = $createdate . ' ' . $createtime;
 
     $conn = db_connect();
-    $sql = "SELECT * FROM likes WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime' AND likeuser = '$likeuser'";
+    $sql = "SELECT * FROM likes WHERE imgname = ? AND imguser = ? AND imgtime = ? AND likeuser = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$imgname, $imguser, $imgtime, $likeuser]);
     $res = $stmt->fetch();
     $conn = null;
     if (!$res) {
@@ -50,9 +50,9 @@ if (isset($_POST["click"])){
             error();
         }
         $conn = db_connect();
-        $sql = "INSERT INTO likes (likeuser, likenum, imgname, imguser, imgtime) VALUES ('$likeuser', '$likenum', '$imgname', '$imguser', '$imgtime')";
+        $sql = "INSERT INTO likes (likeuser, likenum, imgname, imguser, imgtime) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$likeuser, $likenum, $imgname, $imguser, $imgtime]);
         $conn = null;
     } else {
         if ($input == "Like") {
@@ -63,12 +63,17 @@ if (isset($_POST["click"])){
             error();
         }
         $conn = db_connect();
-        $sql = "UPDATE likes SET likenum = '$likenum' WHERE imgname = '$imgname' AND imguser = '$imguser' AND imgtime = '$imgtime' AND likeuser = '$likeuser'";
+        $sql = "UPDATE likes SET likenum = '$likenum' WHERE imgname = ? AND imguser = ? AND imgtime = ? AND likeuser = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$imgname, $imguser, $imgtime, $likeuser]);
         $conn = null;
     }
-    echo "<script>location.href='../feed.php';</script>";
+    if (isset($_POST["page"])){
+        $pagenum = $_POST["page"];
+    } else {
+        $pagenum = 1;
+    }   
+    echo "<script>location.href='../feed.php?page=$pagenum';</script>";
 }
 
 ?>

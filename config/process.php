@@ -19,9 +19,9 @@ function error(){
 
 function savePhoto($imgname, $imguser, $imgtime){
     $conn = db_connect();
-    $sql = "INSERT INTO imagelist (image_location, username, date_creation) VALUES ('$imgname', '$imguser', '$imgtime')"; 
+    $sql = "INSERT INTO imagelist (image_location, username, date_creation) VALUES (?, ?, ?)"; 
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$imgname, $imguser, $imgtime]);
     $conn = null;
 }
 

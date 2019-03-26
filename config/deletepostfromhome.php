@@ -15,10 +15,8 @@ if (!isset($_SESSION['username'])){
 } else {
     $name = $_SESSION["username"];
 }
-echo "test";
 if ($_POST['delete'] == "Delete" && $_POST["imgtime"] && $_POST["imgname"] && $_POST["username"])
 {
-    echo $_POST['delete'];
     $imgtime = $_POST["imgtime"];
     $imgname = $_POST["imgname"];
     $username = $_POST["username"];
@@ -28,10 +26,11 @@ if ($_POST['delete'] == "Delete" && $_POST["imgtime"] && $_POST["imgname"] && $_
     echo $username;
 
     $conn = db_connect();
-    $sql = "DELETE FROM imagelist WHERE username = '$username' AND image_location = '$imgname' AND date_creation = '$imgtime'";
+    $sql = "DELETE FROM imagelist WHERE username = ? AND image_location = ? AND date_creation = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$username, $imgname, $imgtime]);
     $conn = null;
+
     echo "<script>location.href='../home.php'</script>";
 } else {
     error();

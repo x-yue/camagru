@@ -53,9 +53,9 @@ if ($_POST["submit"] == 'Send an email for confirmation' && $_POST["password"]){
 
     //find email attached to this account
     $conn = db_connect();
-    $sql = "SELECT email FROM loginsystem WHERE username = '$name'";
+    $sql = "SELECT email FROM loginsystem WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$name]);
     $res = $stmt->fetch();
     $conn = null;
     
@@ -64,9 +64,9 @@ if ($_POST["submit"] == 'Send an email for confirmation' && $_POST["password"]){
     $salt = "sherlock_";
 
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE username = '$name'";
+    $sql = "SELECT passwd FROM loginsystem WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$name]);
     $res = $stmt->fetch();
     $conn = null;
     //verify if the password is correct

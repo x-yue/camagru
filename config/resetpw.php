@@ -33,9 +33,9 @@ function passwordSecure(){
 
 function currentpw($email) {
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE email = '$email'";
+    $sql = "SELECT passwd FROM loginsystem WHERE email = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$email]);
     $res = $stmt->fetch();
     $conn = null;
     $password = $res[0];
@@ -64,9 +64,9 @@ if ($_POST["submit"] = "Submit" && $_POST["password"] && $_POST["verifypw"])
            passwordNotChanged();
         } else {
             $conn = db_connect();
-            $sql = "UPDATE loginsystem SET passwd = '$newpassword' WHERE email = '$email'";
+            $sql = "UPDATE loginsystem SET passwd = ? WHERE email = ?";
             $stmt = $conn->prepare($sql);
-            if ($stmt->execute()){
+            if ($stmt->execute([$newpassword, $email])){
                 echo "<script>alert('You have successfully reset your password, sign in and share moments with us now')</script>";
                 $conn = null;
                 echo "<script>location.href = '../index.php';</script>";

@@ -36,19 +36,23 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
 function uploadToDb($name, $filename) {
     $conn = db_connect();
-    $search = "SELECT * FROM upload WHERE username = '$name'";
+    $search = "SELECT * FROM upload WHERE username = ?";
     $stmt = $conn->prepare($search);
-    $stmt->execute();
+    $stmt->execute([$name]);
     $res = $stmt->fetch();
     $conn = null;
     if (!$res){ 
-        $sql = "INSERT INTO upload (username, uploadimg) VALUES ('$name', '$filename')";
+        $sql = "INSERT INTO upload (username, uploadimg) VALUES (?, ?)";
+        $conn = db_connect();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$name, $filename]);
     } else {
-        $sql = "UPDATE upload SET uploadimg = '$filename'";
+        $sql = "UPDATE upload SET uploadimg = ?";
+        $conn = db_connect();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$filename]);
     }
-    $conn = db_connect();
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
+
     $conn = null;
 }
 

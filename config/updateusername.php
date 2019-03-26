@@ -15,6 +15,12 @@ function error(){
 	exit; 
 }
 
+function usernameError(){
+    echo "<script>alert('You cannot have empty spaces in your username, but you can use _ , please try again.')</script>";
+    echo "<script>location.href = '../account.php';</script>";
+    exit;
+}
+
 function wrongPassword(){
     echo "<script>alert('The password you put in is incorrect, please try again');</script>";
     echo "<script>location.href='../account.php';</script>";
@@ -42,14 +48,22 @@ function successfulChange($newun){
 if ($_POST["submit"] == 'Submit' && $_POST["newun"] && $_POST["password"]){
 
     $newun = $_POST["newun"];
+    $i = 0;
+    while ($newun[$i]){
+        if ($newun[$i] == ' '){
+            echo usernameError();
+        }
+        $i++;
+    }
+
     $raw_password = $_POST["password"];
     $salt = "sherlock_";
 
    //verify if the old password is correct
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE username = '$name'";
+    $sql = "SELECT passwd FROM loginsystem WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$name]);
     $res = $stmt->fetch();
     $conn = null;
     $password = hash("whirlpool", $salt.$raw_password);
@@ -58,17 +72,17 @@ if ($_POST["submit"] == 'Submit' && $_POST["newun"] && $_POST["password"]){
         //verify if two username are the same
         if ($newun != $name){
             $conn = db_connect();
-            $sql = "SELECT * FROM loginsystem WHERE username = '$newun'";
+            $sql = "SELECT * FROM loginsystem WHERE username = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->execute();
+            $stmt->execute([$newun]);
             $res = $stmt->fetch();
             $conn = null;
             if (!$res){
                 //verify if the new username already existed
                 $conn = db_connect();
-                $sql = "UPDATE loginsystem SET username = '$newun' where username = '$name'";
+                $sql = "UPDATE loginsystem SET username = ? where username = ?";
                 $stmt = $conn->prepare($sql);
-                if ($stmt->execute()) {
+                if ($stmt->execute([$newun, $name])) {
                     $conn = null;
                     successfulChange($newun);
                 } else {

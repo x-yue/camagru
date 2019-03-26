@@ -17,11 +17,31 @@ function error()
 if (isset($_GET["email"]) && isset($_GET["username"]) && $_GET["active"] == 'd'){
     $email = $_GET["email"];
     $username = $_GET["username"];
+    
     $conn = db_connect();
-    $sql = "DELETE FROM loginsystem WHERE email = '$email' AND username = '$username' AND active = 'a' ";
+    $sql = "DELETE FROM loginsystem WHERE email = ? AND username = ? AND active = 'a' ";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$email, $username]);
     $conn = null;
+
+    $conn = db_connect();
+    $sql = "DELETE FROM imagelist WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$username]);
+    $conn = null;
+
+    $conn = db_connect();
+    $sql = "DELETE FROM likes WHERE likeuser =  ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$username]);
+    $conn = null;
+
+    $conn = db_connect();
+    $sql = "DELETE FROM comments WHERE commentuser = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$username]);
+    $conn = null;
+
 } else {
     error();
 }

@@ -47,9 +47,9 @@ if ($_POST["submit"] == 'Submit' && $_POST["oldpw"] && $_POST["newpw"]){
 
     //verify if the old password is correct
     $conn = db_connect();
-    $sql = "SELECT passwd FROM loginsystem WHERE username = '$name'";
+    $sql = "SELECT passwd FROM loginsystem WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$name]);
     $res = $stmt->fetch();
     $conn = null;
 
@@ -64,9 +64,9 @@ if ($_POST["submit"] == 'Submit' && $_POST["oldpw"] && $_POST["newpw"]){
         if ($oldpw != $newpw){
             $newpwhash = hash("whirlpool", $salt.$newpw);
             $conn = db_connect();
-            $sql = "UPDATE loginsystem SET passwd = '$newpwhash' where username = '$name'";
+            $sql = "UPDATE loginsystem SET passwd = ? where username = ?";
             $stmt = $conn->prepare($sql);
-            if ($stmt->execute()) {
+            if ($stmt->execute([$newpwhash, $name])) {
                 $conn = null;
                 successfulChange();
             } else {

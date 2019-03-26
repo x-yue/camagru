@@ -81,9 +81,9 @@ if ($_POST["submit"] == "Send me an email"){
         $username = $_POST['username'];
         $email = $_POST['email'];
         $conn = db_connect();
-        $sql = "SELECT * FROM loginsystem WHERE username = '$username' AND email = '$email'";
+        $sql = "SELECT * FROM loginsystem WHERE username = ? AND email = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$username, $email]);
         $res = $stmt->fetch();
         $conn = null;
         if (!$res){
@@ -98,9 +98,9 @@ if ($_POST["submit"] == "Send me an email"){
     if ($_POST["username"] && !$_POST["email"]){
         $username = $_POST['username'];
         $conn = db_connect();
-        $sql = "SELECT email FROM loginsystem WHERE username = '$username'";
+        $sql = "SELECT email FROM loginsystem WHERE username = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$username]);
         $res = $stmt->fetch();
         $conn = null;
         if (!$res){
@@ -115,9 +115,9 @@ if ($_POST["submit"] == "Send me an email"){
     if (!$_POST["username"] && $_POST["email"]){
         $email = $_POST['email'];
         $conn = db_connect();
-        $sql = "SELECT * FROM loginsystem WHERE email = '$email'";
+        $sql = "SELECT * FROM loginsystem WHERE email = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$email]);
         $res = $stmt->fetch();
         $conn = null;
         if (!$res){

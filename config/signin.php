@@ -45,10 +45,10 @@ if ($_POST['submit'] == 'Sign in' && $_POST["username"] && $_POST["password"]) {
     $raw_password = $_POST["password"];
 
     //check if the username is in the databse 
-    $sql = "SELECT * FROM loginsystem WHERE username = '$username'";
+    $sql = "SELECT * FROM loginsystem WHERE username = ?";
     $conn = db_connect();
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$username]);
     $res = $stmt->fetch();
     $conn = null;
     if ($res){ 
@@ -57,15 +57,15 @@ if ($_POST['submit'] == 'Sign in' && $_POST["username"] && $_POST["password"]) {
 
         //check if the password is correct
         $conn = db_connect();
-        $sql_verifypw = "SELECT passwd FROM loginsystem WHERE username = '$username'";
+        $sql_verifypw = "SELECT passwd FROM loginsystem WHERE username = ?";
         $stmt = $conn->prepare($sql_verifypw);
-        $stmt->execute();
+        $stmt->execute([$username]);
         $res = $stmt->fetch();
         if ($password == $res[0]) {
             $conn = db_connect();
-            $sql_status = "SELECT active FROM loginsystem WHERE username = '$username'";
+            $sql_status = "SELECT active FROM loginsystem WHERE username = ?";
             $stmt = $conn->prepare($sql_status);
-            $stmt->execute();
+            $stmt->execute([$username]);
             $res = $stmt->fetch();
             $conn = null;
             if ($res[0] == "i"){

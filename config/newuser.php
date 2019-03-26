@@ -16,6 +16,12 @@ function repeated_username(){
     exit;
 }
 
+function usernameError(){
+    echo "<script>alert('You cannot have empty spaces in your username, but you can use _ , please try again.')</script>";
+    echo "<script>location.href = '../signup.php';</script>";
+    exit;
+}
+
 function repeated_email(){
     echo "<script>alert('The account with this email address already existed, maybe try signing in?')</script>";
     echo "<script>location.href = '../signup.php';</script>";
@@ -36,9 +42,8 @@ function passwordSecure(){
 
 function errorEmail()
 {
-    echo "<script>alert('Mailing Sytem: Something went wrong, please try again.')</script>";
     echo "<script>location.href = '../signup.php';</script>";
-	exit;
+    exit;
 }
 
 function sendConfirmationEmail($username, $email){
@@ -57,6 +62,7 @@ function sendConfirmationEmail($username, $email){
     if (mail($email, $subject, $message, $header)){
         echo "<script>alert('A confirmation email is sent to ".$email.", please click the link inside to activate your account.')</script>";
     } else {
+        echo "<script>alert('Your email is invalid, please try again.')</script>";
         errorEmail();
     }
 }
@@ -64,9 +70,9 @@ function sendConfirmationEmail($username, $email){
 function signedup($username, $email, $password){
     $status = "i";
     $conn = db_connect();
-    $sql = "INSERT INTO loginsystem (username, email, passwd, active) VALUES ('$username', '$email', '$password', '$status')";
+    $sql = "INSERT INTO loginsystem (username, email, passwd, active) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$username, $email, $password, $status]);
     $conn = null;
     sendConfirmationEmail($username, $email);
     echo "<script>location.href = '../index.php';</script>";
@@ -76,6 +82,14 @@ function signedup($username, $email, $password){
 if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && $_POST["email"] && $_POST["verifypw"])
 {
     $username = $_POST["username"];
+    $i = 0;
+    while ($username[$i]){
+        if ($username[$i] == ' '){
+            echo usernameError();
+        }
+        $i++;
+    }
+
     $email = $_POST["email"];
     $raw_password = $_POST["password"];
  
@@ -90,9 +104,9 @@ if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && 
 
     //check duplicate username
     $conn = db_connect();
-    $sql_username = "SELECT * FROM loginsystem WHERE username = '$username'";
+    $sql_username = "SELECT * FROM loginsystem WHERE username = ?";
     $stmt = $conn->prepare($sql_username);
-    $stmt->execute();
+    $stmt->execute([$username]);
     $res = $stmt->fetch();
     $conn = null;
     if ($res){
@@ -100,10 +114,10 @@ if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && 
     }
 
     //check duplicate email 
-    $sql_email = "SELECT * FROM loginsystem WHERE email = '$email'";
+    $sql_email = "SELECT * FROM loginsystem WHERE email = ?";
     $conn = db_connect();
     $stmt = $conn->prepare($sql_email);
-    $stmt->execute();
+    $stmt->execute([$email]);
     $res = $stmt->fetch();
     $conn = null;
     if ($res){
