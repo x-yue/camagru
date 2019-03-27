@@ -22,6 +22,12 @@ function usernameError(){
     exit;
 }
 
+function forbidenUsername(){
+    echo "<script>alert('Username cannot contain special signs, please try again.')</script>";
+    echo "<script>location.href = '../signup.php';</script>";
+    exit;
+}
+
 function repeated_email(){
     echo "<script>alert('The account with this email address already existed, maybe try signing in?')</script>";
     echo "<script>location.href = '../signup.php';</script>";
@@ -85,7 +91,10 @@ if ($_POST["submit"] == "Submit" && $_POST["username"] && $_POST["password"] && 
     $i = 0;
     while ($username[$i]){
         if ($username[$i] == ' '){
-            echo usernameError();
+            usernameError();
+        }
+        if ($username[$i] == "'" || $username[$i] == '/' || $username[$i] == '@' || $username[$i] == '$' || $username[$i] == '#' || $username[$i] == '!' || $username[$i] == '\\' || $username[$i] == '"'){
+            forbidenUsername();
         }
         $i++;
     }

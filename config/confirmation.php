@@ -21,12 +21,12 @@ if (isset($_GET["username"])){
 }
 
 if (isset($_GET["email"]) && $_GET["active"] == 'a'){
-    $status = $_GET["active"];
     $email = $_GET["email"];
+
     $conn = db_connect();
-    $sql = "UPDATE loginsystem SET active = '?' WHERE email = '?'";
+    $sql = "UPDATE loginsystem SET active = 'a' WHERE email = '?'";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$status, $email]);
+    $stmt->execute([$email]);
     $conn = null;
 } else {
     error();

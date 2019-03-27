@@ -34,10 +34,11 @@ if ($_POST["submit"] = "Save to Gallery and Share with the World" && $_POST["can
     $canvasdata = str_replace('data:image/png;base64,', '', $canvasdata);
     $canvasdata = str_replace(' ', '+', $canvasdata);
     
-    if (!file_exists("../gallery/")) {
-        mkdir ($target_dir, 0777, true);
-    }
     $gallery_dir = "../gallery/";
+    if (!file_exists($gallery_dir)) {
+        mkdir ($gallery_dir, 0777, true);
+    }
+   
     $imgname = md5(uniqid()).'.png';
     
     file_put_contents( $gallery_dir.$imgname, base64_decode($canvasdata));

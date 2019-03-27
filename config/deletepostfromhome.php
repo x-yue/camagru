@@ -15,6 +15,7 @@ if (!isset($_SESSION['username'])){
 } else {
     $name = $_SESSION["username"];
 }
+
 if ($_POST['delete'] == "Delete" && $_POST["imgtime"] && $_POST["imgname"] && $_POST["username"])
 {
     $imgtime = $_POST["imgtime"];

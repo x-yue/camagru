@@ -33,6 +33,12 @@ function repeatUsername(){
     exit;
 }
 
+function forbidenUsername(){
+    echo "<script>alert('Username cannot contain special signs, please try again.')</script>";
+    echo "<script>location.href = '../account.php';</script>";
+    exit;
+}
+
 function existUsername(){
     echo "<script>alert('The new username already existed, please try with something else.');</script>";
     echo "<script>location.href='../account.php';</script>";
@@ -53,6 +59,9 @@ if ($_POST["submit"] == 'Submit' && $_POST["newun"] && $_POST["password"]){
         if ($newun[$i] == ' '){
             echo usernameError();
         }
+        if ($newun[$i] == "'" || $newun[$i] == '/' || $newun[$i] == '@' || $newun[$i] == '$' || $newun[$i] == '#' || $newun[$i] == '!' || $newun[$i] == '\\' || $newun[$i] == '"'){
+            forbidenUsername();
+        }
         $i++;
     }
 
@@ -71,6 +80,8 @@ if ($_POST["submit"] == 'Submit' && $_POST["newun"] && $_POST["password"]){
     {   
         //verify if two username are the same
         if ($newun != $name){
+
+            //verify if the new username already existed
             $conn = db_connect();
             $sql = "SELECT * FROM loginsystem WHERE username = ?";
             $stmt = $conn->prepare($sql);
@@ -78,16 +89,46 @@ if ($_POST["submit"] == 'Submit' && $_POST["newun"] && $_POST["password"]){
             $res = $stmt->fetch();
             $conn = null;
             if (!$res){
-                //verify if the new username already existed
                 $conn = db_connect();
                 $sql = "UPDATE loginsystem SET username = ? where username = ?";
                 $stmt = $conn->prepare($sql);
-                if ($stmt->execute([$newun, $name])) {
-                    $conn = null;
-                    successfulChange($newun);
-                } else {
-                    error();
-                }
+                $stmt->execute([$newun, $name]);
+                $conn = null;          
+  
+                $conn = db_connect();
+                $sql = "UPDATE imagelist SET username = ? where username = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$newun, $name]);
+                $conn = null;
+            
+                $conn = db_connect();
+                $sql = "UPDATE likes SET likeuser = ? where likeuser = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$newun, $name]);
+                $conn = null;
+                echo "test";
+            
+                $conn = db_connect();
+                $sql = "UPDATE likes SET imguser = ? where imguser = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$newun, $name]);
+                $conn = null;
+                echo "test";
+            
+                $conn = db_connect();
+                $sql = "UPDATE comments SET commentuser = ? where commentuser = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$newun, $name]);
+                $conn = null;
+                echo "test";
+            
+                $conn = db_connect();
+                $sql = "UPDATE comments SET imguser = ? where imguser = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$newun, $name]);
+                $conn = null;
+
+                    successfulChange($newun);   
             } else {
                 existUsername();
             }
