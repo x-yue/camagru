@@ -82,8 +82,11 @@ function numOfLikes($imgname, $imguser, $imgtime){
         $totalpage = (INT)($count / $ppp + 1);
 
         if (isset($_GET["page"])){
-            $pagenum = $_GET["page"];
-            if ($_GET['page'] == 0){
+			$pagenum = $_GET["page"];
+			if ($pagenum >= $totalpage){
+                $pagenum = $totalpage;
+			}
+			if ($_GET['page'] == 0){
                 $pagenum = 1;
             }
         } else {
@@ -100,7 +103,7 @@ function numOfLikes($imgname, $imguser, $imgtime){
             echo "&nbsp;";
         }
         echo "<a id='pagenum'>page $pagenum</a>";
-        if ($nextpage < $totalpage){            
+        if ($nextpage <= $totalpage){            
             echo "&nbsp;";
             echo "<a href='http://localhost:8300/camagru/index.php?page=$nextpage' class='button'>Next Page</a>"; 
         }
@@ -134,7 +137,7 @@ function numOfLikes($imgname, $imguser, $imgtime){
             echo "&nbsp;";
         }
         echo "<a id='pagenum'>page $pagenum</a>";
-        if ($nextpage < $totalpage){
+        if ($nextpage <= $totalpage){
             echo "&nbsp;";
             echo "<a href='http://localhost:8300/camagru/index.php?page=$nextpage' class='button'>Next Page</a>"; 
         }

@@ -24,7 +24,7 @@ if (isset($_GET["email"]) && $_GET["active"] == 'a'){
     $email = $_GET["email"];
 
     $conn = db_connect();
-    $sql = "UPDATE loginsystem SET active = 'a' WHERE email = '?'";
+    $sql = "UPDATE loginsystem SET active = 'a' WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$email]);
     $conn = null;

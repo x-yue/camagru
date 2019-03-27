@@ -105,7 +105,10 @@ if (!isset($_SESSION['username'])){
 
         if (isset($_GET["page"])){
             $pagenum = $_GET["page"];
-            if ($_GET['page'] == 0){
+			if ($pagenum >= $totalpage){
+				$pagenum = $totalpage;
+			}
+			if ($_GET['page'] == 0){
                 $pagenum = 1;
             }
         } else {
@@ -122,7 +125,7 @@ if (!isset($_SESSION['username'])){
             echo "&nbsp;";
         }
         echo "<a id='pagenum'>page $pagenum</a>";
-        if ($nextpage < $totalpage){            
+        if ($nextpage <= $totalpage){            
             echo "&nbsp;";
             echo "<a href='http://localhost:8300/camagru/feed.php?page=$nextpage' class='button'>Next Page</a>"; 
         }
@@ -187,7 +190,7 @@ if (!isset($_SESSION['username'])){
                 echo "&nbsp;";
             }
             echo "<a id='pagenum'>page $pagenum</a>";
-            if ($nextpage < $totalpage){
+            if ($nextpage <= $totalpage){
                 echo "&nbsp;";
                 echo "<a href='http://localhost:8300/camagru/feed.php?page=$nextpage' class='button'>Next Page</a>"; 
             }
