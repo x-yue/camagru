@@ -1,6 +1,6 @@
 <?php 
 
-include '../config/setup.php';
+include 'setup.php';
 
 $salt = "sherlock_";
 $passwd = hash("whirlpool", $salt."111111");

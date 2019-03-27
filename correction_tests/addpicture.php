@@ -1,6 +1,6 @@
 <?php
 
-include "../config/setup.php";
+include "setup.php";
 
 date_default_timezone_set('europe/paris');
 $now = date("Y-m-d H:i:s");
@@ -37,7 +37,7 @@ $conn = null;
 $num++;
 
 $conn = db_connect();
-$sql = "INSERT INTO imagelist (image_location, username, date_creation) VALUES ('example_images/$num.jpg', 'Brack Obama', '$now')";
+$sql = "INSERT INTO imagelist (image_location, username, date_creation) VALUES ('example_images/$num.jpg', 'Obama', '$now')";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $conn = null;
@@ -72,7 +72,7 @@ $conn = null;
 $num++;
 
 $conn = db_connect();
-$sql = "INSERT INTO imagelist (image_location, username, date_creation) VALUES ('example_images/$num.jpg', 'Testtesttest', '$now')";
+$sql = "INSERT INTO imagelist (image_location, username, date_creation) VALUES ('example_images/$num.jpg', 'Correctrice', '$now')";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $conn = null;
@@ -93,7 +93,7 @@ $conn = null;
 $num++;
 
 $conn = db_connect();
-$sql = "INSERT INTO imagelist (image_location, username, date_creation) VALUES ('example_images/$num.jpg', 'Sophia', '$now')";
+$sql = "INSERT INTO imagelist (image_location, username, date_creation) VALUES ('example_images/$num.jpg', 'Corrector', '$now')";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $conn = null;

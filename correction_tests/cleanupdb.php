@@ -1,6 +1,6 @@
 <?php
 
-include "../config/setup.php";
+include "setup.php";
 
 
 //clean loginsystem
