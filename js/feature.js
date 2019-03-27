@@ -30,9 +30,6 @@ function removeUpload(){
   if (image.src) {
     image.src = "/camagru/images/empty.png";
   }
-  else {
-    exit;
-  }
 }
 
 var video = document.querySelector("#camerastream");
@@ -59,7 +56,6 @@ function takeAPicture(){
       ctx.drawImage(addon, 0, 0, 300, 150);
       var data = canvas.toDataURL('image/png');
       document.canvasForm.canvasData.value = data; 
-      document.forms["canvasForm"].submit();
     } else {
       alert("You have to add one of filters above to your picture.");
     }

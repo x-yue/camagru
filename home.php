@@ -32,7 +32,7 @@ if (!isset($_SESSION['username'])){
 </div>
 
 <div align="center">
-        <img id="upload">
+        <img id="upload" src="images/empty.png">
         <img id="addon" value="empty">
         <video autoplay="true" id="camerastream"></video>
 </div>
@@ -81,7 +81,7 @@ $conn = null;
     <canvas id="posts"></canvas> 
     <form name="canvasForm" action="config/process.php" method="post">
     <input type="hidden" name="canvasData" value="" required>
-    <input type="submit" name="submit" value="Save to Gallery and Share with the World" class="button">
+    <input type="submit" name="submit"  value="Save to Gallery and Share with the World" class="button">
     </form>
 </div>
 
