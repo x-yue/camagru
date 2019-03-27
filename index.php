@@ -63,8 +63,8 @@ function numOfLikes($imgname, $imguser, $imgtime){
     if (!$res){
         echo "<div align='center'>";
         echo "<div id='msgbox' style='height:250px'>";
+        echo "<br>";
         echo "<p id='nonewsfeed'>Oups, there is no post from anyone yet, sign up or sign in and share something with us!</p>";
-        echo "<a href='index.php'><button class='button'>Homepage</button></a></div></div>";
     } else {
         $conn = db_connect();
         $sql = "SELECT * FROM imagelist ORDER BY date_creation DESC";
@@ -100,7 +100,7 @@ function numOfLikes($imgname, $imguser, $imgtime){
             echo "&nbsp;";
         }
         echo "<a id='pagenum'>page $pagenum</a>";
-        if ($nextpage <= $totalpage){            
+        if ($nextpage < $totalpage){            
             echo "&nbsp;";
             echo "<a href='http://localhost:8300/camagru/index.php?page=$nextpage' class='button'>Next Page</a>"; 
         }
@@ -134,7 +134,7 @@ function numOfLikes($imgname, $imguser, $imgtime){
             echo "&nbsp;";
         }
         echo "<a id='pagenum'>page $pagenum</a>";
-        if ($nextpage <= $totalpage){
+        if ($nextpage < $totalpage){
             echo "&nbsp;";
             echo "<a href='http://localhost:8300/camagru/index.php?page=$nextpage' class='button'>Next Page</a>"; 
         }

@@ -122,7 +122,7 @@ if (!isset($_SESSION['username'])){
             echo "&nbsp;";
         }
         echo "<a id='pagenum'>page $pagenum</a>";
-        if ($nextpage <= $totalpage){            
+        if ($nextpage < $totalpage){            
             echo "&nbsp;";
             echo "<a href='http://localhost:8300/camagru/feed.php?page=$nextpage' class='button'>Next Page</a>"; 
         }
@@ -187,7 +187,7 @@ if (!isset($_SESSION['username'])){
                 echo "&nbsp;";
             }
             echo "<a id='pagenum'>page $pagenum</a>";
-            if ($nextpage <= $totalpage){
+            if ($nextpage < $totalpage){
                 echo "&nbsp;";
                 echo "<a href='http://localhost:8300/camagru/feed.php?page=$nextpage' class='button'>Next Page</a>"; 
             }
